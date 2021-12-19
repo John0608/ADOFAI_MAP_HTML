@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="main.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/json5/0.5.1/json5.min.js" integrity="sha512-0Z0waakasLFLv2VFHGqiiCQebtQi7wpUieRR4yInvJ/EGQk9r+4LvjMEgsi15EnvONG2uo2Z9bdJXDV8uU8iuA==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <title>FileTransform</title>
+
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            
+        }
+        .title {
+            height: 70px;
+            background-color: #2055f5;
+            text-align: center;
+            color : white;
+            font-size: 30px;
+            padding-top: 30px;
+        }
+
+        .content {
+            width: 80%;
+            margin-left: auto;
+            margin-right: auto;
+            margin-top: 20px;
+        }
+    </style>
+
+</head>
+<body>
+    <div class="title">변환기</div>
+    <div class="content">
+        <input type="file" value="파일 선택하기" id="file_select_btn">
+        <input type="button" value="변환" onclick="fileUpload()"/>
+    </div>
+</body>
+</html>
