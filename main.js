@@ -36,3 +36,10 @@ const fileUpload = () => {
     reader.readAsText(f, 'UTF-8')
   }
 
+  {
+      for(var i = 0; i < upload_Result.actions.length; i++)
+      {
+        upload_Result.actions
+      }
+  }
+
