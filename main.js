@@ -1,6 +1,6 @@
-var upload_Result;
+var Level;
 var obj;
-var effect_List = ["SetSpeed","Twirl","CustomBackground","ChangeTrack","ColorTrack","AnimateTrack","AddDecoration","Flash","MoveCamera","SetHitsound","RecolorTrack","MoveTrack","SetFilter","HallOfMirrors","ShakeScreen","SetPlanetRotation","MoveDecorations","RepeatEvents"];
+var effect_List = ["SetSpeed","Twirl","CustomBackground","ChangeTrack","ColorTrack","AnimateTrack","AddDecoration","Flash","MoveCamera","SetHitsound","RecolorTrack","MoveTrack","HallOfMirrors","ShakeScreen","SetPlanetRotation","MoveDecorations","RepeatEvents"];
 
 const fileUpload = () => {
     String.prototype.replaceAll = function(org, dest) {
@@ -28,8 +28,9 @@ const fileUpload = () => {
     const reader = new FileReader()
     reader.onload = (evt) => {
         const level = parseLevel(evt.target.result)
-        console.log(level)
-        upload_Result = level; 
+        Level = level; 
+        fix();
+        download("main.adofai",JSON5.stringify(Level));
     }
     reader.onerror = () => {
       return alert('error reading file')
@@ -39,9 +40,38 @@ const fileUpload = () => {
 
   function fix()
   {
-      for(var i = 0; i < upload_Result.actions.length; i++)
+      Level.actions = Level.actions.filter(x=>effect_List.includes(x.eventType))
+
+      let bpm = Level.settings.bpm;
+      for(var i = 0; i < Level.actions.length; i++)
       {
-        upload_Result.actions
+          if(Level.actions[i].eventType == "SetSpeed")
+          {
+                if(Level.actions[i].speedType == "Multiplier")
+                {
+                    const bpm_Multiplier = Level.actions[i].bpmMultiplier;
+
+                    Level.actions[i].speedType = "Bpm";
+                    bpm = bpm * bpm_Multiplier;
+                    Level.actions[i].bpmMultiplier = 1;
+                }
+                Level.actions[i].beatsPerMinute = bpm;
+          }
       }
   }
 
+  function download(filename, text) {
+    const element = document.createElement('a')
+    element.setAttribute(
+        'href',
+        'data:text/plain;charset=utf-8,' + encodeURIComponent(text),
+    )
+    element.setAttribute('download', filename)
+
+    element.style.display = 'none'
+    document.body.appendChild(element)
+
+    element.click()
+
+    document.body.removeChild(element)
+}
