@@ -30,7 +30,7 @@ const fileUpload = () => {
         const level = parseLevel(evt.target.result)
         Level = level; 
         fix();
-        download("main.adofai",JSON5.stringify(Level));
+        download("main.adofai",JSON.stringify(Level));
     }
     reader.onerror = () => {
       return alert('error reading file')
