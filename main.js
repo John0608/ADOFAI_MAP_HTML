@@ -1,5 +1,6 @@
 var upload_Result;
 var obj;
+var effect_List = ["SetSpeed","Twirl","CustomBackground","ChangeTrack","ColorTrack","AnimateTrack","AddDecoration","Flash","MoveCamera","SetHitsound","RecolorTrack","MoveTrack","SetFilter","HallOfMirrors","ShakeScreen","SetPlanetRotation","MoveDecorations","RepeatEvents"];
 
 const fileUpload = () => {
     String.prototype.replaceAll = function(org, dest) {
@@ -36,6 +37,7 @@ const fileUpload = () => {
     reader.readAsText(f, 'UTF-8')
   }
 
+  function fix()
   {
       for(var i = 0; i < upload_Result.actions.length; i++)
       {
