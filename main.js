@@ -1,6 +1,8 @@
 var Level;
 var obj;
+
 var effect_List = ["SetSpeed","Twirl","CustomBackground","ChangeTrack","ColorTrack","AnimateTrack","AddDecoration","Flash","MoveCamera","SetHitsound","RecolorTrack","MoveTrack","HallOfMirrors","ShakeScreen","SetPlanetRotation","MoveDecorations","RepeatEvents"];
+var MoveCamera_List = ["floor", "eventType", "duration", "relativeTo", "position", "rotation", "zoom", "angleOffset", "ease"];
 
 const fileUpload = () => {
     String.prototype.replaceAll = function(org, dest) {
@@ -41,6 +43,7 @@ const fileUpload = () => {
   function fix()
   {
       Level.actions = Level.actions.filter(x=>effect_List.includes(x.eventType))
+      Remove_MoveCamera_Keys();
 
       let bpm = Level.settings.bpm;
       for(var i = 0; i < Level.actions.length; i++)
@@ -57,7 +60,7 @@ const fileUpload = () => {
                 }
                 Level.actions[i].beatsPerMinute = bpm;
           }
-      }
+        }
   }
 
   function download(filename, text) {
@@ -74,4 +77,26 @@ const fileUpload = () => {
     element.click()
 
     document.body.removeChild(element)
+}
+
+function Remove_MoveCamera_Keys() //카메라 중 지원하지 않는 키 제거
+{
+    var actions_length = Level.actions.length;  //actions 길이
+    for(var i = 0; i < actions_length; i++)     //actions 길이만큼 반복
+    {
+        if(Level.actions[i].eventType == "MoveCamera")
+        {
+            var key = Object.getOwnPropertyNames(Level.actions[i]);
+            console.log("Key :" + key.toString());
+            for(var o = 0; o < key.length; o++)
+            {
+                if(MoveCamera_List.indexOf(key[o]) == -1)
+                {
+                    var result = delete Level.actions[i][key[o]];
+                    console.log(result);
+                    
+                }
+            }
+        }
+    }
 }
