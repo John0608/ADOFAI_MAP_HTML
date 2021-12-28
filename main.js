@@ -3,7 +3,9 @@ var obj;
 
 var effect_List = ["SetSpeed","Twirl","CustomBackground","ChangeTrack","ColorTrack","AnimateTrack","AddDecoration","Flash","MoveCamera","SetHitsound","RecolorTrack","MoveTrack","HallOfMirrors","ShakeScreen","SetPlanetRotation","MoveDecorations","RepeatEvents"];
 var MoveCamera_List = ["floor", "eventType", "duration", "relativeTo", "position", "rotation", "zoom", "angleOffset", "ease"];
-
+var effectList = {
+    "CustomBackground" : "sd"
+};
 const fileUpload = () => {
     String.prototype.replaceAll = function(org, dest) {
         return this.split(org).join(dest);
@@ -31,7 +33,7 @@ const fileUpload = () => {
     reader.onload = (evt) => {
         const level = parseLevel(evt.target.result)
         Level = level; 
-        fix();
+        //fix();
         download("main.adofai",JSON.stringify(Level));
     }
     reader.onerror = () => {
@@ -42,25 +44,28 @@ const fileUpload = () => {
 
   function fix()
   {
-      Level.actions = Level.actions.filter(x=>effect_List.includes(x.eventType))
-      Remove_Keys("MoveCamera", MoveCamera_List);
+      Level.actions = Level.actions.filter(x=>effect_List.includes(x.eventType)) //이펙트 필터링
+      fix_BPM();
+  }
 
-      let bpm = Level.settings.bpm;
-      for(var i = 0; i < Level.actions.length; i++)
-      {
-          if(Level.actions[i].eventType == "SetSpeed")
-          {
-                if(Level.actions[i].speedType == "Multiplier")
-                {
-                    const bpm_Multiplier = Level.actions[i].bpmMultiplier;
-
-                    Level.actions[i].speedType = "Bpm";
-                    bpm = bpm * bpm_Multiplier;
-                    Level.actions[i].bpmMultiplier = 1;
-                }
-                Level.actions[i].beatsPerMinute = bpm;
-          }
+  function fix_BPM()
+  {
+    let bpm = Level.settings.bpm;
+    Level.actions.forEach(function(index){            
+        if(index.eventType == "SetSpeed")
+        {
+            if(index.speedType == "Multiplier")
+            {
+                index.speedType = "Bpm";
+                bpm = bpm * index.bpmMultiplier;
+                index.bpmMultiplier = 1;
+                index.beatsPerMinute = bpm;
+            }
+            else {
+                bpm = index.beatsPerMinute;
+            }
         }
+    });
   }
 
   function download(filename, text) {
@@ -79,7 +84,7 @@ const fileUpload = () => {
     document.body.removeChild(element)
 }
 
-function Remove_Keys(event_name, event_keys) //카메라 중 지원하지 않는 키 제거
+function Remove_Keys(event_name, event_keys)
 {
     var actions_length = Level.actions.length;  //actions 길이
     for(var i = 0; i < actions_length; i++)     //actions 길이만큼 반복
@@ -98,5 +103,31 @@ function Remove_Keys(event_name, event_keys) //카메라 중 지원하지 않는
                 }
             }
         }
+        else {}
     }
+}
+
+effect_List.forEach(function(element, index){
+    console.log(element, index)
+});
+
+function Remove_Keys2(event_name, event_keys)
+{
+    Level.actions.forEach(function(index){
+        if(index.eventType == event_name)
+        {
+            var key = Object.getOwnPropertyNames(index);
+            console.log("Key :" + key.toString());
+            for(var o = 0; o < key.length; o++)
+            {
+                if(event_keys.indexOf(key[o]) == -1)
+                {
+                    var result = delete index[key[o]];
+                    console.log(result);
+                    
+                }
+            }
+        }
+        else {}
+    })
 }
