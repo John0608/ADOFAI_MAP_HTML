@@ -5,8 +5,8 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-    <script src="main.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/json5/0.5.1/json5.min.js" integrity="sha512-0Z0waakasLFLv2VFHGqiiCQebtQi7wpUieRR4yInvJ/EGQk9r+4LvjMEgsi15EnvONG2uo2Z9bdJXDV8uU8iuA==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <script src="main.js"></script>
     <title>FileTransform</title>
 
     <style>
@@ -30,14 +30,45 @@
             margin-right: auto;
             margin-top: 20px;
         }
+
+       
+        .download {
+            font: 20px bold;
+            margin-left: auto;
+            margin-right: auto;
+            margin-top: 30px;
+            border: 0px;
+            border-radius: 5px;
+            color: white;
+            padding: 5px 10px;
+            background-color: #2055f5;
+            display: none;
+        }
+
+        .console {
+            margin-top: 20px;
+            text-align: left;
+            width: 500px;
+            margin-left: auto;
+            margin-right: auto;
+            display: none;
+        }
     </style>
 
 </head>
 <body>
     <div class="title">변환기</div>
-    <div class="content">
-        <input type="file" value="파일 선택하기" id="file_select_btn">
-        <input type="button" value="변환" onclick="fileUpload()"/>
+    <div class="content" style="text-align: center;">
+        <div id="f_select" style="width: 100%;">
+            <input type="file" value="파일 선택하기" id="file_select_btn" onchange="fileUpload()" width="100%">
+        </div>
+        <div class="console">
+            <ul class="ul_list">
+            </ul>
+        </div>
+        <div class="download_div">
+            <input type="button" class="download" value="다운로드" onclick="down_click()"/>
+        </div>
     </div>
 </body>
 </html>
