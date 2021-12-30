@@ -2,7 +2,8 @@ var Level;
 var obj;
 var FileName = "main.adofai";
 var effectList = {
-    "CustomBackground": ['floor', 'eventType', 'color', 'bgImage', 'imageColor', 'parallax', 'bgDisplayMode', 'lockRot', 'loopBG', 'unscaledSize', 'angleOffset'],
+    "SetSpeed" : [ "floor", "eventType", "speedType", "beatsPerMinute", "bpmMultiplier"],
+	"CustomBackground": ['floor', 'eventType', 'color', 'bgImage', 'imageColor', 'parallax', 'bgDisplayMode', 'lockRot', 'loopBG', 'unscaledSize', 'angleOffset'],
     //"ChangeTrack" : [],
     "ColorTrack": ['floor', 'eventType', 'trackColorType', 'trackColor', 'secondaryTrackColor', 'trackColorAnimDuration', 'trackColorPulse', 'trackPulseLength', 'trackStyle'],
     "AnimateTrack": ['floor', 'eventType', 'trackAnimation', 'beatsAhead', 'trackDisappearAnimation', 'beatsBehind'],
@@ -19,6 +20,7 @@ var effectList = {
     //"RepeatEvents" : []
 
 };
+var setting_List = ["version", "artist", "specialArtistType", "artistPermission", "song", "author", "separateCountdownTime", "previewImage", "previewIcon", "previewIconColor", "previewSongStart", "previewSongDuration", "seizureWarning", "levelDesc", "levelTags", "artistLinks", "difficulty", "songFilename", "bpm", "volume", "offset", "pitch", "hitsound", "hitsoundVolume", "countdownTicks", "trackColorType", "trackColor", "secondaryTrackColor", "trackColorAnimDuration", "trackColorPulse", "trackPulseLength", "trackStyle", "trackAnimation", "beatsAhead", "trackDisappearAnimation", "beatsBehind", "backgroundColor", "bgImage", "bgImageColor", "parallax", "bgDisplayMode", "lockRot", "loopBG", "unscaledSize", "relativeTo", "position", "rotation", "zoom", "bgVideo", "loopVideo", "vidOffset", "floorIconOutlines", "stickToFloors", "planetEase", "planetEaseParts"];
 var ul_list = $(".ul_list");
 
 const fileUpload = () => {
@@ -60,8 +62,9 @@ const fileUpload = () => {
 
 function fix() {
     Level.actions = Level.actions.filter(x => Object.keys(effectList).includes(x.eventType)) //이펙트 필터링
-    fix_BPM();
+    
     fix_actions();
+    fix_BPM();
     document.querySelector('.download').style.display = 'block';
 }
 
