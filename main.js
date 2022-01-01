@@ -1,24 +1,39 @@
 var Level;
 var obj;
 var FileName = "main.adofai";
-var effectList = {
-    "SetSpeed" : [ "floor", "eventType", "speedType", "beatsPerMinute", "bpmMultiplier"],
-	"CustomBackground": ['floor', 'eventType', 'color', 'bgImage', 'imageColor', 'parallax', 'bgDisplayMode', 'lockRot', 'loopBG', 'unscaledSize', 'angleOffset'],
-    //"ChangeTrack" : [],
-    "ColorTrack": ['floor', 'eventType', 'trackColorType', 'trackColor', 'secondaryTrackColor', 'trackColorAnimDuration', 'trackColorPulse', 'trackPulseLength', 'trackStyle'],
-    "AnimateTrack": ['floor', 'eventType', 'trackAnimation', 'beatsAhead', 'trackDisappearAnimation', 'beatsBehind'],
-    "AddDecoration": ['floor', 'eventType', 'decorationImage', 'position', 'relativeTo', 'pivotOffset', 'rotation', 'scale', 'depth', 'tag'],
-    "Flash": ['floor', 'eventType', 'duration', 'plane', 'startColor', 'startOpacity', 'endColor', 'endOpacity', 'angleOffset'],
-    "MoveCamera": ["floor", "eventType", "duration", "relativeTo", "position", "rotation", "zoom", "angleOffset", "ease"],
-    //"SetHitsound" : [],
-    //"RecolorTrack" : [],
-    "MoveTrack": ['floor', 'eventType', 'startTile', 'endTile', 'duration', 'positionOffset', 'rotationOffset', 'scale', 'opacity', 'angleOffset', 'ease'],
-    "HallOfMirrors": ['floor', 'eventType', 'enabled', 'angleOffset'],
-    "ShakeScreen": ['floor', 'eventType', 'duration', 'strength', 'intensity', 'fadeOut', 'angleOffset'],
-    "SetPlanetRotation": ['floor', 'eventType', 'ease'],
-    "MoveDecorations": ['floor', 'eventType', 'duration', 'tag', 'positionOffset', 'rotationOffset', 'scale', 'angleOffset', 'ease']
-    //"RepeatEvents" : []
+var effect = {
+    "List":
+    {
+        "SetSpeed": ["floor", "eventType", "speedType", "beatsPerMinute", "bpmMultiplier"],
+        "CustomBackground": ['floor', 'eventType', 'color', 'bgImage', 'imageColor', 'parallax', 'bgDisplayMode', 'lockRot', 'loopBG', 'unscaledSize', 'angleOffset'],
+        "ChangeTrack" : [],
+        "ColorTrack": ['floor', 'eventType', 'trackColorType', 'trackColor', 'secondaryTrackColor', 'trackColorAnimDuration', 'trackColorPulse', 'trackPulseLength', 'trackStyle'],
+        "AnimateTrack": ['floor', 'eventType', 'trackAnimation', 'beatsAhead', 'trackDisappearAnimation', 'beatsBehind'],
+        "AddDecoration": ['floor', 'eventType', 'decorationImage', 'position', 'relativeTo', 'pivotOffset', 'rotation', 'scale', 'depth', 'tag'],
+        "Flash": ['floor', 'eventType', 'duration', 'plane', 'startColor', 'startOpacity', 'endColor', 'endOpacity', 'angleOffset'],
+        "MoveCamera": ["floor", "eventType", "duration", "relativeTo", "position", "rotation", "zoom", "angleOffset", "ease"],
+        "SetHitsound" : [],
+        "RecolorTrack" : [],
+        "MoveTrack": ['floor', 'eventType', 'startTile', 'endTile', 'duration', 'positionOffset', 'rotationOffset', 'scale', 'opacity', 'angleOffset', 'ease'],
+        "HallOfMirrors": ['floor', 'eventType', 'enabled', 'angleOffset'],
+        "ShakeScreen": ['floor', 'eventType', 'duration', 'strength', 'intensity', 'fadeOut', 'angleOffset'],
+        "SetPlanetRotation": ['floor', 'eventType', 'ease'],
+        "MoveDecorations": ['floor', 'eventType', 'duration', 'tag', 'positionOffset', 'rotationOffset', 'scale', 'angleOffset', 'ease']
+       /// //"RepeatEvents" : []
+    },
+    "Setting": {
+        "AddDecoration": { "relativeTo": ['Global', 'Tile'] },
+        "ColorTrack" : {
+            'trackColorType' : ['Single','Stripes','Glow','Blink','Switch','Rainbow'],
+            'trackColorPulse' : ['Forward', 'Backward'],
+            'trackStyle' : ['Standard','Neon','NeonLight','Gems']
+        },
+        "Flash" : {
+            'plane' : ['Foreground','Background']
+        }
+        // "AnimateTrack ChangeTrack CustomBackground SetHitsound RecolorTrack" 도움받기
 
+    }
 };
 var setting_List = ["version", "artist", "specialArtistType", "artistPermission", "song", "author", "separateCountdownTime", "previewImage", "previewIcon", "previewIconColor", "previewSongStart", "previewSongDuration", "seizureWarning", "levelDesc", "levelTags", "artistLinks", "difficulty", "songFilename", "bpm", "volume", "offset", "pitch", "hitsound", "hitsoundVolume", "countdownTicks", "trackColorType", "trackColor", "secondaryTrackColor", "trackColorAnimDuration", "trackColorPulse", "trackPulseLength", "trackStyle", "trackAnimation", "beatsAhead", "trackDisappearAnimation", "beatsBehind", "backgroundColor", "bgImage", "bgImageColor", "parallax", "bgDisplayMode", "lockRot", "loopBG", "unscaledSize", "relativeTo", "position", "rotation", "zoom", "bgVideo", "loopVideo", "vidOffset", "floorIconOutlines", "stickToFloors", "planetEase", "planetEaseParts"];
 var ul_list = $(".ul_list");
@@ -61,8 +76,8 @@ const fileUpload = () => {
 }
 
 function fix() {
-    Level.actions = Level.actions.filter(x => Object.keys(effectList).includes(x.eventType)) //이펙트 필터링
-    
+    Level.actions = Level.actions.filter(x => Object.keys(effect.List).includes(x.eventType)) //이펙트 필터링
+
     fix_actions();
     fix_BPM();
     document.querySelector('.download').style.display = 'block';
@@ -107,11 +122,10 @@ function fix_BPM() {
 
 }
 
-function addText(str)
-{
-    
+function addText(str) {
+
     var ul_list = $(".ul_list");
-    ul_list.append("<li>"+str+"</li>");
+    ul_list.append("<li>" + str + "</li>");
 }
 
 
@@ -129,19 +143,31 @@ function Remove_Keys(event_name, event_keys) {
             }
         }
         else { }
-        
+
     })
 }
 
 function fix_actions() {
-    Object.keys(effectList).forEach(function (index) {
-         const evtName = index;
-         const evtArray = effectList[index];
-         Remove_Keys(evtName, evtArray);
-         addText(index + " 수정 완료")
-        })
+    Object.keys(effect.List).forEach(function (index) {
+        const evtName = index;
+        const evtArray = effect.List[index];
+        Remove_Keys(evtName, evtArray);
+        addText(index + " 수정 완료")
+    });
+
+
+    //AddDecoration Fix
+    Level.actions.forEach(function(index){
+        if(index.eventType == "AddDecoration" && effect.Setting.AddDecoration.relativeTo.indexOf(index.relativeTo) == -1)
+        {
+            index.relativeTo = "Tile";
+        }
+        
+    })
 
 }
+
+
 
 
 
