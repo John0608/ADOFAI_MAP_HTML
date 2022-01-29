@@ -285,7 +285,7 @@ const fileUpload = () => {
 
 function fix() {
     Level.actions = Level.actions.filter(x => Object.keys(effect.effect.List).includes(x.eventType)) //이펙트 필터링
-            
+    fix_settings()       
     if($("#map_basic").is(":checked") == true)
     {
         fix_setting_basic();
