@@ -273,7 +273,7 @@ const fileUpload = () => {
         const level = parseLevel(evt.target.result)
         Level = level;
         $(".console").show();
-        //fix();
+        fix();
 
     }
     reader.onerror = () => {
