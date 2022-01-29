@@ -369,7 +369,7 @@ function fix_actions() {
 
     //AddDecoration Fix
     Level.actions.forEach(function(index){
-        if(index.eventType == "AddDecoration" && effect.effect.Settings_keys.AddDecoration.relativeTo.indexOf(index.relativeTo) == -1)
+        if(index.eventType == "AddDecoration" && effect.effect.Settings_key.AddDecoration.relativeTo.indexOf(index.relativeTo) == -1)
         {
             index.relativeTo = "Tile";
         }
