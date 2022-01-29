@@ -95,7 +95,7 @@ var effect = {
                 "beatsPerMinute",
                 "bpmMultiplier"
             ],
-            "Triwl" : [],
+            "Twirl" : [],
             "CustomBackground": [
                 "floor",
                 "eventType",
