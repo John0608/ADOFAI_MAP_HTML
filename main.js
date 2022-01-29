@@ -361,9 +361,11 @@ function Remove_Keys(event_name, event_keys) {
 
 function fix_actions() {
     Object.keys(effect.effect.List).forEach(function (index) {
+        if(index != "Twirl")
+            {
         const evtName = index;
         const evtArray = effect.effect.List[index];
-        Remove_Keys(evtName, evtArray);
+        Remove_Keys(evtName, evtArray);}
         addText(index + " 수정 완료")
     });
 
