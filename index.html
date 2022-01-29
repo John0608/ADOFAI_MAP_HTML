@@ -53,6 +53,40 @@
             margin-right: auto;
             display: none;
         }
+
+        .title, .content {
+            z-index: 0;
+        }
+
+        .modal {
+            width: 100%;
+            height: 100%;
+            position: absolute;
+            left: 0;
+            top: 0;
+            display: flex;
+            background-color: black;
+            opacity: 25%;
+            z-index: 20;
+        }
+
+        #content {
+            width: 100px;
+            height: 100px;
+            background-color: white;
+            top: 200px;
+            opacity: 100%;
+            position: relative;
+            z-index: 30;
+            color: black;
+        }
+        .modal p {
+            z-index: 100;
+            display: inline;
+            position: relative;
+            color: black;
+        }
+        
     </style>
 
 </head>
@@ -60,6 +94,7 @@
     <div class="title">변환기</div>
     <div class="content" style="text-align: center;">
         <div id="f_select" style="width: 100%;">
+            <label><input type="checkbox" id="map_basic" name="" id=""> 맵 기본세팅으로 수정 (파일 업로드 전에 체크하세요!)</label><br><br>
             <input type="file" value="파일 선택하기" id="file_select_btn" onchange="fileUpload()" width="100%">
         </div>
         <div class="console">
@@ -67,8 +102,13 @@
             </ul>
         </div>
         <div class="download_div">
-            <input type="button" class="download" value="다운로드" onclick="down_click()"/>
+            <input type="button" class="download" accept=".adofai" value="다운로드" onclick="down_click()" />
         </div>
     </div>
+   <!-- <div class="modal">
+        <div id="content">
+            <p>sdfsdf</p>
+        </div>
+    </div> -->
 </body>
 </html>
