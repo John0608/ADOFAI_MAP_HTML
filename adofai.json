@@ -43,6 +43,9 @@
             "stickToFloors",
             "planetEase"
         ],
+        "value" : {
+            
+        },
         "basic_value": {
             "hitsound": "Kick",
             "trackColorType": "Single",
