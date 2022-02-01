@@ -310,7 +310,10 @@ function FirstSetting() //스크립트 로드 후 처음만 실행
 function FileSelcetInit() //Input File 초기화
 {
     $(".file_select_btn").val("");
+    $(".log_box").hide();
+    $(".down_btn").hide();
 }
+
 
 function LogBoxOpenandClose()
 {
