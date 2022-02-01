@@ -58,6 +58,7 @@ var data = {
 
         },
         "basic_value": {
+            "version" : 2,
             "hitsound": "Kick",
             "trackColorType": "Single",
             "trackColor": "debb7b",
@@ -405,6 +406,7 @@ function fix_settings()
              delete Level.settings[index];
          }
     })
+    Level.settings.version = 2;
 }
 
 function fix_setting_basic()
