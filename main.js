@@ -1,7 +1,5 @@
-// "AnimateTrack ChangeTrack CustomBackground SetHitsound RecolorTrack" 도움받기
-var Level;
-var obj;
-var FileName = "level.adofai";
+var Level;  //adofai 파일 내용 저장
+var isUpload; //업로드 여부 확인
 var data = {
     "Setting": {
         "Key": [
@@ -256,7 +254,9 @@ var data = {
 }
 var setting_List = ["version", "artist", "specialArtistType", "artistPermission", "song", "author", "separateCountdownTime", "previewImage", "previewIcon", "previewIconColor", "previewSongStart", "previewSongDuration", "seizureWarning", "levelDesc", "levelTags", "artistLinks", "difficulty", "songFilename", "bpm", "volume", "offset", "pitch", "hitsound", "hitsoundVolume", "countdownTicks", "trackColorType", "trackColor", "secondaryTrackColor", "trackColorAnimDuration", "trackColorPulse", "trackPulseLength", "trackStyle", "trackAnimation", "beatsAhead", "trackDisappearAnimation", "beatsBehind", "backgroundColor", "bgImage", "bgImageColor", "parallax", "bgDisplayMode", "lockRot", "loopBG", "unscaledSize", "relativeTo", "position", "rotation", "zoom", "bgVideo", "loopVideo", "vidOffset", "floorIconOutlines", "stickToFloors", "planetEase", "planetEaseParts"];
 
-
+window.onload = () => {
+    FirstSetting();
+}
 const fileUpload = () => {
     String.prototype.replaceAll = function (org, dest) {
         return this.split(org).join(dest);
@@ -277,38 +277,93 @@ const fileUpload = () => {
         }
     }
 
-    const input = document.querySelector('#file_select_btn')
+    const input = document.querySelector('.file_select_btn')
     const f = input.files[0]
-    if (!f) return
-    const reader = new FileReader()
-    reader.onload = (evt) => {
-        const level = parseLevel(evt.target.result)
-        Level = level;
-        $(".console").show();
-        $("#conn").val("");
-        fix();
-
+    const fileName = f.name;
+    let ext = fileName.substring(fileName.lastIndexOf("."));
+    if(ext != ".adofai")
+    {
+        alert(".adofai 파일만 지원합니다.");
+        FileSelcetInit();
+        return;
     }
-    reader.onerror = () => {
-        return alert('error reading file')
+    else {
+        if (!f) return
+        const reader = new FileReader()
+        reader.onload = (evt) => {
+            const level = parseLevel(evt.target.result)
+            Level = level;
+        }
+        reader.onerror = () => {
+            return alert('error reading file')
+        }
+        reader.readAsText(f, 'UTF-8')
     }
-    reader.readAsText(f, 'UTF-8')
 }
+
+function FirstSetting() //스크립트 로드 후 처음만 실행
+{
+    $(".log_box").hide();
+    $(".down_btn").hide();
+}
+
+function FileSelcetInit() //Input File 초기화
+{
+    $(".file_select_btn").val("");
+}
+
+function LogBoxOpenandClose()
+{
+    let logbox = $(".log_box").css("display");
+    if(logbox == "block")
+    {
+        $(".log_box").hide();
+    }
+    else {
+        $(".log_box").show();
+    }
+}
+
+function FastConvert()
+{
+    if(isUpload() == true)
+    {
+        fix();
+        $(".down_btn").show();
+    }
+}
+
+function CustomConvert()
+{
+
+}
+
+function isUpload() {
+    if(typeof(Level) == "undefined")
+    {
+        alert("먼저 업로드를 해주세요!");
+        return false;
+    }
+    else {
+        return true;
+    }
+}
+
+
+
+
+
+// 기존 Main.js
 
 function fix() {
     Level.actions = Level.actions.filter(x => Object.keys(data.effect.List).includes(x.eventType)) //이펙트 필터링
     addText("이펙트 필터링 완료");
     fix_settings();
     addText("맵 설정 변경 완료")
-    if($("#map_basic").is(":checked") == true)
-    {
-        fix_setting_basic();
-        addText("맵 기본설정으로 변경 완료")
-    }
     fix_actions();
     addText("이펙트 별 변환 완료");
     fix_BPM();
-    document.querySelector('.download').style.display = 'block';
+
 }
 
 function down_click() {
@@ -351,9 +406,9 @@ function fix_BPM() {
 }
 
 function addText(str) {
-    var a = $("#conn").val()
+    var a = $("#log").val()
     a = a + "\n" + str;
-    $("#conn").val(a);
+    $("#log").val(a);
 }
 
 
@@ -417,23 +472,6 @@ function fix_setting_basic()
 }
 
 
-/*      먼저 만든 키 제거기
-function Remove_Keys(event_name, event_keys) {
-    var actions_length = Level.actions.length;  //actions 길이
-    for (var i = 0; i < actions_length; i++)     //actions 길이만큼 반복
-    {
-        if (Level.actions[i].eventType == event_name) {
-            var key = Object.getOwnPropertyNames(Level.actions[i]);
-            console.log("Key :" + key.toString());
-            for (var o = 0; o < key.length; o++) {
-                if (event_keys.indexOf(key[o]) == -1) {
-                    var result = delete Level.actions[i][key[o]];
-                    console.log(result);
 
-                }
-            }
-        }
-        else { }
-    }
-}
-*/
+
+

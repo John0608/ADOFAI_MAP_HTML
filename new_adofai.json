@@ -89,6 +89,10 @@
                 "eventType"  : [],
                 "beatsPerMinute"  : []
             },
+            "Twirl" : {
+                "floor" : [],
+                "eventType"  : []
+            },
             "CustomBackground": {
                 "floor"  : [],
                 "eventType"  : [],
@@ -217,6 +221,29 @@
                 "hitsound" : ["Hat", "Kick", "Shaker", "Sizzle", "Chuck", "None"],
                 "hitsoundVolume" : []
             },
+            "RecolorTrack" : {
+                "floor" : [],
+                "eventType" : [],
+                "startTile" : ["ThisTile", "Start", "End"],
+                "endTile" : ["ThisTile", "Start", "End"],
+                "trackColorType" : ["Single",
+                    "Stripes",
+                    "Glow",
+                    "Blink",
+                    "Switch",
+                    "Rainbow"],
+                "trackColor" : [],
+                "secondaryTrackColor" : [],
+                "trackColorAnimDuration" : [],
+                "trackColorPulse" : ["Forward",
+                    "Backward"],
+                "trackPulseLength" : [],
+                "trackStyle" : [ "Standard",
+                    "Neon",
+                    "NeonLight",
+                    "Gems"],
+                "angleOffset" : []
+            },
             "SetFilter" : {
                 "floor" : [],
                 "eventType" : [], 
@@ -225,7 +252,14 @@
                 "intensity" : [],
                 "disableOthers" : ["Enabled","Disabled"],
                 "angleOffset" : []
+            },
+            "RepeatEvents" : {
+                "floor" : [],
+                "eventType" : [], 
+                "repetitions" : [],
+                "interval" : []
             }
         }
-    }
+    },
+    "path" : "RJETUGQHLNZFDBCM"
 }
