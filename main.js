@@ -12,7 +12,7 @@ class Convert {
                     bpm = bpm * index.bpmMultiplier;
                     index.bpmMultiplier = 1;
                     index.beatsPerMinute = bpm;
-                    addText(index.floor + "의 " + eventType + "이펙트의 BPM이 " + y_bpm + "에서 " + bpm + "으로 바뀜.")
+                    addText(index.floor + "의 " + index.eventType + "이펙트의 BPM이 " + y_bpm + "에서 " + bpm + "으로 바뀜.")
                 }
                 else {
                     bpm = index.beatsPerMinute;
