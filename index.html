@@ -14,6 +14,25 @@
 </head>
 
 <body>
+    <div class="modal" tabindex="-1">
+        <div class="modal-dialog modal-dialog-centered">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h5 class="modal-title">사용자 지정 변환</h5>
+              <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close">??</button>
+            </div>
+            <div class="modal-body">
+              <label for="">
+                  <input type="checkbox" name="" id="mapset"> 맵설정 초기화하기.
+              </label>
+            </div>
+            <div class="modal-footer">
+              <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+              <button type="button" class="btn btn-primary"  data-bs-dismiss="modal" onclick="CustomConvert()">변환 시작</button>
+            </div>
+          </div>
+        </div>
+      </div>
     <div class="container mt-3">
         <div class="bg-primary text-center text-white rounded mt-4 p-5">
             <h2>ADOFAI MAP CONVERSION</h2>
@@ -25,7 +44,7 @@
                 <button type="button" class="btn btn-primary" onclick="FastConvert()">
                     빠른 변환
                 </button>
-                <button type="button" class="btn btn-secondary">
+                <button type="button" class="btn btn-secondary" data-bs-toggle="modal" data-bs-target=".modal">
                     사용자 지정
                 </button>
                 <button type="reset" class="btn btn-danger" onclick="FileSelcetInit()">
@@ -45,6 +64,7 @@
                 다운받기
             </button>
         </div>
+        
     </div>
 </body>
 
