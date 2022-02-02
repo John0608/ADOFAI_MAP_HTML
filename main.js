@@ -569,7 +569,7 @@ function Remove_difference_key() {
 function mapsetting_to_basic_key()
 {
     Object.keys(Level.settings).forEach((index) => {
-        if(Object.keys(data.Setting.Key).indexOf(index) == -1)
+        if(Object.keys(data.Setting.basic_value).indexOf(index) == -1)
         {
             delete Level.settings[index];
         }
