@@ -137,276 +137,53 @@ class Convert {
         });
     }
 
+    Pt2Mt(pos_x, pos_y)
+    {
+        let pos = new Vector;
+        let e = new Array();
+        pos.x += pos_x;
+        pos.y += pos_y;
 
+        e.floor = 1;
+        e.eventType = "MoveCamera";
+        e.duration = 0.1;
+        e.relativeTo = "Tile";
+        e.position = [pos.x, pos.y];
+        e.rotation = 0;
+        e.zoom = Level.settings.zoom;
+        e.angleOffset = 0;
+        e.ease = "Linear";
 
-}
+        Level.actions.unshift(e);
+    }
 
-var data = {
-    "Setting": {
-        "Key": [
-            "version",
-            "artist",
-            "song",
-            "author",
-            "hitsound",
-            "hitsoundVolume",
-            "separateCountdownTime",
-            "songFilename",
-            "bpm",
-            "volume",
-            "offset",
-            "pitch",
-            "trackColorType",
-            "trackColor",
-            "secondaryTrackColor",
-            "trackColorAnimDuration",
-            "trackColorPulse",
-            "trackPulseLength",
-            "trackStyle",
-            "trackAnimation",
-            "beatsAhead",
-            "trackDisappearAnimation",
-            "beatsBehind",
-            "backgroundColor",
-            "bgImage",
-            "bgImageColor",
-            "parallax",
-            "bgDisplayMode",
-            "lockRot",
-            "loopBG",
-            "unscaledSize",
-            "relativeTo",
-            "position",
-            "rotation",
-            "zoom",
-            "bgVideo",
-            "loopVideo",
-            "vidOffset",
-            "floorIconOutlines",
-            "stickToFloors",
-            "planetEase"
-        ],
-        "basic_value": {
-            "hitsound": "Kick",
-            "trackColorType": "Single",
-            "trackColor": "debb7b",
-            "secondaryTrackColor": "ffffff",
-            "trackColorAnimDuration": 2,
-            "trackColorPulse": "None",
-            "trackPulseLength": 10,
-            "trackStyle": "Standard",
-            "trackAnimation": "None",
-            "beatsAhead": 3,
-            "trackDisappearAnimation": "None",
-            "beatsBehind": 4,
-            "backgroundColor": "000000",
-            "bgImage": "",
-            "bgImageColor": "ffffff",
-            "parallax": [
-                100,
-                100
-            ],
-            "bgDisplayMode": "FitToScreen",
-            "lockRot": "Disabled",
-            "loopBG": "Disabled",
-            "unscaledSize": 100,
-            "relativeTo": "Player",
-            "position": [
-                0,
-                0
-            ],
-            "rotation": 0,
-            "zoom": 100,
-            "bgVideo": "",
-            "loopVideo": "Disabled",
-            "vidOffset": 0,
-            "floorIconOutlines": "Disabled",
-            "stickToFloors": "Disabled",
-            "planetEase": "Linear"
-        }
-    },
-    "effect": {
-        "List": {
-            "SetSpeed": {
-                "floor": [],
-                "eventType": [],
-                "beatsPerMinute": []
-            },
-            "Twirl": {
-                "floor": [],
-                "eventType": []
-            },
-            "CustomBackground": {
-                "floor": [],
-                "eventType": [],
-                "color": [],
-                "bgImage": [],
-                "imageColor": [],
-                "parallax": [],
-                "bgDisplayMode": ["FitToScreen", "Unscaled", "Tiled"],
-                "lockRot": ["Enabled", "Disabled"],
-                "loopBG": ["Enabled", "Disabled"],
-                "unscaledSize": [],
-                "angleOffset": []
-            },
-            "ColorTrack": {
-                "floor": [],
-                "eventType": [],
-                "trackColorType": ["Single",
-                    "Stripes",
-                    "Glow",
-                    "Blink",
-                    "Switch",
-                    "Rainbow"],
-                "trackColor": [],
-                "secondaryTrackColor": [],
-                "trackColorAnimDuration": [],
-                "trackColorPulse": ["Forward",
-                    "Backward"],
-                "trackPulseLength": [],
-                "trackStyle": ["Standard",
-                    "Neon",
-                    "NeonLight",
-                    "Gems"]
-            },
-            "AnimateTrack": {
-                "floor": [],
-                "eventType": [],
-                "trackAnimation": ["None", "Assemble", "Assemble_Far", "Extend", "Grow", "Grow_Spin", "Fade"],
-                "beatsAhead": [],
-                "trackDisappearAnimation": ["Scatter", "Scatter_Far", "Retract", "Shrink", "Shrink_Spin", "Fade"],
-                "beatsBehind": []
-            },
-            "AddDecoration": {
-                "floor": [],
-                "eventType": [],
-                "decorationImage": [],
-                "position": [],
-                "relativeTo": ["Global",
-                    "Tile"],
-                "pivotOffset": [],
-                "rotation": [],
-                "scale": [],
-                "depth": [],
-                "tag": []
-            },
-            "Flash": {
-                "floor": [],
-                "eventType": [],
-                "duration": [],
-                "plane": ["Foreground",
-                    "Background"],
-                "startColor": [],
-                "startOpacity": [],
-                "endColor": [],
-                "endOpacity": [],
-                "angleOffset": []
-            },
-            "MoveCamera": {
-                "floor": [],
-                "eventType": [],
-                "duration": [],
-                "relativeTo": ["Global",
-                    "Tile", "Player"],
-                "position": [],
-                "rotation": [],
-                "zoom": [],
-                "angleOffset": [],
-                "ease": []
-            },
-            "MoveTrack": {
-                "floor": [],
-                "eventType": [],
-                "startTile": ["ThisTile", "Start", "End"],
-                "endTile": ["ThisTile", "Start", "End"],
-                "duration": [],
-                "positionOffset": [],
-                "rotationOffset": [],
-                "scale": [],
-                "opacity": [],
-                "angleOffset": [],
-                "ease": []
-            },
-            "HallOfMirrors": {
-                "floor": [],
-                "eventType": [],
-                "enabled": ["Enabled", "Disabled"],
-                "angleOffset": []
-            },
-            "ShakeScreen": {
-                "floor": [],
-                "eventType": [],
-                "duration": [],
-                "strength": [],
-                "intensity": [],
-                "fadeOut": [],
-                "angleOffset": []
-            },
-            "SetPlanetRotation": {
-                "floor": [],
-                "eventType": [],
-                "ease": []
-            },
-            "MoveDecorations": {
-                "floor": [],
-                "eventType": [],
-                "duration": [],
-                "tag": [],
-                "positionOffset": [],
-                "rotationOffset": [],
-                "scale": [],
-                "angleOffset": [],
-                "ease": []
-            },
-            "SetHitsound": {
-                "floor": [],
-                "eventType": [],
-                "hitsound": ["Hat", "Kick", "Shaker", "Sizzle", "Chuck", "None"],
-                "hitsoundVolume": []
-            },
-            "RecolorTrack": {
-                "floor": [],
-                "eventType": [],
-                "startTile": ["ThisTile", "Start", "End"],
-                "endTile": ["ThisTile", "Start", "End"],
-                "trackColorType": ["Single",
-                    "Stripes",
-                    "Glow",
-                    "Blink",
-                    "Switch",
-                    "Rainbow"],
-                "trackColor": [],
-                "secondaryTrackColor": [],
-                "trackColorAnimDuration": [],
-                "trackColorPulse": ["Forward",
-                    "Backward"],
-                "trackPulseLength": [],
-                "trackStyle": ["Standard",
-                    "Neon",
-                    "NeonLight",
-                    "Gems"],
-                "angleOffset": []
-            },
-            "SetFilter": {
-                "floor": [],
-                "eventType": [],
-                "filter": ["Grayscale", "Sepia", "Invert", "VHS", "EightiesTV", "FiftiesTV", "Arcade", "LED", "Rain", "Blizzard", "PixelSnow", "Compression", "Glitch", "Pixelate", "Waves", "Drawing", "Neon", "Handheld", "NightVision", "Weird3D"],
-                "enabled": ["enabled", "disabled"],
-                "intensity": [],
-                "disableOthers": ["Enabled", "Disabled"],
-                "angleOffset": []
-            },
-            "RepeatEvents": {
-                "floor": [],
-                "eventType": [],
-                "repetitions": [],
-                "interval": []
+    angle2path(){
+        let path = "";
+        Level.angleData.forEach((x)=> {
+            let code;
+            if(x >= 0) {
+                code = adofai.path.indexOf(x);
             }
-        }
-    },
-    "path": "RJETUGQHLNZFDBCM"
+            else if (x < 0)
+            {
+                code = adofai.path.indexOf((x) + 360);
+            }
+            path += adofai.path[code];
+        })
+        delete Level.angleData;
+        Level.pathData = path;
+    }
+
 }
-const effect_List = data.effect.List;
+
+class Vector {
+    constructor() {
+        this.x = 0;
+        this.y = 0;
+    }
+}
+
+const effect_List = adofai.effect.List;
 let con = new Convert();
 
 window.onload = () => {
@@ -485,6 +262,7 @@ function LogBoxOpenandClose() //로그박스 여닫기
 function FastConvert() //빠른 변환
 {
     if (isUpload() == true) {
+        con.Pt2Mt(); //PositionTrack to MoveTrack
         con.SetSpeed();
         con.CustomBackground();
         con.ColorTrack();
@@ -569,7 +347,7 @@ function Remove_difference_key() {
 function mapsetting_to_basic_key()
 {
     Object.keys(Level.settings).forEach((index) => {
-        if(data.Setting.Key.indexOf(index) == -1)
+        if(adofai.Setting.Key.indexOf(index) == -1)
         {
             delete Level.settings[index];
         }
@@ -620,7 +398,22 @@ function addText(str) {
 
 function fix_setting_basic()
 {
-    Object.keys(data.Setting.basic_value).forEach(function (index) {
+    Object.keys(adofai.Setting.basic_value).forEach(function (index) {
         Level.settings[index] = data.Setting.basic_value[index];
     })
+}
+
+function angle2path(angleData)
+{
+    let path = "";
+    let angledat = angleData;
+    //검사 진행
+    angledat.forEach((x) => {
+        if(Object.keys(adofai.path).indexOf(x.index) == -1)
+        {
+            alert("이 맵은 지원하지 않습니다.");
+            return false;
+        }
+    })
+
 }
