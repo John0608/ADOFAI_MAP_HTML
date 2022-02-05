@@ -139,22 +139,25 @@ class Convert {
 
     Pt2Mt()
     {
-        let e = new Array();
         let array = [];
-        e.floor = 1;
-        e.eventType = "MoveTrack";
-        e.duration = 0.1;
-        e.positionOffset = [0,0];
-        e.relativeTo = "Tile";
-        e.rotation = 0;
-        e.zoom = Level.settings.zoom;
-        e.angleOffset = 0;
-        e.ease = "Linear";
+        let pos = [0,0];
         Level.actions.forEach((a)=>{
             if(a.eventType == "PositionTrack") {
-                console.log(a);
-                e.positionOffset[0] += a.positionOffset[0];
-                e.positionOffset[1] += a.positionOffset[1];
+                let e = new Array();
+                e.floor = 1;
+                e.eventType = "MoveTrack",
+                e.startTile = [0,"ThisTile"],
+                e.startTile[0] = a.floor;
+                e.endTile = [0,"End"],
+                e.duration = 1,
+                pos[0] += a.positionOffset[0];
+                pos[1] += a.positionOffset[1];
+                e.positionOffset = [pos[0],pos[1]]
+                e.rotationOffset = 0,
+                e.scale = 100,
+                e.opacity = 100,
+                e.angleOffset = 0,
+                e.ease = "Linear";
                 array.push(e);
             }
             else {}
@@ -168,20 +171,41 @@ class Convert {
     }
 
     angle2path(){
-        let path = "";
-        Level.angleData.forEach((x)=> {
-            let code;
-            if(x >= 0) {
-                code = adofai.path.indexOf(x);
-            }
-            else if (x < 0)
-            {
-                code = adofai.path.indexOf((x) + 360);
-            }
-            path += adofai.path[code];
-        })
-        delete Level.angleData;
-        Level.pathData = path;
+        function test()
+        {
+            Level.angleData.forEach((x)=> {
+                if(adofai.path[x] == undefined)
+                {
+                    alert("이 맵은 각도를 지원하지 않습니다.");
+                    return false;
+                }
+            })
+            return true;
+        }
+        
+        if(Level.pathData == undefined && test() == true)
+        {
+            let path = "";
+            Level.angleData.forEach((x)=> {
+                if(x >= 0) {
+                    path += adofai.path[x];
+                    if(adofai.path[x] == undefined)
+                    {
+                        console.log(x);
+                    }
+                }
+                else if (x < 0)
+                {
+                    path += adofai.path[(x) + 360];
+                    if(adofai.path[x] == undefined)
+                    {
+                        console.log(x);
+                    }
+                }
+            })
+            delete Level.angleData;
+            Level.pathData = path;
+        }
     }
 
 }
@@ -275,7 +299,8 @@ function FastConvert() //빠른 변환
 {
     try {
         if (isUpload() == true) {
-            con.Pt2Mt(); //PositionTrack to MoveTrack
+            //con.Pt2Mt(); //PositionTrack to MoveTrack
+            //con.angle2path();
             con.SetSpeed();
             con.CustomBackground();
             con.ColorTrack();
