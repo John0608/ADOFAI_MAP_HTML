@@ -137,24 +137,34 @@ class Convert {
         });
     }
 
-    Pt2Mt(pos_x, pos_y)
+    Pt2Mt()
     {
-        let pos = new Vector;
         let e = new Array();
-        pos.x += pos_x;
-        pos.y += pos_y;
-
+        let array = [];
         e.floor = 1;
-        e.eventType = "MoveCamera";
+        e.eventType = "MoveTrack";
         e.duration = 0.1;
+        e.positionOffset = [0,0];
         e.relativeTo = "Tile";
-        e.position = [pos.x, pos.y];
         e.rotation = 0;
         e.zoom = Level.settings.zoom;
         e.angleOffset = 0;
         e.ease = "Linear";
+        Level.actions.forEach((a)=>{
+            if(a.eventType == "PositionTrack") {
+                console.log(a);
+                e.positionOffset[0] += a.positionOffset[0];
+                e.positionOffset[1] += a.positionOffset[1];
+                array.push(e);
+            }
+            else {}
+        })
+        array.forEach(x=>{
+            Level.actions.unshift(x);
+        })
+        console.log(array)
+       
 
-        Level.actions.unshift(e);
     }
 
     angle2path(){
@@ -236,6 +246,7 @@ function FirstSetting() //스크립트 로드 후 처음만 실행
 {
     $(".log_box").hide();
     $(".down_btn").hide();
+    $(".error").hide();
 }
 
 function FileSelcetInit() //Input File 초기화
@@ -243,6 +254,7 @@ function FileSelcetInit() //Input File 초기화
     $(".file_select_btn").val("");
     $(".log_box").hide();
     $(".down_btn").hide();
+    $(".error").hide();
     Level = "";
     file_name = "";
 }
@@ -261,29 +273,39 @@ function LogBoxOpenandClose() //로그박스 여닫기
 
 function FastConvert() //빠른 변환
 {
-    if (isUpload() == true) {
-        con.Pt2Mt(); //PositionTrack to MoveTrack
-        con.SetSpeed();
-        con.CustomBackground();
-        con.ColorTrack();
-        con.AnimateTrack();
-        con.AddDecoration();
-        con.Flash();
-        con.MoveCamera();
-        con.HallOfMirrors();
-        con.SetHitsound();
-        con.RecolorTrack();
-        con.SetFilter();
-        Remove_notsuport_effect();
-        Remove_difference_key();
-        mapsetting_to_basic_key();
-        $(".down_btn").show();
+    try {
+        if (isUpload() == true) {
+            con.Pt2Mt(); //PositionTrack to MoveTrack
+            con.SetSpeed();
+            con.CustomBackground();
+            con.ColorTrack();
+            con.AnimateTrack();
+            con.AddDecoration();
+            con.Flash();
+            con.MoveCamera();
+            con.HallOfMirrors();
+            con.SetHitsound();
+            con.RecolorTrack();
+            con.SetFilter();
+            Remove_notsuport_effect();
+            Remove_difference_key();
+            mapsetting_to_basic_key();
+            $(".down_btn").show();
+        }
     }
+    catch(e)
+    {
+        $(".error").show();
+        $("#error_content").text(e.toString());
+    }
+    
 
 }
 
 function CustomConvert() //사용자 설정 변환
 {
+    alert("개발중인 기능입니다.")
+    /*
     $(".modal").hide();
     if(isUpload() == true)
     {
@@ -306,7 +328,7 @@ function CustomConvert() //사용자 설정 변환
             Remove_difference_key();
             mapsetting_to_basic_key();
             $(".down_btn").show();
-    }
+    } */
    
 }
 
