@@ -1,4 +1,5 @@
 class Convert {
+
     SetSpeed() {
         let bpm = Level.settings.bpm;
         Level.actions.forEach(function (index) {
@@ -134,60 +135,145 @@ class Convert {
         });
     }
 
-    Pt2Mt()
-    {
+    Pt2Mt() {
         let array = [];
-        let pos = [0,0];
-        Level.actions.forEach((a)=>{
-            if(a.eventType == "PositionTrack") {
+        let pos = [0, 0];
+        Level.actions.forEach((a) => {
+            if (a.eventType == "PositionTrack") {
                 let e = new Array();
                 e.floor = 1;
                 e.eventType = "MoveTrack",
-                e.startTile = [0,"ThisTile"],
-                e.startTile[0] = a.floor;
-                e.endTile = [0,"End"],
-                e.duration = 1,
-                pos[0] += a.positionOffset[0];
+                    e.startTile = [0, "ThisTile"],
+                    e.startTile[0] = a.floor;
+                e.endTile = [0, "End"],
+                    e.duration = 1,
+                    pos[0] += a.positionOffset[0];
                 pos[1] += a.positionOffset[1];
-                e.positionOffset = [pos[0],pos[1]]
+                e.positionOffset = [pos[0], pos[1]]
                 e.rotationOffset = 0,
-                e.scale = 100,
-                e.opacity = 100,
-                e.angleOffset = 0,
-                e.ease = "Linear";
+                    e.scale = 100,
+                    e.opacity = 100,
+                    e.angleOffset = 0,
+                    e.ease = "Linear";
                 array.push(e);
             }
-            else {}
+            else { }
         })
-        array.forEach(x=>{
+        array.forEach(x => {
             Level.actions.unshift(x);
         })
         console.log(array)
-       
+
 
     }
 
-    anglePath2pathData(){        
+    anglePath2pathData() {
         let path = "";
-        Level.angleData.forEach((x)=> {
-            if(x >= 0) {
+        Level.angleData.forEach((x) => {
+            if (x >= 0) {
                 path += adofai.path[x];
             }
-            else if (x < 0)
-            {
+            else if (x < 0) {
                 path += adofai.path[(x) + 360];
             }
         })
         delete Level.angleData;
         Level.pathData = path;
-        
+
     }
 
-    issupportAngledata()
-    {
-        let result = Level.angleData.some(x=>{
+    issupportAngledata() {
+        let result = Level.angleData.some(x => {
             return Object.keys(adofai.path).indexOf(x.toString()) == -1
         })
         return result;
+    }
+
+    SetCustomEffect() {
+        let effect_arr = new Array();
+        $("input[name=mapeff]:checked").each(function (i) {
+            effect_arr.push($(this).val())
+
+        })
+        effect_arr.forEach(x => {
+            // console.log(x);
+            convert_map(x)
+        })
+
+        function convert_map(effect_list) {
+            const adofai = new Convert();
+            switch (effect_list) {
+                case 'SetSpeed':
+                    adofai.SetSpeed();
+                    break;
+                case 'Twirl':
+                    adofai.Twirl();
+                    break;
+
+                case 'CustomBackground':
+                    adofai.CustomBackground();
+                    break;
+
+                case 'ColorTrack':
+                    adofai.ColorTrack();
+                    break;
+
+                case 'AnimateTrack':
+                    adofai.AnimateTrack();
+                    break;
+
+                case 'AddDecoration':
+                    adofai.AddDecoration();
+                    break;
+
+                case 'Flash':
+                    adofai.Flash();
+                    break;
+
+                case 'MoveCamera':
+                    adofai.MoveCamera();
+                    break;
+
+                case 'MoveTrack':
+                    adofai.MoveCamera();
+                    break;
+
+                case 'HallOfMirrors':
+                    adofai.HallOfMirrors();
+                    break;
+
+                case 'ShakeScreen':
+                    //뭐야 왜 없어
+                    break;
+
+                case 'SetPlanetRotation':
+                    //뭐야 이것도 없네
+                    break;
+
+                case 'MoveDecorations':
+                    //왜 없지
+                    break;
+
+                case 'SetHitsound':
+                    adofai.SetHitsound();
+                    break;
+
+                case 'RecolorTrack':
+                    adofai.RecolorTrack();
+                    break;
+
+                case 'SetFilter':
+                    adofai.SetFilter();
+                    break;
+
+                case 'RepeatEvents':
+                    //이것도 없어;;
+                    break;
+
+                default:
+                    break;
+            }
+        }
+
     }
 }

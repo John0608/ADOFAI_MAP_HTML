@@ -85,11 +85,9 @@ function FastConvert() //빠른 변환
         if (isUpload() == true) {
             //con.Pt2Mt(); //PositionTrack to MoveTrack
             //con.anglePath2pathData();
-            if(Level.pathData == undefined)
-            {
+            if (Level.pathData == undefined) {
                 addText("이 레벨은 자유각도 레벨입니다.");
-                if(con.issupportAngledata() == true)
-                {
+                if (con.issupportAngledata() == true) {
                     alert("이 레벨은 각도변환을 지원하지 않습니다.");
                     addText("이 레벨은 각도변환을 지원하지 않습니다.");
                     return;
@@ -116,43 +114,51 @@ function FastConvert() //빠른 변환
             $(".down_btn").show();
         }
     }
-    catch(e)
-    {
+    catch (e) {
         $(".error").show();
         $("#error_content").text(e.toString());
     }
-    
+
 
 }
 
 function CustomConvert() //사용자 설정 변환
 {
-    alert("개발중인 기능입니다.")
-    /*
-    $(".modal").hide();
-    if(isUpload() == true)
-    {
-        if($("#mapset").is(":checked") == true)
-        {
-            fix_setting_basic();
-        }
-            con.SetSpeed();
-            con.CustomBackground();
-            con.ColorTrack();
-            con.AnimateTrack();
-            con.AddDecoration();
-            con.Flash();
-            con.MoveCamera();
-            con.HallOfMirrors();
-            con.SetHitsound();
-            con.RecolorTrack();
-            con.SetFilter();
-            Remove_notsuport_effect();
-            Remove_difference_key();
-            mapsetting_to_basic_key();
+    try {
+        if (isUpload() == true) {
+            if (Level.pathData == undefined) {
+                addText("이 레벨은 자유각도 레벨입니다.");
+                if (con.issupportAngledata() == true) {
+                    alert("이 레벨은 각도변환을 지원하지 않습니다.");
+                    addText("이 레벨은 각도변환을 지원하지 않습니다.");
+                    return;
+                }
+                else {
+                    con.anglePath2pathData();
+                    addText("각도 변환 완료.");
+                }
+            }
+            let con = new Convert();
+            con.SetCustomEffect();
+            if ($("#mapset").is(":checked") == true) {
+                mapsetting_to_basic_key();
+            }
+            if ($("#remove_notsupport_effect").is(":checked") == true) {
+                Remove_notsuport_effect();
+            }
+            if ($("#remove_notsupport_key").is(":checked") == true) {
+                Remove_difference_key();
+            }
             $(".down_btn").show();
-    } */
-   
+        }
+    }
+    catch (e) {
+        $(".error").show();
+        $("#error_content").text(e.toString());
+    }
+
+    
+
 }
 
 function isUpload() { //업로드 유무 확인
@@ -189,11 +195,9 @@ function Remove_difference_key() {
     });
 }
 
-function mapsetting_to_basic_key()
-{
+function mapsetting_to_basic_key() {
     Object.keys(Level.settings).forEach((index) => {
-        if(adofai.Setting.Key.indexOf(index) == -1)
-        {
+        if (adofai.Setting.Key.indexOf(index) == -1) {
             delete Level.settings[index];
         }
         Level.settings.version = 2;
@@ -205,8 +209,7 @@ function mapsetting_to_basic_key()
 
 function down_click() {
     if (isUpload() == true) {
-        if(file_name.length == 0)
-        {
+        if (file_name.length == 0) {
             download("main.adofai", JSON.stringify(Level));
         }
         else {
@@ -241,21 +244,18 @@ function addText(str) {
     $("#log").val(a);
 }
 
-function fix_setting_basic()
-{
+function fix_setting_basic() {
     Object.keys(adofai.Setting.basic_value).forEach(function (index) {
         Level.settings[index] = data.Setting.basic_value[index];
     })
 }
 
-function angle2path(angleData)
-{
+function angle2path(angleData) {
     let path = "";
     let angledat = angleData;
     //검사 진행
     angledat.forEach((x) => {
-        if(Object.keys(adofai.path).indexOf(x.index) == -1)
-        {
+        if (Object.keys(adofai.path).indexOf(x.index) == -1) {
             alert("이 맵은 지원하지 않습니다.");
             return false;
         }
