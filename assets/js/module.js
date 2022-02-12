@@ -199,7 +199,7 @@ class Convert {
             // console.log(x);
             convert_map(x)
         })
-
+        Level.actions = Level.actions.filter(x => Object.keys(effect_arr).includes(x.eventType));
         function convert_map(effect_list) {
             const adofai = new Convert();
             switch (effect_list) {
