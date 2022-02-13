@@ -125,15 +125,31 @@ class Convert {
         });
     }
     SetFilter() {
-        Level.actions.forEach(function (index) {
-            if (index.eventType == "SetFilter") {
+        Level.actions.forEach((index, num) => {
+            if(index.eventType == "SetFilter") {
                 if (effect_List.SetFilter.filter.indexOf(index.filter) == -1) {
-                    index.filter = "Grayscale";
-                    index.enabled = "Disabled";
+                    addText(index.floor + "타일 필터 이벤트의 " + index.filter + "는 호환되지 않아 제거됩니다.");
+                    Level.actions.splice(num,1);
                 }
             }
-        });
+        })
     }
+
+    ShakeScreen() {
+
+    }
+    SetPlanetRotation(){
+
+    }
+
+    MoveDecorations(){
+
+    }
+
+    RepeatEvents(){
+
+    }
+    
 
     Pt2Mt() {
         let array = [];

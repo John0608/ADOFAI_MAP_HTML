@@ -116,7 +116,7 @@ function FastConvert() //빠른 변환
     }
     catch (e) {
         $(".error").show();
-        $("#error_content").text(e.toString());
+        $("#error_content").text("Error Name " + e.name + "\nError MSG : " + e.message + "\nError Stack : " + e.stack);
     }
 
 
@@ -138,7 +138,6 @@ function CustomConvert() //사용자 설정 변환
                     addText("각도 변환 완료.");
                 }
             }
-            let con = new Convert();
             con.SetCustomEffect();
             if ($("#mapset").is(":checked") == true) {
                 mapsetting_to_basic_key();
@@ -154,7 +153,7 @@ function CustomConvert() //사용자 설정 변환
     }
     catch (e) {
         $(".error").show();
-        $("#error_content").text(e.toString());
+        $("#error_content").text("Error Name " + e.name + "\n" + "Error MSG : " + e.message + "\nError Stack : " + e.stack);
     }
 
     
