@@ -5,12 +5,11 @@ class Convert {
         Level.actions.forEach(function (index) {
             if (index.eventType == "SetSpeed") {
                 if (index.speedType == "Multiplier") {
-                    let y_bpm = index.bpm;
                     index.speedType = "Bpm";
                     bpm = bpm * index.bpmMultiplier;
                     index.bpmMultiplier = 1;
                     index.beatsPerMinute = bpm;
-                    addText(index.floor + "의 " + index.eventType + "이펙트의 BPM이 " + y_bpm + "에서 " + bpm + "으로 바뀜.")
+                    addText(index.floor + "의 " + index.eventType + "이펙트의 BPM이 " + index.bpm + "에서 " + bpm + "으로 바뀜.")
                 }
                 else {
                     bpm = index.beatsPerMinute;
@@ -20,7 +19,7 @@ class Convert {
         });
     }
     Twirl() {
-
+        return;
     }
     CustomBackground() {
         Level.actions.forEach(function (index) {
@@ -148,6 +147,65 @@ class Convert {
 
     RepeatEvents(){
 
+    }
+
+    SetBasicMapSetting(){
+        Level.settings.version = 2;
+        Object.keys(Level.settings).forEach((index) => {
+            if(index == "hitsound" && adofai.Setting.List.hitsound.indexOf(Level.settings.hitsound) == -1)
+            {
+                addText(index + "의 " + Level.settings[index] + "에서" + "Hat 으로 변환됨.")
+                Level.settings[index] = "Hat";
+            }
+            if(index == "separateCountdownTime" && adofai.Setting.List.separateCountdownTime.indexOf(Level.settings.separateCountdownTime) == -1)
+            {
+                addText(index + "의 " + Level.settings[index] + "에서" + "Enabled 으로 변환됨.")
+                Level.settings[index] = "Enabled";
+            }
+            if(index == "trackColorType" && adofai.Setting.List.trackColorType.indexOf(Level.settings.trackColorType) == -1)
+            {
+                addText(index + "의 " + Level.settings[index] + "에서" + "Single 으로 변환됨.")
+                Level.settings[index] = "Single";
+            }
+            if(index == "trackColorPulse" && adofai.Setting.List.trackColorPulse.indexOf(Level.settings.trackColorPulse) == -1)
+            {
+                addText(index + "의 " + Level.settings[index] + "에서" + "None 으로 변환됨.")
+                Level.settings[index] = "None";
+            }
+            if(index == "trackStyle" && adofai.Setting.List.trackStyle.indexOf(Level.settings.trackStyle) == -1)
+            {
+                addText(index + "의 " + Level.settings[index] + "에서" + "Standard 으로 변환됨.")
+                Level.settings[index] = "Standard";
+            }
+            if(index == "trackAnimation" && adofai.Setting.List.trackAnimation.indexOf(Level.settings.trackAnimation) == -1)
+            {
+                addText(index + "의 " + Level.settings[index] + "에서" + "None 으로 변환됨.")
+                Level.settings[index] = "None";
+            }
+            if(index == "trackDisappearAnimation" && adofai.Setting.List.trackDisappearAnimation.indexOf(Level.settings.trackDisappearAnimation) == -1)
+            {
+                addText(index + "의 " + Level.settings[index] + "에서" + "None 으로 변환됨.")
+                Level.settings[index] = "None";
+            }
+            if(index == "bgDisplayMode" && adofai.Setting.List.bgDisplayMode.indexOf(Level.settings.bgDisplayMode) == -1)
+            {
+                addText(index + "의 " + Level.settings[index] + "에서" + "FitToScreen 으로 변환됨.")
+                Level.settings[index] = "FitToScreen";
+            }
+            if(index == "lockRot" && adofai.Setting.List.lockRot.indexOf(Level.settings.lockRot) == -1)
+            {
+                addText(index + "의 " + Level.settings[index] + "에서" + "Enabled 으로 변환됨.")
+                Level.settings[index] = "Enabled";
+            }
+            if(index == "loopBG" && adofai.Setting.List.loopBG.indexOf(Level.settings.loopBG) == -1)
+            {
+                addText(index + "의 " + Level.settings[index] + "에서" + "Enabled 으로 변환됨.")
+                Level.settings[index] = "Enabled";
+            }
+
+            else {
+            }
+        })
     }
     
 

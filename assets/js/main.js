@@ -97,6 +97,7 @@ function FastConvert() //빠른 변환
                     addText("각도 변환 완료.");
                 }
             }
+            con.SetBasicMapSetting();
             con.SetSpeed();
             con.CustomBackground();
             con.ColorTrack();
