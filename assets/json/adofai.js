@@ -207,7 +207,7 @@ let adofai = {
                 "eventType" : [],
                 "duration" : [],
                 "relativeTo" : [ "Global",
-                    "Tile", "Player"],
+                    "Tile", "Player","LastPosition"],
                 "position" : [],
                 "rotation" : [],
                 "zoom" : [],
