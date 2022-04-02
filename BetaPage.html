@@ -1,0 +1,182 @@
+<!DOCTYPE html>
+<html lang="ko">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="assets/css/css.css"></style>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/json5/0.5.1/json5.min.js" integrity="sha512-0Z0waakasLFLv2VFHGqiiCQebtQi7wpUieRR4yInvJ/EGQk9r+4LvjMEgsi15EnvONG2uo2Z9bdJXDV8uU8iuA==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <script type="text/javascript" src="assets/testMap/relive.js"></script>
+    <script type="text/javascript" src="assets/json/adofai.js"></script>
+    <script type="text/javascript" src="assets/new_engine.js"></script>
+    <script type="text/javascript" src="assets/js/main.js"></script>
+    <title>ADOFAI MAP CONVERSION</title>
+</head>
+
+<body>
+    <div class="modal" tabindex="-1">
+        <div class="modal-dialog modal-dialog-centered">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h5 class="modal-title">사용자 지정 변환</h5>
+              <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+
+            </div>
+            <div class="modal-body custom">
+                <ul style="list-style: none;">
+                    <li>
+                        <label for="">
+                            <input type="checkbox" name="" id="mapset"> 맵 기본설정으로 초기화하기.
+                        </label>
+                    </li>
+                    <li>
+                        <label for="">
+                            <input type="checkbox" name="" id="remove_notsupport_effect"> 지원되지 않는 이펙트 지우기
+                        </label>
+                    </li>
+                    <li>
+                        <label for="">
+                            <input type="checkbox" name="" id="remove_notsupport_key"> 지원되지 않는 상세설정 지우기
+                        </label>
+                    </li>
+                    <li>
+                        <label for="">
+                            <input type="checkbox" name="mapeff" id="mapeff" value="SetSpeed"> BPM 설정
+                        </label>
+                    </li>
+                    <li>
+                        <label for="">
+                            <input type="checkbox" name="mapeff" id="mapeff" value="Twirl"> 소용돌이
+                        </label>
+                    </li>
+                    <li>
+                        <label for="">
+                            <input type="checkbox" name="mapeff" id="mapeff" value="CustomBackground"> 배경 설정
+                        </label>
+                    </li>
+                    <li>
+                        <label for="">
+                            <input type="checkbox" name="mapeff" id="mapeff" value="ColorTrack"> 길 색상 설정
+                        </label>
+                    </li>
+                    <li>
+                        <label for="">
+                            <input type="checkbox" name="mapeff" id="mapeff" value="AnimateTrack"> 길 애니메이션 설정
+                        </label>
+                    </li>
+                    <li>
+                        <label for="">
+                            <input type="checkbox" name="mapeff" id="mapeff" value="AddDecoration"> 장식 추가
+                        </label>
+                    </li>
+                    <li>
+                        <label for="">
+                            <input type="checkbox" name="mapeff" id="mapeff" value="Flash"> 플래시 설정
+                        </label>
+                    </li>
+                    <li>
+                        <label for="">
+                            <input type="checkbox" name="mapeff" id="mapeff" value="MoveCamera"> 카메라 이동
+                        </label>
+                    </li>
+                    <li>
+                        <label for="">
+                            <input type="checkbox" name="mapeff" id="mapeff" value="MoveTrack"> 길 이동
+                        </label>
+                    </li>
+                    <li>
+                        <label for="">
+                            <input type="checkbox" name="mapeff" id="mapeff" value="HallOfMirrors"> 거울의 방
+                        </label>
+                    </li>
+                    <li>
+                        <label for="">
+                            <input type="checkbox" name="mapeff" id="mapeff" value="ShakeScreen"> 화면 흔들기
+                        </label>
+                    </li>
+                    <li>
+                        <label for="">
+                            <input type="checkbox" name="mapeff" id="mapeff" value="SetPlanetRotation"> 공 회전 설정
+                        </label>
+                    </li>
+                    <li>
+                        <label for="">
+                            <input type="checkbox" name="mapeff" id="mapeff" value="MoveDecorations"> 장식 이동
+                        </label>
+                    </li>
+                    <li>
+                        <label for="">
+                            <input type="checkbox" name="mapeff" id="mapeff" value="SetHitsound"> 히트사운드 설정
+                        </label>
+                    </li>
+                    <li>
+                        <label for="">
+                            <input type="checkbox" name="mapeff" id="mapeff" value="RecolorTrack"> 길 색상 다시 설정
+                        </label>
+                    </li>
+                    <li>
+                        <label for="">
+                            <input type="checkbox" name="mapeff" id="mapeff" value="SetFilter"> 필터 설정
+                        </label>
+                    </li>
+                    <li>
+                        <label for="">
+                            <input type="checkbox" name="mapeff" id="mapeff" value="RepeatEvents"> 이벤트 반복
+                        </label>
+                    </li>
+                </ul>
+              
+            
+
+            </div>
+            <div class="modal-footer">
+              <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+              <button type="button" class="btn btn-primary"  data-bs-dismiss="modal" onclick="CustomConvert()">변환 시작</button>
+            </div>
+          </div>
+        </div>
+      </div>
+    <div class="container mt-3">
+        <div class="bg-primary text-center text-white rounded mt-4 p-5">
+            <h2>ADOFAI MAP CONVERSION</h2>
+            <p>A Dance of Fire and Ice 맵 변환기</p>
+        </div>
+        <div class="mb-3" style="padding-top: 10px;">
+            <input type="file" class="form-control file_select_btn" name="" id="formFile" onchange="fileUpload()">
+            <div class="text-center" style="padding-top: 10px;">
+                <button type="button" class="btn btn-primary" onclick="FastConvert()">
+                    빠른 변환
+                </button>
+                <button type="button" class="btn btn-secondary" data-bs-toggle="modal" data-bs-target=".modal">
+                    사용자 지정
+                </button>
+                <button type="reset" class="btn btn-danger" onclick="FileSelcetInit()">
+                    초기화
+                </button>
+                <button type="button" class="btn btn-dark" onclick="LogBoxOpenandClose()">
+                    로그 열기/닫기
+                </button>
+            </div>
+        </div>
+        <div class="log_box mb-3">
+            <label for="">로그 (Log)</label>
+            <textarea class="form-control" id="log" rows="3" readonly style="resize: none;"></textarea>
+        </div>
+        <div class="mb-3 text-center down_btn">
+            <button type="button" class="btn btn-primary" onclick="down_click()">
+                다운받기
+            </button>
+        </div>
+        <div class="alert alert-danger error" role="alert">
+            <p id="error_content"></p>
+            <p id="info">오류가 발생했습니다! 디스코드 방설#8953 으로 캡처화면을 보내주시기 바랍니다.</p>
+          </div>
+        
+    </div>
+</body>
+
+</html>
