@@ -196,16 +196,12 @@ function Remove_difference_key() {
 }
 
 function mapsetting_to_basic_key() {
-    /*
     Object.keys(Level.settings).forEach((index) => {
         if (adofai.Setting.Key.indexOf(index) == -1) {
             delete Level.settings[index];
         }
         Level.settings.version = 2;
     })
-
-    */
-   con.SetInit_settings();
 }
 
 
