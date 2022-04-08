@@ -125,10 +125,10 @@ class Convert {
     }
     SetFilter() {
         Level.actions.forEach((index, num) => {
-            if(index.eventType == "SetFilter") {
+            if (index.eventType == "SetFilter") {
                 if (effect_List.SetFilter.filter.indexOf(index.filter) == -1) {
                     addText(index.floor + "타일 필터 이벤트의 " + index.filter + "는 호환되지 않아 제거됩니다.");
-                    Level.actions.splice(num,1);
+                    Level.actions.splice(num, 1);
                 }
             }
         })
@@ -137,68 +137,58 @@ class Convert {
     ShakeScreen() {
 
     }
-    SetPlanetRotation(){
+    SetPlanetRotation() {
 
     }
 
-    MoveDecorations(){
+    MoveDecorations() {
 
     }
 
-    RepeatEvents(){
+    RepeatEvents() {
 
     }
 
-    SetBasicMapSetting(){
+    SetBasicMapSetting() {
         Level.settings.version = 2;
         Object.keys(Level.settings).forEach((index) => {
-            if(index == "hitsound" && adofai.Setting.List.hitsound.indexOf(Level.settings.hitsound) == -1)
-            {
+            if (index == "hitsound" && adofai.Setting.List.hitsound.indexOf(Level.settings.hitsound) == -1) {
                 addText(index + "의 " + Level.settings[index] + "에서" + "Hat 으로 변환됨.")
                 Level.settings[index] = "Hat";
             }
-            if(index == "separateCountdownTime" && adofai.Setting.List.separateCountdownTime.indexOf(Level.settings.separateCountdownTime) == -1)
-            {
+            if (index == "separateCountdownTime" && adofai.Setting.List.separateCountdownTime.indexOf(Level.settings.separateCountdownTime) == -1) {
                 addText(index + "의 " + Level.settings[index] + "에서" + "Enabled 으로 변환됨.")
                 Level.settings[index] = "Enabled";
             }
-            if(index == "trackColorType" && adofai.Setting.List.trackColorType.indexOf(Level.settings.trackColorType) == -1)
-            {
+            if (index == "trackColorType" && adofai.Setting.List.trackColorType.indexOf(Level.settings.trackColorType) == -1) {
                 addText(index + "의 " + Level.settings[index] + "에서" + "Single 으로 변환됨.")
                 Level.settings[index] = "Single";
             }
-            if(index == "trackColorPulse" && adofai.Setting.List.trackColorPulse.indexOf(Level.settings.trackColorPulse) == -1)
-            {
+            if (index == "trackColorPulse" && adofai.Setting.List.trackColorPulse.indexOf(Level.settings.trackColorPulse) == -1) {
                 addText(index + "의 " + Level.settings[index] + "에서" + "None 으로 변환됨.")
                 Level.settings[index] = "None";
             }
-            if(index == "trackStyle" && adofai.Setting.List.trackStyle.indexOf(Level.settings.trackStyle) == -1)
-            {
+            if (index == "trackStyle" && adofai.Setting.List.trackStyle.indexOf(Level.settings.trackStyle) == -1) {
                 addText(index + "의 " + Level.settings[index] + "에서" + "Standard 으로 변환됨.")
                 Level.settings[index] = "Standard";
             }
-            if(index == "trackAnimation" && adofai.Setting.List.trackAnimation.indexOf(Level.settings.trackAnimation) == -1)
-            {
+            if (index == "trackAnimation" && adofai.Setting.List.trackAnimation.indexOf(Level.settings.trackAnimation) == -1) {
                 addText(index + "의 " + Level.settings[index] + "에서" + "None 으로 변환됨.")
                 Level.settings[index] = "None";
             }
-            if(index == "trackDisappearAnimation" && adofai.Setting.List.trackDisappearAnimation.indexOf(Level.settings.trackDisappearAnimation) == -1)
-            {
+            if (index == "trackDisappearAnimation" && adofai.Setting.List.trackDisappearAnimation.indexOf(Level.settings.trackDisappearAnimation) == -1) {
                 addText(index + "의 " + Level.settings[index] + "에서" + "None 으로 변환됨.")
                 Level.settings[index] = "None";
             }
-            if(index == "bgDisplayMode" && adofai.Setting.List.bgDisplayMode.indexOf(Level.settings.bgDisplayMode) == -1)
-            {
+            if (index == "bgDisplayMode" && adofai.Setting.List.bgDisplayMode.indexOf(Level.settings.bgDisplayMode) == -1) {
                 addText(index + "의 " + Level.settings[index] + "에서" + "FitToScreen 으로 변환됨.")
                 Level.settings[index] = "FitToScreen";
             }
-            if(index == "lockRot" && adofai.Setting.List.lockRot.indexOf(Level.settings.lockRot) == -1)
-            {
+            if (index == "lockRot" && adofai.Setting.List.lockRot.indexOf(Level.settings.lockRot) == -1) {
                 addText(index + "의 " + Level.settings[index] + "에서" + "Enabled 으로 변환됨.")
                 Level.settings[index] = "Enabled";
             }
-            if(index == "loopBG" && adofai.Setting.List.loopBG.indexOf(Level.settings.loopBG) == -1)
-            {
+            if (index == "loopBG" && adofai.Setting.List.loopBG.indexOf(Level.settings.loopBG) == -1) {
                 addText(index + "의 " + Level.settings[index] + "에서" + "Enabled 으로 변환됨.")
                 Level.settings[index] = "Enabled";
             }
@@ -207,7 +197,7 @@ class Convert {
             }
         })
     }
-    
+
 
     Pt2Mt() {
         let array = [];
@@ -260,7 +250,35 @@ class Convert {
         let result = Level.angleData.some(x => {
             return Object.keys(adofai.path).indexOf(x.toString()) == -1
         })
-        return result;
+
+        if(result == true) {
+            return false;
+        }
+        else {
+            return true;
+        }
+    }
+
+    isSupportPathData() {
+        let regex = /R|J|E|T|U|G|Q|H|L|N|Z|F|D|B|C|M/g;
+        if (Level.pathData.replace(regex, "").length == 0) {
+            return true;
+        }
+        else {
+            return false;
+        }
+    }
+
+    CheckTileAngleData()
+    {
+        if(Level.angleData == undefined)
+        {
+            return this.isSupportPathData();
+
+        }
+        else {
+            return this.issupportAngledata();
+        }
     }
 
     SetCustomEffect() {

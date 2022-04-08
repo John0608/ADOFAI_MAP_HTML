@@ -97,22 +97,37 @@ function FastConvert() //빠른 변환
                     addText("각도 변환 완료.");
                 }
             }
-            con.SetBasicMapSetting();
-            con.SetSpeed();
-            con.CustomBackground();
-            con.ColorTrack();
-            con.AnimateTrack();
-            con.AddDecoration();
-            con.Flash();
-            con.MoveCamera();
-            con.HallOfMirrors();
-            con.SetHitsound();
-            con.RecolorTrack();
-            con.SetFilter();
-            Remove_notsuport_effect();
-            Remove_difference_key();
-            mapsetting_to_basic_key();
-            $(".down_btn").show();
+
+            if (Level.pathData == undefined) {
+                addText("이 레벨은 자유각도 레벨입니다.")
+            }
+            else {
+                addText("이 맵은 자유각도 레벨이 아닙니다.")
+            }
+            if (con.CheckTileAngleData == true) {
+                con.SetBasicMapSetting();
+                con.SetSpeed();
+                con.CustomBackground();
+                con.ColorTrack();
+                con.AnimateTrack();
+                con.AddDecoration();
+                con.Flash();
+                con.MoveCamera();
+                con.HallOfMirrors();
+                con.SetHitsound();
+                con.RecolorTrack();
+                con.SetFilter();
+                Remove_notsuport_effect();
+                Remove_difference_key();
+                mapsetting_to_basic_key();
+                $(".down_btn").show();
+            }
+            else {
+                addText("이 맵의 타일 각도는 지원되지 않습니다.");
+                alert("이 맵의 타일 각도는 지원되지 않습니다.");
+            }
+
+
         }
     }
     catch (e) {
@@ -157,7 +172,7 @@ function CustomConvert() //사용자 설정 변환
         $("#error_content").text("Error Name " + e.name + "\n" + "Error MSG : " + e.message + "\nError Stack : " + e.stack);
     }
 
-    
+
 
 }
 
