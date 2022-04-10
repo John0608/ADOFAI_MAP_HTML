@@ -260,7 +260,7 @@ class Convert {
     }
 
     isSupportPathData() {
-        let regex = /R|J|E|T|U|G|Q|H|L|N|Z|F|D|B|C|M/g;
+        let regex = /R|J|E|T|U|G|Q|H|L|N|Z|F|D|B|C|M|!/g;
         if (Level.pathData.replace(regex, "").length == 0) {
             return true;
         }
