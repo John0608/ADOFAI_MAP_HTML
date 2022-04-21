@@ -86,46 +86,42 @@ function FastConvert() //빠른 변환
             //con.Pt2Mt(); //PositionTrack to MoveTrack
             //con.anglePath2pathData();
             if (Level.pathData == undefined) {
-                addText("이 레벨은 자유각도 레벨입니다.");
+                addText("이 레벨은 자유각도 레벨입니다.")
                 if (con.issupportAngledata() == true) {
-                    alert("이 레벨은 각도변환을 지원하지 않습니다.");
-                    addText("이 레벨은 각도변환을 지원하지 않습니다.");
-                    return;
-                }
-                else {
                     con.anglePath2pathData();
                     addText("각도 변환 완료.");
                 }
-            }
-
-            if (Level.pathData == undefined) {
-                addText("이 레벨은 자유각도 레벨입니다.")
+                else {
+                    alert("이 레벨은 각도변환을 지원하지 않습니다.");
+                    addText("이 레벨은 각도변환을 지원하지 않습니다.");
+                    return false;
+                }
             }
             else {
                 addText("이 맵은 자유각도 레벨이 아닙니다.")
+                if (con.isSupportPathData() == true) {
+                    con.SetBasicMapSetting();
+                    con.SetSpeed();
+                    con.CustomBackground();
+                    con.ColorTrack();
+                    con.AnimateTrack();
+                    con.AddDecoration();
+                    con.Flash();
+                    con.MoveCamera();
+                    con.HallOfMirrors();
+                    con.SetHitsound();
+                    con.RecolorTrack();
+                    con.SetFilter();
+                    Remove_notsuport_effect();
+                    Remove_difference_key();
+                    mapsetting_to_basic_key();
+                    $(".down_btn").show();
+                }
             }
-            if (con.CheckTileAngleData == true) {
-                con.SetBasicMapSetting();
-                con.SetSpeed();
-                con.CustomBackground();
-                con.ColorTrack();
-                con.AnimateTrack();
-                con.AddDecoration();
-                con.Flash();
-                con.MoveCamera();
-                con.HallOfMirrors();
-                con.SetHitsound();
-                con.RecolorTrack();
-                con.SetFilter();
-                Remove_notsuport_effect();
-                Remove_difference_key();
-                mapsetting_to_basic_key();
-                $(".down_btn").show();
-            }
-            else {
-                addText("이 맵의 타일 각도는 지원되지 않습니다.");
-                alert("이 맵의 타일 각도는 지원되지 않습니다.");
-            }
+
+
+
+        
 
 
         }
