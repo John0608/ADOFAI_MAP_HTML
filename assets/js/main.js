@@ -1,5 +1,6 @@
 var Level;  //adofai 파일 내용 저장
 let file_name;
+const ver = "1.0.1";
 
 const effect_List = adofai.effect.List;
 let con = new Convert();
@@ -100,6 +101,7 @@ function FastConvert() //빠른 변환
             else {
                 addText("이 맵은 자유각도 레벨이 아닙니다.")
                 if (con.isSupportPathData() == true) {
+                    addText("Version : " + ver);
                     con.SetBasicMapSetting();
                     con.SetSpeed();
                     con.CustomBackground();
