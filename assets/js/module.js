@@ -63,6 +63,11 @@ class Convert {
                 if (effect_List.AddDecoration.relativeTo.indexOf(index.relativeTo) == -1) {
                     index.relativeTo = "Global";
                 }
+                if(index.scale != undefined)
+                {
+                  delete index.scale;
+                  addText(index.floor + "의 " + index.eventType + "의 scale은 지원되지 않아 제거됩니다.");
+                }
             }
         });
     }
