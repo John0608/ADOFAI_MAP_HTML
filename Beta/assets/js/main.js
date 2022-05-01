@@ -101,30 +101,58 @@ function FastConvert() //빠른 변환
                 if (con.isSupportPathData() == true) {
                     addText("Version : " + ver);
                     con.SetBasicMapSetting();
+                    status_bar(100/15)
+                    status_txt("맵 설정을 기본설정으로 바꾸는중...")
                     con.SetSpeed();
+                    status_bar(100/14)
+                    status_txt("BPM 수정하는중...")
                     con.CustomBackground();
+                    status_bar(100/13)
+                    status_txt("배경 설정을 수정하는중...")
                     con.ColorTrack();
+                    status_bar(100/12)
+                    status_txt("길색상 변경중...")
                     con.AnimateTrack();
+                    status_bar(100/11)
+                    status_txt("길 애니메이션 변경중...")
                     con.AddDecoration();
+                    status_bar(100/10)
+                    status_txt("장식 추가 변경중...")
                     con.Flash();
+                    status_bar(100/9)
+                    status_txt("플래시 변경중...")
                     con.MoveCamera();
+                    status_bar(100/8)
+                    status_txt("카메라 설정 변경중...")
                     con.HallOfMirrors();
+                    status_bar(100/7)
+                    status_txt("거울의 방 설정 바꾸는중...")
                     con.SetHitsound();
+                    status_bar(100/6)
+                    status_txt("히트사운드 설정 변경중...")
                     con.RecolorTrack();
+                    status_bar(100/5)
+                    status_txt("길 색상 변경 작업중...")
                     con.SetFilter();
+                    status_bar(100/4)
+                    status_txt("필터를 감지하고 변환중...")
                     Remove_notsuport_effect();
+                    status_bar(100/3)
+                    status_txt("지원되지 않는 이펙트 제거중...")
                     Remove_difference_key();
+                    status_bar(100/2)
+                    status_txt("지원하지 않는 키 제거중...")
                     mapsetting_to_basic_key();
+                    status_bar(100/1)
+                    status_txt("맵 설정을 기본 설정으로 변경중...")
+                    status_txt("완료!")
                     $(".down_btn").show();
+
                 }
                 else {
                     alert("이 레벨의 각도는 지원되지 않습니다.")
                 }
             }
-
-
-
-        
 
 
         }
@@ -275,5 +303,16 @@ function angle2path(angleData) {
             return false;
         }
     })
+
+}
+
+function status_txt(msg)
+{
+    $(".status p").text(msg);
+}
+function status_bar(percent)
+{
+    $(".progress-bar").css("width",percent + "%");
+    $(".progress-bar").text(percent + "%")
 
 }
