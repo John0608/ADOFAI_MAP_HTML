@@ -10,9 +10,8 @@
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/json5/0.5.1/json5.min.js" integrity="sha512-0Z0waakasLFLv2VFHGqiiCQebtQi7wpUieRR4yInvJ/EGQk9r+4LvjMEgsi15EnvONG2uo2Z9bdJXDV8uU8iuA==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
-    <script type="text/javascript" src="assets/testMap/relive.js"></script>
     <script type="text/javascript" src="assets/json/adofai.js"></script>
-    <script type="text/javascript" src="assets/js/Convert.js"></script>
+    <script type="text/javascript" src="assets/js/Upload.js"></script>
     <script type="text/javascript" src="assets/js/main.js"></script>
     <title>ADOFAI MAP CONVERSION</title>
 </head>
@@ -146,9 +145,9 @@
             <p>A Dance of Fire and Ice 맵 변환기</p>
         </div>
         <div class="mb-3" style="padding-top: 10px;">
-            <input type="file" class="form-control file_select_btn" name="" id="formFile" onchange="fileUpload()">
+            <input type="file" class="form-control file_select_btn" name="" id="formFile" onchange="upload_FileRead()">
             <div class="text-center" style="padding-top: 10px;">
-                <button type="button" class="btn btn-primary" onclick="FastConvert()">
+                <button type="button" class="btn btn-primary" onclick="Fast()">
                     빠른 변환
                 </button>
                 <button type="button" class="btn btn-secondary" data-bs-toggle="modal" data-bs-target=".modal">
