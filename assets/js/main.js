@@ -89,6 +89,7 @@ function FastConvert() //빠른 변환
                 if (con.issupportAngledata() == true) {
                     con.anglePath2pathData();
                     addText("각도 변환 완료.");
+                    fast();
                 }
                 else {
                     alert("이 레벨은 각도변환을 지원하지 않습니다.");
@@ -99,23 +100,7 @@ function FastConvert() //빠른 변환
             else {
                 addText("이 맵은 자유각도 레벨이 아닙니다.")
                 if (con.isSupportPathData() == true) {
-                    addText("Version : " + ver);
-                    con.SetBasicMapSetting();
-                    con.SetSpeed();
-                    con.CustomBackground();
-                    con.ColorTrack();
-                    con.AnimateTrack();
-                    con.AddDecoration();
-                    con.Flash();
-                    con.MoveCamera();
-                    con.HallOfMirrors();
-                    con.SetHitsound();
-                    con.RecolorTrack();
-                    con.SetFilter();
-                    Remove_notsuport_effect();
-                    Remove_difference_key();
-                    mapsetting_to_basic_key();
-                    $(".down_btn").show();
+                    fast();
                 }
                 else {
                     alert("이 레벨의 각도는 지원되지 않습니다.")
@@ -136,7 +121,26 @@ function FastConvert() //빠른 변환
         $(".error").show();
         $("#error_content").text("Error Name " + e.name + "\nError MSG : " + e.message + "\nError Stack : " + e.stack);
     }
-
+    function fast()
+    {
+      addText("Version : " + ver);
+                    con.SetBasicMapSetting();
+                    con.SetSpeed();
+                    con.CustomBackground();
+                    con.ColorTrack();
+                    con.AnimateTrack();
+                    con.AddDecoration();
+                    con.Flash();
+                    con.MoveCamera();
+                    con.HallOfMirrors();
+                    con.SetHitsound();
+                    con.RecolorTrack();
+                    con.SetFilter();
+                    Remove_notsuport_effect();
+                    Remove_difference_key();
+                    mapsetting_to_basic_key();
+                    $(".down_btn").show();
+    }
 
 }
 
