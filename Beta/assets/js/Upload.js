@@ -30,7 +30,6 @@ const upload_FileRead = () => {
 };
 
 function isUpload() {
-    console.log(file)
     if ((file == null) || (file == undefined)) {
         alert("먼저 업로드를 해주세요!");
         return false;

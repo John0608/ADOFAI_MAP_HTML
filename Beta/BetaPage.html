@@ -16,7 +16,8 @@
     <script type="text/javascript" src="assets/zip/jszip.min.js"></script>
     <script type="text/javascript" src="assets/zip/jszip-utils.min.js"></script>
     <script type="text/javascript" src="assets/zip/zip_common.js"></script>
-    <script type="text/javascript" src="assets/json/adofai.js"></script>
+    <script type="text/javascript" src="assets/js/File.js"></script>
+    <script type="text/javascript" src="assets/js/adofai.js"></script>
     <script type="text/javascript" src="assets/js/Upload.js"></script>
     <script type="text/javascript" src="assets/js/Ui.js"></script>
     <script type="text/javascript" src="assets/js/main.js"></script>
@@ -24,129 +25,6 @@
 </head>
 
 <body>
-    <div class="modal" tabindex="-1">
-        <div class="modal-dialog modal-dialog-centered">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h5 class="modal-title">사용자 지정 변환</h5>
-                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-
-                </div>
-                <div class="modal-body custom">
-                    <ul style="list-style: none;">
-                        <li>
-                            <label for="">
-                                <input type="checkbox" name="" id="mapset"> 맵 기본설정으로 초기화하기.
-                            </label>
-                        </li>
-                        <li>
-                            <label for="">
-                                <input type="checkbox" name="" id="remove_notsupport_effect"> 지원되지 않는 이펙트 지우기
-                            </label>
-                        </li>
-                        <li>
-                            <label for="">
-                                <input type="checkbox" name="" id="remove_notsupport_key"> 지원되지 않는 상세설정 지우기
-                            </label>
-                        </li>
-                        <li>
-                            <label for="">
-                                <input type="checkbox" name="mapeff" id="mapeff" value="SetSpeed"> BPM 설정
-                            </label>
-                        </li>
-                        <li>
-                            <label for="">
-                                <input type="checkbox" name="mapeff" id="mapeff" value="Twirl"> 소용돌이
-                            </label>
-                        </li>
-                        <li>
-                            <label for="">
-                                <input type="checkbox" name="mapeff" id="mapeff" value="CustomBackground"> 배경 설정
-                            </label>
-                        </li>
-                        <li>
-                            <label for="">
-                                <input type="checkbox" name="mapeff" id="mapeff" value="ColorTrack"> 길 색상 설정
-                            </label>
-                        </li>
-                        <li>
-                            <label for="">
-                                <input type="checkbox" name="mapeff" id="mapeff" value="AnimateTrack"> 길 애니메이션 설정
-                            </label>
-                        </li>
-                        <li>
-                            <label for="">
-                                <input type="checkbox" name="mapeff" id="mapeff" value="AddDecoration"> 장식 추가
-                            </label>
-                        </li>
-                        <li>
-                            <label for="">
-                                <input type="checkbox" name="mapeff" id="mapeff" value="Flash"> 플래시 설정
-                            </label>
-                        </li>
-                        <li>
-                            <label for="">
-                                <input type="checkbox" name="mapeff" id="mapeff" value="MoveCamera"> 카메라 이동
-                            </label>
-                        </li>
-                        <li>
-                            <label for="">
-                                <input type="checkbox" name="mapeff" id="mapeff" value="MoveTrack"> 길 이동
-                            </label>
-                        </li>
-                        <li>
-                            <label for="">
-                                <input type="checkbox" name="mapeff" id="mapeff" value="HallOfMirrors"> 거울의 방
-                            </label>
-                        </li>
-                        <li>
-                            <label for="">
-                                <input type="checkbox" name="mapeff" id="mapeff" value="ShakeScreen"> 화면 흔들기
-                            </label>
-                        </li>
-                        <li>
-                            <label for="">
-                                <input type="checkbox" name="mapeff" id="mapeff" value="SetPlanetRotation"> 공 회전 설정
-                            </label>
-                        </li>
-                        <li>
-                            <label for="">
-                                <input type="checkbox" name="mapeff" id="mapeff" value="MoveDecorations"> 장식 이동
-                            </label>
-                        </li>
-                        <li>
-                            <label for="">
-                                <input type="checkbox" name="mapeff" id="mapeff" value="SetHitsound"> 히트사운드 설정
-                            </label>
-                        </li>
-                        <li>
-                            <label for="">
-                                <input type="checkbox" name="mapeff" id="mapeff" value="RecolorTrack"> 길 색상 다시 설정
-                            </label>
-                        </li>
-                        <li>
-                            <label for="">
-                                <input type="checkbox" name="mapeff" id="mapeff" value="SetFilter"> 필터 설정
-                            </label>
-                        </li>
-                        <li>
-                            <label for="">
-                                <input type="checkbox" name="mapeff" id="mapeff" value="RepeatEvents"> 이벤트 반복
-                            </label>
-                        </li>
-                    </ul>
-
-
-
-                </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                    <button type="button" class="btn btn-primary" data-bs-dismiss="modal" onclick="CustomConvert()">변환
-                        시작</button>
-                </div>
-            </div>
-        </div>
-    </div>
     <div class="container mt-3">
         <div class="bg-primary text-center text-white rounded mt-4 p-5">
             <h2>ADOFAI MAP CONVERSION</h2>
@@ -169,7 +47,7 @@
             <textarea class="form-control" id="log" rows="3" readonly style="resize: none;"></textarea>
         </div>
         <div class="status">
-            <p>진행중 : </p>
+            <p>진행중 : <p class="status_txt"></p></p>
             <div class="progress">
                 <div class="progress-bar progress-bar-striped active" role="progressbar" aria-valuenow="40"
                     aria-valuemin="0" aria-valuemax="100" style="width:0%">
@@ -177,6 +55,9 @@
                 </div>
             </div>
         </div>
+        <select class="form-select select" aria-label="Default select example"  onchange="levelSelect(this)">
+            <option disabled selected>선택해주세요</option>
+          </select>
         <div class="mb-3 text-center down_btn">
             <button type="button" class="btn btn-primary" onclick="down_click()">
                 다운받기
