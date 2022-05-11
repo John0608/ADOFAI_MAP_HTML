@@ -1,18 +1,19 @@
-var file = null;                //Upload.js 에서 파일값 넘어옴
-let ui = new Ui();              //UI 조작 관련 클래스
+var zipFile = null;                //Upload.js 에서 파일값 넘어옴
+let ui = new Ui(); 
 let adofai = new ADOFAI();
 window.onload = () => {         //웹페이지 로드 완료 시
     // 초기상태 로드
-    init();
+    ui.Pageinit();
 }
 function Fast()
 {
     if(isUpload() == true)
     {
-        let level = adofai.findLevel(file);
+        let level = adofai.findLevel(zipFile);
         if(level.length >= 0)
         {
             addSelect(level);
+            ui.Show(".select");
         }
     }
     else {
@@ -20,21 +21,27 @@ function Fast()
     }
 }
 
-
-function init() //처음 상태로 초기화
+function fileRead()
 {
-    ui.Hide(".convert-btns");
-    ui.Hide(".status");
-    ui.Hide(".convert-btns");
-    ui.Hide(".log_box");
-    ui.Hide(".down_btn");
-    ui.Hide(".error");
-    file = null;
+    upload_FileRead();
+    adofai.findLevel(zipFile);
+    alert(level.length);
 }
+
 
 const levelSelect = (target) =>
 {
-    console.log(target.value);
+    levelRead(target.value);
+}
+
+function levelRead(filename)
+{
+    let i = zipFile.files[filename].async("string").then(
+        (base64Text) => {
+            i = base64Text;
+        }
+    )
+    console.log(i.status);
 }
 
 function addSelect(list)

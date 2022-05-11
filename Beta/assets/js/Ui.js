@@ -1,11 +1,23 @@
 class Ui {
-    Hide(element){
+    Hide(element) {
         let e = document.querySelector(element);
         e.style.display = "None";
     }
 
-    Show(element){
+    Show(element) {
         let e = document.querySelector(element);
         e.style.display = "block";
     }
+
+    Pageinit() //처음 상태로 초기화
+    {
+        ui.Hide(".convert-btns");
+        ui.Hide(".status");
+        ui.Hide(".log_box");
+        ui.Hide(".down_btn");
+        ui.Hide(".error");
+        ui.Hide(".select");
+        zipFile = null;
+    }
+
 }

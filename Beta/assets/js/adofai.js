@@ -15,7 +15,6 @@ class ADOFAI {
             return false;
         }
         else {
-            alert("찾음");
             console.log(level_arr);
             return level_arr;
         }

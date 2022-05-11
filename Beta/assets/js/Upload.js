@@ -6,22 +6,24 @@ const upload_FileRead = () => {
     else if (fName != ".zip") {
         alert("Zip 파일만 지원합니다.")
         upload_init();
+        return false;
     }
     else {
         const reader = new FileReader()
         reader.onload = function(evt){
             JSZip.loadAsync(evt.target.result).then(
                 function (zip) {
-                    file = zip;
+                    zipFile = zip;
                 }
             );
-            ui.Show(".convert-btns");
             ui.Hide("#info_msg");
-            return;
+            console.log("읽기 완료");
+            ui.Show(".convert-btns");
+            return true;
         }
         reader.onerror = () => {
             alert('파일을 읽는데 실패하였습니다.')
-            return;
+            return false;
         }
         reader.readAsArrayBuffer(f, 'UTF-8');
     }
@@ -30,7 +32,7 @@ const upload_FileRead = () => {
 };
 
 function isUpload() {
-    if ((file == null) || (file == undefined)) {
+    if ((zipFile == null) || (zipFile == undefined)) {
         alert("먼저 업로드를 해주세요!");
         return false;
     }
