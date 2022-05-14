@@ -1,9 +1,12 @@
 var Level;  //adofai 파일 내용 저장
 let file_name;
+/* Class 로드 */
+let con = new Convert();
+let ui = new Ui();
 const ver = "1.0.1";
 
+
 const effect_List = adofai.effect.List;
-let con = new Convert();
 const fileUpload = () => {
     String.prototype.replaceAll = function (org, dest) {
         return this.split(org).join(dest);
@@ -86,21 +89,21 @@ function FastConvert() //빠른 변환
     try {
         if (isUpload() == true) {
             if (Level.pathData == undefined) {
-                addText("이 레벨은 자유각도 레벨입니다.")
+                ui.addLog("이 레벨은 자유각도 레벨입니다.")
                 if (con.issupportAngledata() == true) {
                     con.anglePath2pathData();
-                    addText("각도 변환 완료.");
+                    ui.addLog("각도 변환 완료.");
                 }
                 else {
                     alert("이 레벨은 각도변환을 지원하지 않습니다.");
-                    addText("이 레벨은 각도변환을 지원하지 않습니다.");
+                    ui.addLog("이 레벨은 각도변환을 지원하지 않습니다.");
                     return false;
                 }
             }
             else {
-                addText("이 맵은 자유각도 레벨이 아닙니다.")
+                ui.addLog("이 맵은 자유각도 레벨이 아닙니다.")
                 if (con.isSupportPathData() == true) {
-                    addText("Version : " + ver);
+                    ui.addLog("Version : " + ver);
                     con.SetBasicMapSetting();
                     status_bar(100/15)
                     status_txt("맵 설정을 기본설정으로 바꾸는중...")
@@ -174,15 +177,15 @@ function CustomConvert() //사용자 설정 변환
     try {
         if (isUpload() == true) {
             if (Level.pathData == undefined) {
-                addText("이 레벨은 자유각도 레벨입니다.");
+                ui.addLog("이 레벨은 자유각도 레벨입니다.");
                 if (con.issupportAngledata() == true) {
                     alert("이 레벨은 각도변환을 지원하지 않습니다.");
-                    addText("이 레벨은 각도변환을 지원하지 않습니다.");
+                    ui.addLog("이 레벨은 각도변환을 지원하지 않습니다.");
                     return;
                 }
                 else {
                     con.anglePath2pathData();
-                    addText("각도 변환 완료.");
+                    ui.addLog("각도 변환 완료.");
                 }
             }
             con.SetCustomEffect();
@@ -232,7 +235,7 @@ function Remove_difference_key() {
                 let data_key = Object.keys(effect_List[list]);
                 for (let i = 0; i < level_key.length; i++) {
                     if (data_key.indexOf(level_key[i]) == -1) {
-                        addText(level.eventType + "의 " + level_key[i] + "이(가) 삭제되었습니다!");
+                        ui.addLog(level.eventType + "의 " + level_key[i] + "이(가) 삭제되었습니다!");
                         delete level[level_key[i]]
                     }
                 }
@@ -282,11 +285,7 @@ function download(filename, text) {
 }
 
 
-function addText(str) {
-    var a = $("#log").val()
-    a += str + "\n";
-    $("#log").val(a);
-}
+
 
 function fix_setting_basic() {
     Object.keys(adofai.Setting.basic_value).forEach(function (index) {

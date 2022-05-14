@@ -18,9 +18,10 @@
     <script type="text/javascript" src="assets/zip/zip_common.js"></script>
     <script type="text/javascript" src="assets/js/File.js"></script>
     <script type="text/javascript" src="assets/js/adofai_class.js"></script>
-    <script type="text/javascript" src="assets/js/adofai_json.js"></script>
+    <script type="json" src="assets/js/adofai_json.js"></script>
     <script type="text/javascript" src="assets/js/Upload.js"></script>
     <script type="text/javascript" src="assets/js/Ui.js"></script>
+    <script type="text/javascript" src="assets/js/Convert.js"></script>
     <script type="text/javascript" src="assets/js/main.js"></script>
     <title>ADOFAI MAP CONVERSION</title>
 </head>
@@ -32,7 +33,7 @@
             <p>A Dance of Fire and Ice 맵 변환기</p>
         </div>
         <div class="mb-3" style="padding-top: 10px;">
-            <input type="file" class="form-control file_select_btn" name="" id="formFile" onchange="upload_FileRead()">
+            <input type="file" class="form-control file_select_btn" name="" id="formFile" onchange="ReadFile()">
             <div class="convert-btns text-center" style="padding-top: 10px;">
                 <button type="button" class="btn btn-primary" onclick="Fast()">
                     빠른 변환

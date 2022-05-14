@@ -1,32 +1,34 @@
-var zipFile = null;                //Upload.js 에서 파일값 넘어옴
-let ui = new Ui(); 
-let adofai_class = new ADOFAI();
-let effect_list = adofai.effect.List;
-let Level = null;               //ADOFAI Level
+/* Class 선언 */
+const adofai_class = new ADOFAI();
+const ui = new Ui(); 
+const upload = new Upload();
+
+let zipFile = null;
 
 window.onload = () => {         //웹페이지 로드 완료 시
     // 초기상태 로드
     ui.Pageinit();
 }
-function Fast()
-{
-    if(isUpload() == true)
-    {
-        let level = adofai_class.findLevel(zipFile);
-        if(level.length >= 0)
-        {
-            addSelect(level);
-            ui.Show(".select");
-        }
-    }
-    else {
 
+function ReadFile()
+{
+    let Zfile = null;
+    function rf(_callback)
+    {
+        let zf = upload.upload_FileRead();
+        Zfile = zf;
+        _callback();
     }
+    function log() {
+        rf(()=>{
+            console.log(zipFile);
+        })
+    }
+    log();
 }
 
-function fileRead()
+function FindLevel()
 {
-    upload_FileRead();
     adofai_class.findLevel(zipFile);
     alert(level.length);
 }
@@ -65,8 +67,4 @@ function addSelect(list)
         select.appendChild(sel);
     })
 
-}
-
-function readFile()
-{
 }

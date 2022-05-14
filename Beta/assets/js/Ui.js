@@ -17,7 +17,12 @@ class Ui {
         ui.Hide(".down_btn");
         ui.Hide(".error");
         ui.Hide(".select");
-        zipFile = null;
+    }
+    
+    addLog(str) {
+        let txt = $("#log").val()
+        txt += str + "\n";
+        $("#log").val(txt);
     }
 
 }
