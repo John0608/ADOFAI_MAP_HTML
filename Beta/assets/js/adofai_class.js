@@ -1,6 +1,7 @@
 class ADOFAI {
-    
+
     findLevel(ZipFile) {
+        zipFile = ZipFile;
         let level_arr = new Array();
         Object.keys(ZipFile["files"]).forEach((index) => {
             if(index.indexOf(".adofai") != -1)
@@ -40,5 +41,6 @@ class ADOFAI {
         }
         return parseLevel(level);
     }
+
     
 }

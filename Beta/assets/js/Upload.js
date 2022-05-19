@@ -1,6 +1,16 @@
 class Upload {
 
-    upload_FileRead() {
+    readProcess()
+    {
+        if(this.DetectFileExt())
+        {
+            const result = this.Read();
+            
+        }
+    }
+
+    DetectFileExt()
+    {
         const input = document.querySelector('.file_select_btn')
         const f = input.files[0]
         const fName = f.name.substring(f.name.lastIndexOf("."));
@@ -10,43 +20,25 @@ class Upload {
             this.upload_init();
             return false;
         }
-        else {
-            const reader = new FileReader()
-            let zipFile = null;
-            reader.onload = function (evt) {
-                JSZip.loadAsync(evt.target.result).then(
-                    function (zip) {
-                        zipFile = zip;
-                    }
-                    ).then(() => {
-                        if (upload.isUpload(zipFile) == true) {
-                            let level = adofai_class.findLevel(zipFile);
-                            if (level.length >= 0 && level != false) {
-                            addSelect(level);
-                            alert("읽음");
-                            ui.Show(".select");
-                            ui.Hide("#info_msg");
-                            console.log("읽기 완료");
-                            console.log(zipFile)
-                            return zipFile;
-                        }
-                        else {
-                            alert("레벨 파일을 찾을 수 없습니다.");
-                            return;
-                        }
-                    }
-                    return zipFile;
-                })
-            }
-            reader.onerror = () => {
-                alert('파일을 읽는데 실패하였습니다.')
-                return false;
-            }
-            reader.readAsArrayBuffer(f, 'UTF-8');
+        else return true;
+    }
+
+    Read() {
+        const zip = new Zip();
+        const input = document.querySelector('.file_select_btn')
+        const f = input.files[0]
+        const reader = new FileReader();
+        reader.onload = function(evt)
+        {
+            zipFile = evt.target.result;
+            zip.loadData(evt.target.result);
         }
-
-
-    };
+        reader.onerror = () => {
+            alert('파일을 읽는데 실패하였습니다.')
+            return false;
+        }
+        reader.readAsArrayBuffer(f, 'UTF-8');
+    }
 
     isUpload(file) {
         if ((file == null) || (file == undefined)) {

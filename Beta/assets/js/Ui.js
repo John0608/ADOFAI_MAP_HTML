@@ -25,4 +25,14 @@ class Ui {
         $("#log").val(txt);
     }
 
+    CompleateLoad()
+    {
+        ui.Show(".select");
+        ui.Hide("#info_msg");
+    }
+    HideLevelSelector()
+    {
+        ui.Hide(".select");
+    }
+
 }

@@ -1,5 +1,4 @@
 class Convert {
-    adofai_data = 
     Level = null;
     constructor(level)
     {
@@ -7,9 +6,13 @@ class Convert {
     }
     
     
-    
-    effect_List = adofai_data.effect.List;
-    adofai = adofai_data;
+    effect_List = adofai.effect.List;
+
+    FastConvert(levels)
+    {
+        console.log("In Convert\n" + levels);
+    }
+
     addText(arg0) {
         const ui = new Ui();
         ui.addLog(arg0);

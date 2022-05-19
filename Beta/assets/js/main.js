@@ -2,8 +2,10 @@
 const adofai_class = new ADOFAI();
 const ui = new Ui(); 
 const upload = new Upload();
+const convert = new Convert();
 
 let zipFile = null;
+let level_File = null;
 
 window.onload = () => {         //웹페이지 로드 완료 시
     // 초기상태 로드
@@ -12,20 +14,7 @@ window.onload = () => {         //웹페이지 로드 완료 시
 
 function ReadFile()
 {
-    let Zfile = null;
-    function rf(_callback)
-    {
-        let zf = upload_FileRead();
-        Zfile = zf;
-        zipFile = zf;
-        _callback();
-    }
-    function log() {
-        rf(()=>{
-            console.log(zipFile);
-        })
-    }
-    log();
+    upload.readProcess();
 }
 
 function FindLevel()
@@ -37,7 +26,10 @@ function FindLevel()
 
 const levelSelect = (target) =>
 {
-    levelRead(target.value);
+    let level = levelRead(target.value);
+    ui.HideLevelSelector()
+    
+    
 
 }
 
@@ -47,14 +39,14 @@ function levelRead(filename)
     zipFile.files[filename].async("string").then(
         (base64Text) => {
             file = base64Text;
+            return base64Text;
         }
-    ).then(()=>{
-        level = adofai_class.readLevel(file);
+    ).then((result)=>{
+        console.log(result);
+        let level = adofai_class.readLevel(result);
+        convert.FastConvert(result);
     })
-    .then(()=>{
-        console.log(level);
-        return level;
-    })
+    console.log(file);
 }
 
 function addSelect(list)
@@ -69,50 +61,3 @@ function addSelect(list)
     })
 
 }
-
-function upload_FileRead() {
-    const input = document.querySelector('.file_select_btn')
-    const f = input.files[0]
-    const fName = f.name.substring(f.name.lastIndexOf("."));
-    if (!f) return
-    else if (fName != ".zip") {
-        alert("Zip 파일만 지원합니다.")
-        this.upload_init();
-        return false;
-    }
-    else {
-        const reader = new FileReader()
-        reader.onload = function (evt) {
-            JSZip.loadAsync(evt.target.result).then(
-                function (zip) {
-                    zipFile = zip;
-                }
-                ).then(() => {
-                    if (upload.isUpload(zipFile) == true) {
-                        let level = adofai_class.findLevel(zipFile);
-                        if (level.length >= 0 && level != false) {
-                        addSelect(level);
-                        alert("읽음");
-                        ui.Show(".select");
-                        ui.Hide("#info_msg");
-                        console.log("읽기 완료");
-                        console.log(zipFile)
-                        return zipFile;
-                    }
-                    else {
-                        alert("레벨 파일을 찾을 수 없습니다.");
-                        return;
-                    }
-                }
-                return zipFile;
-            })
-        }
-        reader.onerror = () => {
-            alert('파일을 읽는데 실패하였습니다.')
-            return false;
-        }
-        reader.readAsArrayBuffer(f, 'UTF-8');
-    }
-
-
-};
