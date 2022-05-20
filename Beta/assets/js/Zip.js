@@ -1,18 +1,17 @@
 class Zip {
-    loadData(file)
-    {
-        const ui = new Ui();
-        if(upload.isUpload(file) == true)
-        {
+    async UnZip(file) {
+        const result = await this.UnZipProcess(file);
+        return result;
+    }
+    
+    UnZipProcess(file) {
+        return new Promise(resolve => {
             JSZip.loadAsync(file).then(
                 function (zip) {
-                    let level = adofai_class.findLevel(zip);
-                    addSelect(level);
-                    ui.CompleateLoad();
+                    resolve(zip);
                 }
             )
-        }
+        })
     }
 }
-
 

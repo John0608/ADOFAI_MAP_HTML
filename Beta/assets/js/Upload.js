@@ -1,16 +1,6 @@
 class Upload {
 
-    readProcess()
-    {
-        if(this.DetectFileExt())
-        {
-            const result = this.Read();
-            
-        }
-    }
-
-    DetectFileExt()
-    {
+    DetectFileExt() {
         const input = document.querySelector('.file_select_btn')
         const f = input.files[0]
         const fName = f.name.substring(f.name.lastIndexOf("."));
@@ -23,22 +13,28 @@ class Upload {
         else return true;
     }
 
-    Read() {
-        const zip = new Zip();
-        const input = document.querySelector('.file_select_btn')
-        const f = input.files[0]
-        const reader = new FileReader();
-        reader.onload = function(evt)
-        {
-            zipFile = evt.target.result;
-            zip.loadData(evt.target.result);
-        }
-        reader.onerror = () => {
-            alert('파일을 읽는데 실패하였습니다.')
-            return false;
-        }
-        reader.readAsArrayBuffer(f, 'UTF-8');
+    async readProcess() {
+        let result = await this.ReadFile();
+        return result;
     }
+
+    ReadFile()
+    {
+        return new Promise(resolve => {
+            const input = document.querySelector('.file_select_btn')
+            const f = input.files[0]
+            const reader = new FileReader();
+            reader.onload = function (evt) {
+                resolve(evt.target.result);
+            }
+            reader.onerror = () => {
+                alert('파일을 읽는데 실패하였습니다.')
+                return false;
+            }
+            reader.readAsArrayBuffer(f, 'UTF-8');
+        })
+    }
+
 
     isUpload(file) {
         if ((file == null) || (file == undefined)) {

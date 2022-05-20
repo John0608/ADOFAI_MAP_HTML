@@ -1,7 +1,6 @@
 class ADOFAI {
 
     findLevel(ZipFile) {
-        zipFile = ZipFile;
         let level_arr = new Array();
         Object.keys(ZipFile["files"]).forEach((index) => {
             if(index.indexOf(".adofai") != -1)
@@ -21,7 +20,7 @@ class ADOFAI {
         }
     }
 
-    readLevel = (level) => {
+    async readLevel(File, LevelFile_Name){
         String.prototype.replaceAll = function (org, dest) {
             return this.split(org).join(dest);
         }
@@ -39,8 +38,28 @@ class ADOFAI {
                     .replaceAll('}\n', '},\n'));
             }
         }
-        return parseLevel(level);
+        const FileResult = await this.ReadFileProcess(File,LevelFile_Name);
+        const result = parseLevel(FileResult);
+        return result;
     }
 
+    ReadFileProcess(File, FileName)
+    {
+        return new Promise(resolve => {
+            File.files[FileName].async("string").then((base64Text) => {
+                resolve(base64Text);
+            })
+        })
+    }
+
+    isAdofaiLevel(Level)
+    {
+        if(Level.settings.version != undefined) {
+            return true;
+        }
+        else{
+            return false;
+        } 
+    }
     
 }

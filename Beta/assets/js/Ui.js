@@ -35,4 +35,9 @@ class Ui {
         ui.Hide(".select");
     }
 
+    ShowLog()
+    {
+        ui.Show(".status");
+        ui.Show(".log_box");
+    }
 }

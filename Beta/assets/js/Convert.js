@@ -1,16 +1,91 @@
 class Convert {
-    Level = null;
-    constructor(level)
-    {
-        this.Level = level;
-    }
-    
+    ui = new Ui();
+
     
     effect_List = adofai.effect.List;
 
-    FastConvert(levels)
+    FastConvert(level, file)
     {
-        console.log("In Convert\n" + levels);
+        const Level = level;
+        this.ui.HideLevelSelector()
+        this.ui.ShowLog();
+        this.ui.addLog("Version : " + Level.settings.version);
+        try {
+            if (Level.pathData == undefined) {
+                ui.addLog("이 레벨은 자유각도 레벨입니다.")
+                if (this.issupportAngledata() == true) {
+                    this.anglePath2pathData();
+                    ui.addLog("각도 변환 완료.");
+                }
+                else {
+                    alert("이 레벨은 각도변환을 지원하지 않습니다.");
+                    ui.addLog("이 레벨은 각도변환을 지원하지 않습니다.");
+                    return false;
+                }
+            }
+            else {
+                ui.addLog("이 맵은 자유각도 레벨이 아닙니다.")
+                if (this.isSupportPathData(Level) == true) {
+                    ui.addLog("Version : " + ver);
+                    this.SetBasicMapSetting();
+                    status_bar(100/15)
+                    status_txt("맵 설정을 기본설정으로 바꾸는중...")
+                    this.SetSpeed();
+                    status_bar(100/14)
+                    status_txt("BPM 수정하는중...")
+                    this.CustomBackground();
+                    status_bar(100/13)
+                    status_txt("배경 설정을 수정하는중...")
+                    this.ColorTrack();
+                    status_bar(100/12)
+                    status_txt("길색상 변경중...")
+                    this.AnimateTrack();
+                    status_bar(100/11)
+                    status_txt("길 애니메이션 변경중...")
+                    this.AddDecoration();
+                    status_bar(100/10)
+                    status_txt("장식 추가 변경중...")
+                    this.Flash();
+                    status_bar(100/9)
+                    status_txt("플래시 변경중...")
+                    this.MoveCamera();
+                    status_bar(100/8)
+                    status_txt("카메라 설정 변경중...")
+                    this.HallOfMirrors();
+                    status_bar(100/7)
+                    status_txt("거울의 방 설정 바꾸는중...")
+                    this.SetHitsound();
+                    status_bar(100/6)
+                    status_txt("히트사운드 설정 변경중...")
+                    this.RecolorTrack();
+                    status_bar(100/5)
+                    status_txt("길 색상 변경 작업중...")
+                    this.SetFilter();
+                    status_bar(100/4)
+                    status_txt("필터를 감지하고 변환중...")
+                    Remove_notsuport_effect();
+                    status_bar(100/3)
+                    status_txt("지원되지 않는 이펙트 제거중...")
+                    Remove_difference_key();
+                    status_bar(100/2)
+                    status_txt("지원하지 않는 키 제거중...")
+                    mapsetting_to_basic_key();
+                    status_bar(100/1)
+                    status_txt("맵 설정을 기본 설정으로 변경중...")
+                    status_txt("완료!")
+                    $(".down_btn").show();
+
+                }
+                else {
+                    alert("이 레벨의 각도는 지원되지 않습니다.")
+                }
+            }
+        }
+        catch(e)
+        {
+            $(".error").show();
+            $("#error_content").text("Error Name " + e.name + "\nError MSG : " + e.message + "\nError Stack : " + e.stack);
+        }
     }
 
     addText(arg0) {
@@ -250,9 +325,9 @@ class Convert {
         }
     }
 
-    isSupportPathData() {
+    isSupportPathData(level) {
         let regex = /R|J|E|T|U|G|Q|H|L|N|Z|F|D|B|C|M|!/g;
-        if (this.Level.pathData.replace(regex, "").length == 0) {
+        if (level.pathData.replace(regex, "").length == 0) {
             return true;
         }
         else {

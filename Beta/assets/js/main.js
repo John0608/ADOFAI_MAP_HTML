@@ -3,53 +3,54 @@ const adofai_class = new ADOFAI();
 const ui = new Ui(); 
 const upload = new Upload();
 const convert = new Convert();
+const zipUtil = new Zip();
 
-let zipFile = null;
-let level_File = null;
+let Files = null;
+let level = null;
 
 window.onload = () => {         //웹페이지 로드 완료 시
     // 초기상태 로드
     ui.Pageinit();
 }
 
-function ReadFile()
+async function ReadFile()
 {
-    upload.readProcess();
+    if(upload.DetectFileExt() == true)
+    {
+        const ReadFile = await upload.readProcess(); //파일 읽기
+        const UnzipProcess = await zipUtil.UnZip(ReadFile);
+        Files = UnzipProcess;
+        DisplayLevel(Files);
+        return;
+    }
 }
 
-function FindLevel()
+function DisplayLevel(File) //Level 표시
 {
-    adofai_class.findLevel(zipFile);
-    alert(level.length);
+    const levels_result = adofai_class.findLevel(File);
+    ui.CompleateLoad();
+    addSelect(levels_result);
 }
 
 
-const levelSelect = (target) =>
+async function levelSelect (target) 
 {
-    let level = levelRead(target.value);
-    ui.HideLevelSelector()
-    
-    
-
+    const LevelData = await adofai_class.readLevel(Files, target.value);
+    level = LevelData;
+    console.log(LevelData);
+    if(adofai_class.isAdofaiLevel(LevelData) == true)
+    {
+        convert.FastConvert(level,Files);
+    }
+    else {
+        alert("유효한 ADOFAI 레벨이 아닙니다.");
+        All_init();
+    }
 }
 
-function levelRead(filename)
-{
-    let file;
-    zipFile.files[filename].async("string").then(
-        (base64Text) => {
-            file = base64Text;
-            return base64Text;
-        }
-    ).then((result)=>{
-        console.log(result);
-        let level = adofai_class.readLevel(result);
-        convert.FastConvert(result);
-    })
-    console.log(file);
-}
 
-function addSelect(list)
+
+function addSelect(list)        //레벨 파일 리스트화
 {
     let select = document.querySelector(".select");
     
@@ -60,4 +61,11 @@ function addSelect(list)
         select.appendChild(sel);
     })
 
+}
+
+function All_init()
+{
+    Files = null;
+    ui.Pageinit();
+    upload.upload_init();
 }
