@@ -1,97 +1,151 @@
 class Convert {
     ui = new Ui();
 
-    
     effect_List = adofai.effect.List;
+    effect_array = null;
+    FastConvert(level, file) {
+        const File = file;
+        let Level = level;        //레벨 파일
+        const effect = ["SetSpeed", "Twirl"];
+        Level.actions = Level.actions.filter(x => effect.includes(x.eventType));
 
-    FastConvert(level, file)
-    {
-        const Level = level;
         this.ui.HideLevelSelector()
         this.ui.ShowLog();
         this.ui.addLog("Version : " + Level.settings.version);
-        try {
-            if (Level.pathData == undefined) {
-                ui.addLog("이 레벨은 자유각도 레벨입니다.")
-                if (this.issupportAngledata() == true) {
-                    this.anglePath2pathData();
-                    ui.addLog("각도 변환 완료.");
-                }
-                else {
-                    alert("이 레벨은 각도변환을 지원하지 않습니다.");
-                    ui.addLog("이 레벨은 각도변환을 지원하지 않습니다.");
-                    return false;
-                }
-            }
-            else {
-                ui.addLog("이 맵은 자유각도 레벨이 아닙니다.")
-                if (this.isSupportPathData(Level) == true) {
-                    ui.addLog("Version : " + ver);
-                    this.SetBasicMapSetting();
-                    status_bar(100/15)
-                    status_txt("맵 설정을 기본설정으로 바꾸는중...")
-                    this.SetSpeed();
-                    status_bar(100/14)
-                    status_txt("BPM 수정하는중...")
-                    this.CustomBackground();
-                    status_bar(100/13)
-                    status_txt("배경 설정을 수정하는중...")
-                    this.ColorTrack();
-                    status_bar(100/12)
-                    status_txt("길색상 변경중...")
-                    this.AnimateTrack();
-                    status_bar(100/11)
-                    status_txt("길 애니메이션 변경중...")
-                    this.AddDecoration();
-                    status_bar(100/10)
-                    status_txt("장식 추가 변경중...")
-                    this.Flash();
-                    status_bar(100/9)
-                    status_txt("플래시 변경중...")
-                    this.MoveCamera();
-                    status_bar(100/8)
-                    status_txt("카메라 설정 변경중...")
-                    this.HallOfMirrors();
-                    status_bar(100/7)
-                    status_txt("거울의 방 설정 바꾸는중...")
-                    this.SetHitsound();
-                    status_bar(100/6)
-                    status_txt("히트사운드 설정 변경중...")
-                    this.RecolorTrack();
-                    status_bar(100/5)
-                    status_txt("길 색상 변경 작업중...")
-                    this.SetFilter();
-                    status_bar(100/4)
-                    status_txt("필터를 감지하고 변환중...")
-                    Remove_notsuport_effect();
-                    status_bar(100/3)
-                    status_txt("지원되지 않는 이펙트 제거중...")
-                    Remove_difference_key();
-                    status_bar(100/2)
-                    status_txt("지원하지 않는 키 제거중...")
-                    mapsetting_to_basic_key();
-                    status_bar(100/1)
-                    status_txt("맵 설정을 기본 설정으로 변경중...")
-                    status_txt("완료!")
-                    $(".down_btn").show();
+        this.effect_array = this.Effect_sclice_for_Floor(Level);
+        this.SetSpeed();
 
-                }
-                else {
-                    alert("이 레벨의 각도는 지원되지 않습니다.")
-                }
-            }
-        }
-        catch(e)
-        {
-            $(".error").show();
-            $("#error_content").text("Error Name " + e.name + "\nError MSG : " + e.message + "\nError Stack : " + e.stack);
-        }
+
     }
 
     addText(arg0) {
         const ui = new Ui();
         ui.addLog(arg0);
     }
+
+    Edit_AngleData_to_PathData(level) //angleData 일 경우에만 사용 가능.
+    {
+        const Level = level;
+        const supportPathData = Object.Keys(adofai.path);
+        let rotation = "RIGHT";
+
+        let angle = Level.angleData;
+        angle.forEach(function (currentValue, index) {  //currentValue : 각도
+            let nowFloor = index;
+            let nowangle = currentValue;
+            let change_angle = null;
+            let bpm = 0;
+            let isTwirl = () => {
+                let temp = this.effect_array[index].filter(x => effect.includes(x.eventType))
+                let defindTwirl = false;
+                temp.forEach((x) => {
+                    if (x.eventType == "Twirl") {
+                        defindTwirl = true;
+                    }
+                })
+                return defindTwirl;
+            }
+            if (isTwirl == true && rotation == "RIGHT") {
+                rotation = "LEFT";
+            }
+            else if (isTwirl == true && rotation == "LEFT") {
+                rotation = "RIGHT";
+            }
+            if (supportPathData.indexOf(nowangle) == -1) {
+                let setBpm_index = null;
+                let setBpm = null;
+                let isSetSpeed = false;
+                let change_bpm = null;
+
+                this.effect_array[index].forEach(currentValue, index)
+                {
+                    if (currentValue.eventType == "SetSpeed") {
+                        isSetSpeed = true;
+                        setBpm_index = index;
+                        setBpm = currentValue.beatsPerMinute;
+                    }
+                    else {
+                        return;
+                    }
+                };
+
+                change_angle = 가까운각도찾기(nowangle);
+                if (change_angle > nowangle) {
+                    change_bpm = setBpm / (nowangle / change_angle);
+                    if(isSetSpeed = true)
+                    {
+                        this.effect_array[nowFloor][setBpm_index].beatsPerMinute = change_bpm;
+                    }
+                    else {
+                        let setspeed = {"floor":nowFloor,"eventType":"SetSpeed","beatsPerMinute":change_bpm}
+                        this.effect_array[nowFloor].unshift(setspeed);
+                    }
+                }
+                else if(change_angle < nowangle)
+                {
+                    change_bpm = setBpm * (change_angle / nowangle);
+                    if(isSetSpeed = true)
+                    {
+                        this.effect_array[nowFloor][setBpm_index].beatsPerMinute = change_bpm;
+                    }
+                    else {
+                        let eft_array = this.effect_array[nowFloor];
+                        let setspeed = {"floor":nowFloor,"eventType":"SetSpeed","beatsPerMinute":change_bpm}
+                        this.effect_array[nowFloor].unshift(setspeed);
+                    }
+                }
+            }
+
+        })
+
+
+        //가까운 값으로 바꾸기
+        function 가까운각도찾기(nowangle) {
+            var data = supportPathData;
+            var target = nowangle; // 현재 각도와 가장 가까운 값
+            var near = 0;
+            var abs = 0;
+            var min = 345; // 해당 범위에서 가장 큰 값
+
+            for (var i = 0; i < data.length; i++) {
+                abs = ((data[i] - target) < 0) ? - ((data[i]) - target) : (data[i] - target);
+                if (abs < min) {
+                    min = abs;
+                    near = data[i];
+                }
+            }
+            return near;
+        }
+
+
+    }
+
+
+
+    Effect_sclice_for_Floor(Level) {
+        const level = Level;
+        const Tilenum = level.angleData.length + 1;
+        let effect_array = new Array(Tilenum);
+        for (let i = 0; i < Tilenum; i++)    //배열 안에 배열 넣기
+        {
+            effect_array[i] = [];
+        }
+        console.log(effect_array);
+        level.actions.forEach((index) => {
+            effect_array[index.floor].push(index);
+        })
+
+        return effect_array;
+    }
+
+    Distinction_Data(level) {
+        const Level = level;
+        if (Level.pathData == undefined) {
+            return "angle";
+        }
+        else return "path";
+    }
+
 
     SetSpeed() {
         let bpm = this.Level.settings.bpm;
@@ -156,10 +210,9 @@ class Convert {
                 if (this.effect_List.AddDecoration.relativeTo.indexOf(index.relativeTo) == -1) {
                     index.relativeTo = "Global";
                 }
-                if(index.scale != undefined)
-                {
-                  delete index.scale;
-                  this.addText(index.floor + "의 " + index.eventType + "의 scale은 지원되지 않아 제거됩니다.");
+                if (index.scale != undefined) {
+                    delete index.scale;
+                    this.addText(index.floor + "의 " + index.eventType + "의 scale은 지원되지 않아 제거됩니다.");
                 }
             }
         });
@@ -317,7 +370,7 @@ class Convert {
             return Object.keys(this.adofai.path).indexOf(x.toString()) == -1
         })
 
-        if(result == true) {
+        if (result == true) {
             return false;
         }
         else {
@@ -335,10 +388,8 @@ class Convert {
         }
     }
 
-    CheckTileAngleData()
-    {
-        if(this.Level.angleData == undefined)
-        {
+    CheckTileAngleData() {
+        if (this.Level.angleData == undefined) {
             return this.isSupportPathData();
 
         }
@@ -347,5 +398,5 @@ class Convert {
         }
     }
 
-  
+
 }
