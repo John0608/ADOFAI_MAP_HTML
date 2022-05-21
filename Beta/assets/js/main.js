@@ -40,7 +40,8 @@ async function levelSelect (target)
     console.log(LevelData);
     if(adofai_class.isAdofaiLevel(LevelData) == true)
     {
-        convert.FastConvert(level,Files);
+        let result = convert.FastConvert(level,Files);
+        Zip
     }
     else {
         alert("유효한 ADOFAI 레벨이 아닙니다.");

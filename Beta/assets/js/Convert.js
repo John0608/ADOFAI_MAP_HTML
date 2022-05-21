@@ -1,20 +1,25 @@
 class Convert {
+    Level = null;
     ui = new Ui();
-
     effect_List = adofai.effect.List;
     effect_array = null;
+
     FastConvert(level, file) {
         const File = file;
-        let Level = level;        //레벨 파일
+        this.Level = level;        //레벨 파일
         const effect = ["SetSpeed", "Twirl"];
-        Level.actions = Level.actions.filter(x => effect.includes(x.eventType));
+        this.Level.actions = this.Level.actions.filter(x => effect.includes(x.eventType));
 
         this.ui.HideLevelSelector()
         this.ui.ShowLog();
-        this.ui.addLog("Version : " + Level.settings.version);
-        this.effect_array = this.Effect_sclice_for_Floor(Level);
+        this.ui.addLog("Version : " + this.Level.settings.version);
+        this.effect_array = this.Effect_sclice_for_Floor(this.Level);
         this.SetSpeed();
+        if (this.Distinction_Data(level) == "angle") {
+            this.Edit_AngleData_to_PathData();
 
+        }
+        else { alert("기능 개발중"); return; }
 
     }
 
@@ -23,103 +28,114 @@ class Convert {
         ui.addLog(arg0);
     }
 
-    Edit_AngleData_to_PathData(level) //angleData 일 경우에만 사용 가능.
+    Edit_AngleData_to_PathData() //angleData 일 경우에만 사용 가능.
     {
-        const Level = level;
-        const supportPathData = Object.Keys(adofai.path);
-        let rotation = "RIGHT";
+        const supportPathData = Object.keys(adofai.path);
+        let angle = this.Level.angleData;
 
-        let angle = Level.angleData;
-        angle.forEach(function (currentValue, index) {  //currentValue : 각도
-            let nowFloor = index;
+
+        angle.forEach(function (currentValue, index) {  //currentValue : 각도, index : floor
             let nowangle = currentValue;
             let change_angle = null;
-            let bpm = 0;
-            let isTwirl = () => {
-                let temp = this.effect_array[index].filter(x => effect.includes(x.eventType))
-                let defindTwirl = false;
-                temp.forEach((x) => {
-                    if (x.eventType == "Twirl") {
-                        defindTwirl = true;
-                    }
-                })
-                return defindTwirl;
-            }
-            if (isTwirl == true && rotation == "RIGHT") {
-                rotation = "LEFT";
-            }
-            else if (isTwirl == true && rotation == "LEFT") {
-                rotation = "RIGHT";
-            }
+            let setBpm_index = null;    //SetSpeed 위치
+            let change_bpm = null;      //바뀐 Bpm
+            let setBpm = null;          //원래 Bpm
+            let isSetSpeed = false;     //SetSpeed 유무
             if (supportPathData.indexOf(nowangle) == -1) {
-                let setBpm_index = null;
-                let setBpm = null;
-                let isSetSpeed = false;
-                let change_bpm = null;
-
-                this.effect_array[index].forEach(currentValue, index)
-                {
-                    if (currentValue.eventType == "SetSpeed") {
+                for (let i = 0; i < convert.effect_array[index].length; i++) {
+                    let eft = convert.effect_array[index][i];
+                    if (eft.eventType == "SetSpeed") {
                         isSetSpeed = true;
-                        setBpm_index = index;
-                        setBpm = currentValue.beatsPerMinute;
-                    }
-                    else {
-                        return;
-                    }
-                };
+                        setBpm_index = i;
+                        setBpm = eft.beatsPerMinute;
 
-                change_angle = 가까운각도찾기(nowangle);
-                if (change_angle > nowangle) {
-                    change_bpm = setBpm / (nowangle / change_angle);
-                    if(isSetSpeed = true)
-                    {
-                        this.effect_array[nowFloor][setBpm_index].beatsPerMinute = change_bpm;
+                        change_angle = convert.getCloseAngle(nowangle);
+                        if (change_angle > nowangle) {
+                            change_bpm = setBpm / (nowangle / change_angle);
+                            convert.set_SetSpeed(setBpm_index, change_bpm);
+                            convert.set_SetSpeed((setBpm_index + 1), setBpm);
+                        }
+                        else if (change_angle < nowangle) {
+                            change_bpm = setBpm * (change_angle / nowangle);
+                            convert.set_SetSpeed(setBpm_index, change_bpm);
+                            convert.set_SetSpeed((setBpm_index + 1), setBpm);
+                        }
                     }
-                    else {
-                        let setspeed = {"floor":nowFloor,"eventType":"SetSpeed","beatsPerMinute":change_bpm}
-                        this.effect_array[nowFloor].unshift(setspeed);
-                    }
+                    else return;
                 }
-                else if(change_angle < nowangle)
-                {
-                    change_bpm = setBpm * (change_angle / nowangle);
-                    if(isSetSpeed = true)
-                    {
-                        this.effect_array[nowFloor][setBpm_index].beatsPerMinute = change_bpm;
-                    }
-                    else {
-                        let eft_array = this.effect_array[nowFloor];
-                        let setspeed = {"floor":nowFloor,"eventType":"SetSpeed","beatsPerMinute":change_bpm}
-                        this.effect_array[nowFloor].unshift(setspeed);
-                    }
-                }
+
+
             }
-
         })
 
-
-        //가까운 값으로 바꾸기
-        function 가까운각도찾기(nowangle) {
-            var data = supportPathData;
-            var target = nowangle; // 현재 각도와 가장 가까운 값
-            var near = 0;
-            var abs = 0;
-            var min = 345; // 해당 범위에서 가장 큰 값
-
-            for (var i = 0; i < data.length; i++) {
-                abs = ((data[i] - target) < 0) ? - ((data[i]) - target) : (data[i] - target);
-                if (abs < min) {
-                    min = abs;
-                    near = data[i];
-                }
-            }
-            return near;
+        this.Level.pathData = angle;
+        if (this.Level.angleData != undefined) {
+            delete this.Level.angleData;
         }
+        let eft_data = new Array();
+        for(let i = 0; i < effect_array.length; i++)
+        {
+            if(effect_array[i].length != 0)
+            {
+                for(let j = 0; j < effect_array[i][j]; j++)
+                {
+                    eft_data.push(effect_array[i][j]);
+                }
+                
+            }
+        }
+        this.Level.actions = eft_data;
+        return this.Level;
+
+
+
 
 
     }
 
+    getCloseAngle(nowangle) {
+        var data = Object.keys(adofai.path);
+        var target = nowangle; // 현재 각도와 가장 가까운 값
+        var near = 0;
+        var abs = 0;
+        var min = 345; // 해당 범위에서 가장 큰 값
+
+        for (var i = 0; i < data.length; i++) {
+            abs = ((data[i] - target) < 0) ? - ((data[i]) - target) : (data[i] - target);
+            if (abs < min) {
+                min = abs;
+                near = data[i];
+            }
+        }
+        return near;
+    }
+    set_SetSpeed(floor, bpm) {
+        let isSetSpeed = false;
+        let Floor = floor
+        let Floor_in_index = 0;
+        console.log(floor, bpm);
+        for (let i = 0; i < convert.effect_array[floor]; i++) {
+            if (convert.effect_array[floor][i].length != 0) {
+                if (convert.effect_array[floor][i].eventType == "SetSpeed") {
+                    isSetSpeed = true;
+                    Floor_in_index = i;
+                }
+                else { }
+            }
+        }
+
+        if (isSetSpeed == true) {
+            convert.effect_array[floor][Floor_in_index].beatsPerMinute = bpm;
+        }
+        else {
+            let setspeed_json = { "floor": floor, "eventType": "SetSpeed", "beatsPerMinute": bpm }
+            let temp_array = convert.effect_array[Floor];
+            console.log(temp_array);
+            console.log(Floor);
+            temp_array.unshift(setspeed_json);
+            convert.effect_array[floor] = temp_array;
+        }
+    }
 
 
     Effect_sclice_for_Floor(Level) {
@@ -149,6 +165,7 @@ class Convert {
 
     SetSpeed() {
         let bpm = this.Level.settings.bpm;
+        const ui = new Ui();
         this.Level.actions.forEach(function (index) {
             if (index.eventType == "SetSpeed") {
                 if (index.speedType == "Multiplier") {
@@ -156,7 +173,7 @@ class Convert {
                     bpm = bpm * index.bpmMultiplier;
                     index.bpmMultiplier = 1;
                     index.beatsPerMinute = bpm;
-                    this.addText(index.floor + "의 " + index.eventType + "이펙트의 BPM이 " + index.bpm + "에서 " + bpm + "으로 바뀜.")
+                    ui.addLog(index.floor + "의 " + index.eventType + "이펙트의 BPM이 " + index.bpm + "에서 " + bpm + "으로 바뀜.")
                 }
                 else {
                     bpm = index.beatsPerMinute;
