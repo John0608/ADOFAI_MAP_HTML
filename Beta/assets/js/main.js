@@ -7,7 +7,8 @@ const zipUtil = new Zip();
 
 let Files = null;
 let level = null;
-let levelName = null;
+let FileName = null;
+let level_FileName = null;
 
 window.onload = () => {         //웹페이지 로드 완료 시
     // 초기상태 로드
@@ -21,6 +22,7 @@ async function ReadFile()
         const ReadFile = await upload.readProcess(); //파일 읽기
         const UnzipProcess = await zipUtil.UnZip(ReadFile);
         Files = UnzipProcess;
+        FileName = upload.GetFileName();
         DisplayLevel(Files);
         return;
     }
@@ -37,13 +39,17 @@ function DisplayLevel(File) //Level 표시
 async function levelSelect (target) 
 {
     const LevelData = await adofai_class.readLevel(Files, target.value);
+    level_FileName = target.value;
     level = LevelData;
     console.log(LevelData);
     if(adofai_class.isAdofaiLevel(LevelData) == true)
     {
         let result = convert.FastConvert(level,Files);
-       
-                    download("main.adofai", JSON.stringify(result));
+        result = JSON.stringify(result);
+        Files.file(level_FileName,result);
+        download(level_FileName, result);
+
+
     }
     else {
         alert("유효한 ADOFAI 레벨이 아닙니다.");
@@ -51,6 +57,12 @@ async function levelSelect (target)
     }
 }
 
+
+function Download(LevelFile)
+{
+    let file = Files;
+    
+}
 
 
 function addSelect(list)        //레벨 파일 리스트화
@@ -78,27 +90,15 @@ function download(filename, text) {
      const element = document.createElement('a') 
 
      element.setAttribute( 
-
          'href', 
-
-         'data:text/json;charset=utf-8,' + encodeURIComponent(text), 
-
+         'data:file;charset=utf-,' + encodeURIComponent(text),
+         
      ) 
 
      element.setAttribute('download', filename) 
-
-  
-
      element.style.display = 'none' 
-
      document.body.appendChild(element) 
-
-  
-
      element.click() 
-
-  
-
      document.body.removeChild(element) 
 
  }

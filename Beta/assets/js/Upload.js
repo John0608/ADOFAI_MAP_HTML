@@ -13,6 +13,15 @@ class Upload {
         else return true;
     }
 
+    GetFileName()
+    {
+        const input = document.querySelector('.file_select_btn')
+        const f = input.files[0]
+        const fName = f.name;
+        return fName;
+    }
+
+
     async readProcess() {
         let result = await this.ReadFile();
         return result;
