@@ -42,7 +42,7 @@ async function levelSelect (target)
     if(adofai_class.isAdofaiLevel(LevelData) == true)
     {
         let result = convert.FastConvert(level,Files);
-        Files.file(target.value, result);
+       
                     download("main.adofai", JSON.stringify(result));
     }
     else {
