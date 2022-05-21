@@ -7,6 +7,7 @@ const zipUtil = new Zip();
 
 let Files = null;
 let level = null;
+let levelName = null;
 
 window.onload = () => {         //웹페이지 로드 완료 시
     // 초기상태 로드
@@ -41,7 +42,8 @@ async function levelSelect (target)
     if(adofai_class.isAdofaiLevel(LevelData) == true)
     {
         let result = convert.FastConvert(level,Files);
-        Zip
+        Files.file(target.value, result);
+                    download("main.adofai", JSON.stringify(result));
     }
     else {
         alert("유효한 ADOFAI 레벨이 아닙니다.");
@@ -70,3 +72,33 @@ function All_init()
     ui.Pageinit();
     upload.upload_init();
 }
+
+function download(filename, text) { 
+
+     const element = document.createElement('a') 
+
+     element.setAttribute( 
+
+         'href', 
+
+         'data:text/json;charset=utf-8,' + encodeURIComponent(text), 
+
+     ) 
+
+     element.setAttribute('download', filename) 
+
+  
+
+     element.style.display = 'none' 
+
+     document.body.appendChild(element) 
+
+  
+
+     element.click() 
+
+  
+
+     document.body.removeChild(element) 
+
+ }
