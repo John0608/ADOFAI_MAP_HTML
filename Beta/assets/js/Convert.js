@@ -7,18 +7,22 @@ class Convert {
     FastConvert(level, file) {
         const File = file;
         this.Level = level;        //레벨 파일
+
         const effect = ["SetSpeed", "Twirl"];
         this.Level.actions = this.Level.actions.filter(x => effect.includes(x.eventType));
+        console.log("원래 actions 길이" + this.Level.actions.length);
 
         this.ui.HideLevelSelector()
         this.ui.ShowLog();
         this.ui.addLog("Version : " + this.Level.settings.version);
         this.ui.addLog("Tile Length : " + this.Level.angleData.length);
-        this.SetBasicMapSetting();
+        //this.SetBasicMapSetting();
         this.effect_array = this.Effect_sclice_for_Floor(this.Level);
+        test = this.effect_array;
         this.SetSpeed();
         if (this.Distinction_Data(level) == "angle") {
             let result = this.Edit_AngleData_to_PathData();
+            console.log("바뀐 actions 길이" + this.Level.actions.length);
             return result;
         }
         else { alert("기능 개발중"); return; }
@@ -32,77 +36,84 @@ class Convert {
 
     Edit_AngleData_to_PathData() //angleData 일 경우에만 사용 가능.
     {
-        const supportPathData = Object.keys(adofai.path);
+        const supportPathData = this.SetPathData_To_Number();
         let angle = this.Level.angleData;
         let editangle = [];
+        let change_angle = null;
+        let setBpm_index = null;    //SetSpeed 위치
+        let change_bpm = null;      //바뀐 Bpm
+        let setBpm = null;          //원래 Bpm
 
         console.log(angle);
         angle.forEach(function (currentValue, index) {  //currentValue : 각도, index : floor
-            let nowangle = String(currentValue);
-            let change_angle = null;
-            let setBpm_index = null;    //SetSpeed 위치
-            let change_bpm = null;      //바뀐 Bpm
-            let setBpm = null;          //원래 Bpm
-            let isSetSpeed = false;     //SetSpeed 유무
-            if (supportPathData.indexOf(nowangle) == -1) {
-                change_angle = convert.getCloseAngle(nowangle);
-                editangle.push(change_angle);
-                this.ui.addLog(currentValue + "에서 " + change_angle + "로 바뀜")
-                for (let i = 0; i < convert.effect_array[index].length; i++) {
-                    let eft = convert.effect_array[index][i];
-                    if (eft.eventType == "SetSpeed") {
-                        isSetSpeed = true;
-                        setBpm_index = i;
-                        setBpm = eft.beatsPerMinute;
 
-                        console.log(currentValue + "에서" + change_angle);
-                        if (change_angle > nowangle) {
-                            change_bpm = setBpm / (nowangle / change_angle);
-                            convert.set_SetSpeed(setBpm_index, change_bpm);
-                            convert.set_SetSpeed((setBpm_index + 1), setBpm);
-                        }
-                        else if (change_angle < nowangle) {
-                            change_bpm = setBpm * (change_angle / nowangle);
-                            convert.set_SetSpeed(setBpm_index, change_bpm);
-                            convert.set_SetSpeed((setBpm_index + 1), setBpm);
-                        }
+            let eft_length = convert.effect_array[index].length;
+            if (Number(eft_length) > 0) {
+                convert.effect_array[index].forEach(function (currentValue, index) {
+                    if (currentValue.eventType == "SetSpeed") {
+                        setBpm_index = index;
+                        setBpm = currentValue.beatsPerMinute;
                     }
+                })
+            }
+
+
+            if (supportPathData.indexOf(currentValue) == -1) {
+                change_angle = convert.getCloseAngle(currentValue);
+                console.log("change angle : " + currentValue + "->" + change_angle + ", floor : " + index);
+                editangle.push(change_angle);
+                ui.addLog(currentValue + "에서 " + change_angle + "로 바뀜")
+                if (change_angle > currentValue) {
+                    change_bpm = setBpm / (currentValue / change_angle);
+                    convert.set_SetSpeed(index, change_bpm);
+                    convert.set_SetSpeed((index + 1), setBpm);
+                }
+                else if (change_angle < currentValue) {
+                    change_bpm = setBpm * (change_angle / currentValue);
+                    convert.set_SetSpeed(index, change_bpm);
+                    convert.set_SetSpeed((index + 1), setBpm);
                 }
             }
             else {
-                editangle.push(nowangle);
+                editangle.push(currentValue);
             }
-            
+
         })
-        
+
 
         let eft_data = new Array();     //effect_array를 actions에 넣기 위한 준비.
-        for(let i = 0; i < this.effect_array.length; i++)
-        {
-            if(this.effect_array[i].length != 0)
-            {
-                for(let j = 0; j <= this.effect_array[i].length; j++)
-                {
-                    if(this.effect_array[i][j] != undefined)
-                    {
+        for (let i = 0; i < this.effect_array.length; i++) {
+            if (this.effect_array[i].length != 0) {
+                for (let j = 0; j <= this.effect_array[i].length; j++) {
+                    if (this.effect_array[i][j] != undefined) {
                         eft_data.push(this.effect_array[i][j]);
                     }
                 }
-                
+
             }
         }
         this.Level.actions = eft_data;
-        
+
         let path = "";
-        editangle.forEach((x)=>{
+        editangle.forEach((x) => {
             //console.log(x, adofai.path[x])
             path += adofai.path[x]
         })
         delete this.Level.angleData;
         this.Level.pathData = path;
-        
+
         return this.Level;
-        
+
+    }
+
+    SetPathData_To_Number() {
+        let angle = Object.keys(adofai.path);
+        angle.forEach(function (currentValue, index) {
+            angle[index] = Number(currentValue);
+        })
+        console.log(angle);
+        console.log(typeof (angle[1]));
+        return angle;
     }
 
     getCloseAngle(nowangle) {
@@ -119,35 +130,36 @@ class Convert {
                 near = data[i];
             }
         }
-        console.log("통과함");
-        return near;
+        return Number(near);
     }
-    set_SetSpeed(floor, bpm) {
+    set_SetSpeed(Floor, bpm) {
         let isSetSpeed = false;
-        let Floor = floor
-        let Floor_in_index = 0;
-        console.log(floor, bpm);
-        for (let i = 0; i < convert.effect_array[floor]; i++) {
-            if (convert.effect_array[floor][i].length != 0) {
-                if (convert.effect_array[floor][i].eventType == "SetSpeed") {
+        let eft_index = null;
+        let floor = Floor;
+        let template = { "floor": floor, "eventType": "SetSpeed", "beatsPerMinute": bpm };
+        if (convert.effect_array[floor] != []) {
+            convert.effect_array[floor].forEach(function (currentValue, index) {
+                if (currentValue.eventType == "SetSpeed") {
                     isSetSpeed = true;
-                    Floor_in_index = i;
+                    eft_index = index;
+                    currentValue.beatsPerMinute = bpm;
                 }
-                else { }
+                console.log("edit floor : " + floor + ", bpm : " + bpm);
+            })
+            if(!isSetSpeed)
+            {
+                convert.effect_array[floor].unshift(template);
             }
         }
+        else if (convert.effect_array[floor] == []) {
+            convert.effect_array[floor] = [];
+            convert.effect_array[floor].unshift(template);
+            console.log("new floor : " + floor + ", bpm : " + bpm);
+            return;
+        }
 
-        if (isSetSpeed == true) {
-            convert.effect_array[floor][Floor_in_index].beatsPerMinute = bpm;
-        }
-        else {
-            let setspeed_json = { "floor": floor, "eventType": "SetSpeed", "beatsPerMinute": bpm }
-            let temp_array = convert.effect_array[Floor];
-            console.log(temp_array);
-            console.log(Floor);
-            temp_array.unshift(setspeed_json);
-            convert.effect_array[floor] = temp_array;
-        }
+
+
     }
 
 

@@ -9,6 +9,7 @@ let Files = null;
 let level = null;
 let FileName = null;
 let level_FileName = null;
+let test = null;
 
 window.onload = () => {         //웹페이지 로드 완료 시
     // 초기상태 로드
@@ -46,8 +47,9 @@ async function levelSelect (target)
     {
         let result = convert.FastConvert(level,Files);
         result = JSON.stringify(result);
-        Files.file(level_FileName,result);
+        //Files.file(level_FileName,result);
         download(level_FileName, result);
+        //console.log(result);
 
 
     }
