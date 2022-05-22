@@ -38,7 +38,7 @@ class Convert {
 
         console.log(angle);
         angle.forEach(function (currentValue, index) {  //currentValue : 각도, index : floor
-            let nowangle = currentValue;
+            let nowangle = String(currentValue);
             let change_angle = null;
             let setBpm_index = null;    //SetSpeed 위치
             let change_bpm = null;      //바뀐 Bpm
@@ -47,6 +47,7 @@ class Convert {
             if (supportPathData.indexOf(nowangle) == -1) {
                 change_angle = convert.getCloseAngle(nowangle);
                 editangle.push(change_angle);
+                this.ui.addLog(currentValue + "에서 " + change_angle + "로 바뀜")
                 for (let i = 0; i < convert.effect_array[index].length; i++) {
                     let eft = convert.effect_array[index][i];
                     if (eft.eventType == "SetSpeed") {
@@ -106,7 +107,7 @@ class Convert {
 
     getCloseAngle(nowangle) {
         var data = Object.keys(adofai.path);
-        var target = nowangle; // 현재 각도와 가장 가까운 값
+        var target = String(nowangle); // 현재 각도와 가장 가까운 값
         var near = 0;
         var abs = 0;
         var min = 345; // 해당 범위에서 가장 큰 값
