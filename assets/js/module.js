@@ -135,6 +135,7 @@ class Convert {
                     addText(index.floor + "타일 필터 이벤트의 " + index.filter + "는 호환되지 않아 제거됩니다.");
                     Level.actions.splice(num, 1);
                 }
+                else{index.angleOffset = 1}
             }
         })
     }
