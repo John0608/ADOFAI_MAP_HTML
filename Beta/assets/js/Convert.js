@@ -7,9 +7,6 @@ class Convert {
     FastConvert(level, file) {
         const File = file;
         this.Level = level;        //레벨 파일
-
-        const effect = ["SetSpeed", "Twirl"];
-        this.Level.actions = this.Level.actions.filter(x => effect.includes(x.eventType));
         console.log("원래 actions 길이" + this.Level.actions.length);
 
         this.ui.HideLevelSelector()
