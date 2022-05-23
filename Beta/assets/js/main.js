@@ -7,7 +7,7 @@ const zipUtil = new Zip();
 
 let Files = null;
 let level = null;
-let FileName = null;
+let ZipFileName = null;
 let level_FileName = null;
 let test = null;
 
@@ -23,7 +23,7 @@ async function ReadFile()
         const ReadFile = await upload.readProcess(); //파일 읽기
         const UnzipProcess = await zipUtil.UnZip(ReadFile);
         Files = UnzipProcess;
-        FileName = upload.GetFileName();
+        ZipFileName = upload.GetFileName();
         DisplayLevel(Files);
         return;
     }
@@ -45,12 +45,10 @@ async function levelSelect (target)
     console.log(LevelData);
     if(adofai_class.isAdofaiLevel(LevelData) == true)
     {
-        let result = convert.FastConvert(level,Files);
-        result = JSON.stringify(result);
-        //Files.file(level_FileName,result);
-        download(level_FileName, result);
-        //console.log(result);
-
+        let level_file = convert.FastConvert(level,Files);
+        //zipUtil.AddFile(level_FileName,level_file,false,true);
+        Files.file(level_FileName, JSON.stringify(level_file));
+        zipUtil.myOnDownload(ZipFileName);
 
     }
     else {
@@ -59,12 +57,6 @@ async function levelSelect (target)
     }
 }
 
-
-function Download(LevelFile)
-{
-    let file = Files;
-    
-}
 
 
 function addSelect(list)        //레벨 파일 리스트화

@@ -11,18 +11,31 @@ class Convert {
 
         this.ui.HideLevelSelector()
         this.ui.ShowLog();
-        this.ui.addLog("Version : " + this.Level.settings.version);
-        this.ui.addLog("Tile Length : " + this.Level.angleData.length);
-        //this.SetBasicMapSetting();
-        this.effect_array = this.Effect_sclice_for_Floor(this.Level);
-        test = this.effect_array;
-        this.SetSpeed();
+        this.Level.actions = this.Level.actions.filter(x => Object.keys(adofai.effect.List).includes(x.eventType));
         if (this.Distinction_Data(level) == "angle") {
-            let result = this.Edit_AngleData_to_PathData();
+            this.ui.addLog("Version : " + this.Level.settings.version);
+            this.ui.addLog("Tile Length : " + this.Level.angleData.length);
+            this.effect_array = this.Effect_sclice_for_Floor(this.Level);
+            test = this.effect_array;
+            let result = this.Edit_AngleData_to_PathData(Level.angleData);
+            this.SetSpeed();
             console.log("바뀐 actions 길이" + this.Level.actions.length);
             return result;
         }
-        else { alert("기능 개발중"); return; }
+        else if(this.Distinction_Data(level) == "path")
+        {
+            this.ui.addLog("Version : " + this.Level.settings.version);
+            this.ui.addLog("Tile Length : " + this.Level.pathData.length);
+            this.effect_array = this.Effect_sclice_for_Floor(this.Level);
+            test = this.effect_array;
+            let result = this.Edit_PathData_to_AngleData();
+            result = this.Edit_AngleData_to_PathData(result);
+            this.SetSpeed();
+            console.log("바뀐 actions 길이" + this.Level.actions.length);
+            return result;
+            return;
+        }
+        //this.SetBasicMapSetting();
 
     }
 
@@ -31,10 +44,10 @@ class Convert {
         ui.addLog(arg0);
     }
 
-    Edit_AngleData_to_PathData() //angleData 일 경우에만 사용 가능.
+    Edit_AngleData_to_PathData(angleData) //angleData 일 경우에만 사용 가능.
     {
         const supportPathData = this.SetPathData_To_Number();
-        let angle = this.Level.angleData;
+        let angle = angleData;
         let editangle = [];
         let change_angle = null;
         let setBpm_index = null;    //SetSpeed 위치
@@ -103,6 +116,19 @@ class Convert {
 
     }
 
+    Edit_PathData_to_AngleData()
+    {
+        const data = this.Level.pathData;
+        const value = Object.values(adofai.editpath);
+        const angle = Object.keys(adofai.editpath);
+        let result = "";
+        data.forEach((x)=>{
+            let d = value.indexOf(x);
+            result += angle[d];
+        })
+        return result;
+    }
+
     SetPathData_To_Number() {
         let angle = Object.keys(adofai.path);
         angle.forEach(function (currentValue, index) {
@@ -162,7 +188,14 @@ class Convert {
 
     Effect_sclice_for_Floor(Level) {
         const level = Level;
-        const Tilenum = level.angleData.length + 1;
+        let Tilenum;
+        if (this.Distinction_Data(level) == "angle") {
+            level.angleData.length + 1;
+        }
+        else if(this.Distinction_Data(level) == "path")
+        {
+            level.pathData.length + 1;
+        }
         let effect_array = new Array(Tilenum);
         for (let i = 0; i < Tilenum; i++)    //배열 안에 배열 넣기
         {
@@ -170,7 +203,7 @@ class Convert {
         }
         console.log(effect_array);
         level.actions.forEach((index) => {
-            effect_array[index.floor].push(index);
+            this.effect_array[index.floor].push(index);
         })
 
         return effect_array;
