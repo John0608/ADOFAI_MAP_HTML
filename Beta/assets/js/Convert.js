@@ -3,37 +3,36 @@ class Convert {
     ui = new Ui();
     effect_List = adofai.effect.List;
     effect_array = null;
+    Temp_effect_array = ["SetSpeed", "Twirl"];
 
-    FastConvert(level, file) {
-        const File = file;
+    FastConvert(level) {
         this.Level = level;        //레벨 파일
-        console.log("원래 actions 길이" + this.Level.actions.length);
-
+        let result = null;          //Level TileData result
+        this.SetSpeed();
+        
         this.ui.HideLevelSelector()
         this.ui.ShowLog();
-        this.Level.actions = this.Level.actions.filter(x => Object.keys(adofai.effect.List).includes(x.eventType));
+
+        console.log("원래 actions 길이" + this.Level.actions.length);
+        this.Level.actions = this.Level.actions.filter(x => Object.keys(this.Temp_effect_array).includes(x.eventType));
+        this.ui.addLog("Version : " + this.Level.settings.version);
         if (this.Distinction_Data(level) == "angle") {
-            this.ui.addLog("Version : " + this.Level.settings.version);
+            this.ui.UpdateStatus("타일 타입 구분중...")
             this.ui.addLog("Tile Length : " + this.Level.angleData.length);
-            this.effect_array = this.Effect_sclice_for_Floor(this.Level);
-            test = this.effect_array;
-            let result = this.Edit_AngleData_to_PathData(Level.angleData);
-            this.SetSpeed();
-            console.log("바뀐 actions 길이" + this.Level.actions.length);
-            return result;
+            result = this.Level.angleData;
+            
         }
         else if(this.Distinction_Data(level) == "path")
         {
-            this.ui.addLog("Version : " + this.Level.settings.version);
+            this.ui.UpdateStatus("타일 타입 구분중...")
             this.ui.addLog("Tile Length : " + this.Level.pathData.length);
-            this.effect_array = this.Effect_sclice_for_Floor(this.Level);
-            test = this.effect_array;
-            let result = this.Edit_PathData_to_AngleData();
-            result = this.Edit_AngleData_to_PathData(result);
-            this.SetSpeed();
-            console.log("바뀐 actions 길이" + this.Level.actions.length);
-            return result;
+            result = this.Level.pathData;
+            result = this.Edit_PathData_to_AngleData(result);
         }
+        this.effect_array = this.Effect_sclice_for_Floor(this.Level);
+        result = this.Edit_AngleData_to_PathData(result);
+        console.log("바뀐 actions 길이" + this.Level.actions.length);
+        return result;
         //this.SetBasicMapSetting();
 
     }
@@ -45,6 +44,7 @@ class Convert {
 
     Edit_AngleData_to_PathData(angleData) //angleData 일 경우에만 사용 가능.
     {
+        const ui = new Ui();
         const supportPathData = this.SetPathData_To_Number();
         let angle = angleData;
         let editangle = [];
@@ -52,10 +52,12 @@ class Convert {
         let setBpm_index = null;    //SetSpeed 위치
         let change_bpm = null;      //바뀐 Bpm
         let setBpm = null;          //원래 Bpm
+        let angleLength = angle.length;
 
-        console.log(angle);
         angle.forEach(function (currentValue, index) {  //currentValue : 각도, index : floor
-
+            ui.UpdateStatus(index + "번째 타일을 수정하는 중...")
+            ui.UpdateProgress(Number((index / angleLength)*100));
+            
             let eft_length = convert.effect_array[index].length;
             if (Number(eft_length) > 0) {
                 convert.effect_array[index].forEach(function (currentValue, index) {
@@ -68,22 +70,25 @@ class Convert {
 
 
             if (supportPathData.indexOf(currentValue) == -1) {
-                change_angle = convert.getCloseAngle(currentValue);
+                currentValue = Number(currentValue);
+                change_angle = Number(convert.getCloseAngle(currentValue));
                 console.log("change angle : " + currentValue + "->" + change_angle + ", floor : " + index);
                 editangle.push(change_angle);
                 ui.addLog(currentValue + "에서 " + change_angle + "로 바뀜")
                 if (change_angle > currentValue) {
-                    change_bpm = setBpm / (currentValue / change_angle);
+                    change_bpm = Number(setBpm) / (currentValue / change_angle);
                     convert.set_SetSpeed(index, change_bpm);
                     convert.set_SetSpeed((index + 1), setBpm);
+                    return;
                 }
                 else if (change_angle < currentValue) {
                     change_bpm = setBpm * (change_angle / currentValue);
                     convert.set_SetSpeed(index, change_bpm);
                     convert.set_SetSpeed((index + 1), setBpm);
+                    return;
                 }
             }
-            else {
+            else if(supportPathData.indexOf(currentValue) != -1) {
                 editangle.push(currentValue);
             }
 
@@ -117,13 +122,13 @@ class Convert {
 
     Edit_PathData_to_AngleData()
     {
-        const data = this.Level.pathData;
+        const data = Array.from(this.Level.pathData);
         const value = Object.values(adofai.editpath);
         const angle = Object.keys(adofai.editpath);
-        let result = "";
+        let result = new Array();
         data.forEach((x)=>{
             let d = value.indexOf(x);
-            result += angle[d];
+            result.push(angle[d]);
         })
         return result;
     }
@@ -140,7 +145,7 @@ class Convert {
 
     getCloseAngle(nowangle) {
         var data = Object.keys(adofai.path);
-        var target = String(nowangle); // 현재 각도와 가장 가까운 값
+        var target = nowangle; // 현재 각도와 가장 가까운 값
         var near = 0;
         var abs = 0;
         var min = 345; // 해당 범위에서 가장 큰 값
@@ -154,7 +159,8 @@ class Convert {
         }
         return Number(near);
     }
-    set_SetSpeed(Floor, bpm) {
+    set_SetSpeed(Floor, Bpm) {
+        let bpm = Number(Bpm);
         let isSetSpeed = false;
         let eft_index = null;
         let floor = Floor;
@@ -189,11 +195,11 @@ class Convert {
         const level = Level;
         let Tilenum;
         if (this.Distinction_Data(level) == "angle") {
-            level.angleData.length + 1;
+            Tilenum = level.angleData.length + 1;
         }
         else if(this.Distinction_Data(level) == "path")
         {
-            level.pathData.length + 1;
+            Tilenum = level.pathData.length + 1;
         }
         let effect_array = new Array(Tilenum);
         for (let i = 0; i < Tilenum; i++)    //배열 안에 배열 넣기

@@ -18,26 +18,35 @@ class Ui {
         ui.Hide(".error");
         ui.Hide(".select");
     }
-    
+
     addLog(str) {
         let txt = $("#log").val()
         txt += str + "\n";
         $("#log").val(txt);
     }
 
-    CompleateLoad()
-    {
+    CompleateLoad() {
         ui.Show(".select");
         ui.Hide("#info_msg");
     }
-    HideLevelSelector()
-    {
+    HideLevelSelector() {
         ui.Hide(".select");
     }
 
-    ShowLog()
-    {
+    ShowLog() {
         ui.Show(".status");
         ui.Show(".log_box");
+    }
+
+    UpdateStatus(message) {
+        let e = document.querySelector(".status > p");
+        e.innerHTML = "진행중 : " + message;
+    }
+
+    UpdateProgress(percent) {
+        let p = String(percent);
+        let e = document.querySelector(".progress-bar");
+        e.style.width = p;
+        e.innerText = p;
     }
 }
