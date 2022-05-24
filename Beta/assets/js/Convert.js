@@ -33,7 +33,6 @@ class Convert {
             this.SetSpeed();
             console.log("바뀐 actions 길이" + this.Level.actions.length);
             return result;
-            return;
         }
         //this.SetBasicMapSetting();
 
