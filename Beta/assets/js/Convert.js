@@ -57,13 +57,13 @@ class Convert {
         angle.forEach(function (currentValue, index) {  //currentValue : 각도, index : floor
             ui.UpdateStatus(index + "번째 타일을 수정하는 중...")
             ui.UpdateProgress(Number((index / angleLength)*100));
-            
+            let arrayIndex = index;
             let eft_length = convert.effect_array[index].length;
             if (Number(eft_length) > 0) {
                 convert.effect_array[index].forEach(function (currentValue, index) {
                     if (currentValue.eventType == "SetSpeed") {
                         setBpm_index = index;
-                        setBpm = currentValue.beatsPerMinute;
+                        setBpm = convert.effect_array[arrayIndex][index].beatsPerMinute;
                     }
                 })
             }
