@@ -37,6 +37,52 @@ class Convert {
 
     }
 
+    FastConvert2(level)
+    {
+        let Level = level;              //레벨 파일
+        let Level_TileData = null;      //레벨의 타일 각도 데이터
+        let actions_array = null;       //레벨의 actions를 타일별 배열로 변환한 변수
+        const actions_filter = ["SetSpeed", "Twirl"];
+
+        if (this.Distinction_Data(level) == "angle") {
+            Level_TileData = Level.angleData;                                    //AngleData를 전역변수로 지정
+        }
+        else if(this.Distinction_Data(level) == "path")
+        {
+            Level_TileData = Level.pathData;                                    //PathData를 할당
+            Level_TileData = this.Edit_PathData_to_AngleData(Level);   //PathData를 AngleData로 변환
+            delete Level.pathData;                                              //pathData를 angleData로 변경
+            Level.angleData = Level_TileData;
+        }
+
+        Level.actions = Level.actions.filter(                              //테스트이므로, BPM설정과 소용돌이만 필터링.
+            x => actions_filter.includes(x.eventType)
+            );
+
+        actions_array = this.Effect_sclice_for_Floor(Level);                         //타일 별 배열 만듬.
+        console.log(Level);
+        Level = this.Edit_AngleData2PathData2_and_BPM(Level);
+
+
+        
+
+    }
+
+    Edit_AngleData2PathData2_and_BPM(level) //AngleData를 PathData로 만들어줌.
+    {
+        let Level = level;                                              //Level 파일
+        let AngleData = Level.angleData;                                //레벨 내 angleData
+        let Slice_from_actions = this.Effect_sclice_for_Floor(Level);
+
+        Slice_from_actions.forEach(function (currentValue, index) {     //currentValue : 각도, index : floor
+            const Angle = currentValue;     //각도
+            const Array_indexNum = index;   //현재 Floor 번호
+            const nowArrayLength = Slice_from_actions[index].length;    //현재 Slice_from_actions 안의 배열길이.
+            console.log(typeof(nowArrayLength), nowArrayLength);
+        })  
+
+    }
+
     addText(arg0) {
         const ui = new Ui();
         ui.addLog(arg0);
@@ -120,9 +166,9 @@ class Convert {
 
     }
 
-    Edit_PathData_to_AngleData()
+    Edit_PathData_to_AngleData(Level)
     {
-        const data = Array.from(this.Level.pathData);
+        const data = Array.from(Level.pathData);
         const value = Object.values(adofai.editpath);
         const angle = Object.keys(adofai.editpath);
         let result = new Array();
@@ -139,11 +185,10 @@ class Convert {
             angle[index] = Number(currentValue);
         })
         console.log(angle);
-        console.log(typeof (angle[1]));
         return angle;
     }
 
-    getCloseAngle(nowangle) {
+    getCloseAngle(nowangle) {             //바꾸려는 각도의 가장 가까운 각도를 찾아줌.
         var data = Object.keys(adofai.path);
         var target = nowangle; // 현재 각도와 가장 가까운 값
         var near = 0;
@@ -192,26 +237,25 @@ class Convert {
 
 
     Effect_sclice_for_Floor(Level) {
-        const level = Level;
-        let Tilenum;
-        if (this.Distinction_Data(level) == "angle") {
+        const level = Level;                                //변하지 않음으로 Level 변수를 고정
+        let Tilenum = 0;                                    //타일 수
+        if (this.Distinction_Data(level) == "angle") {      //AngleData라면 
             Tilenum = level.angleData.length + 1;
         }
-        else if(this.Distinction_Data(level) == "path")
+        else if(this.Distinction_Data(level) == "path")     //PathData라면?
         {
             Tilenum = level.pathData.length + 1;
         }
         let effect_array = new Array(Tilenum);
-        for (let i = 0; i < Tilenum; i++)    //배열 안에 배열 넣기
+        for (let i = 0; i < Tilenum; i++)                   //배열 안에 배열 넣기
         {
             effect_array[i] = [];
         }
-        console.log(effect_array);
         level.actions.forEach((index) => {
-            this.effect_array[index.floor].push(index);
+            effect_array[index.floor].push(index);
         })
 
-        return effect_array;
+        return effect_array;                                //생성한 2차원 배열을 리턴.
     }
 
     Distinction_Data(level) {
