@@ -9,7 +9,7 @@ class Convert {
         this.Level = level;        //레벨 파일
         let result = null;          //Level TileData result
         this.SetSpeed();
-        
+
         this.ui.HideLevelSelector()
         this.ui.ShowLog();
 
@@ -20,10 +20,9 @@ class Convert {
             this.ui.UpdateStatus("타일 타입 구분중...")
             this.ui.addLog("Tile Length : " + this.Level.angleData.length);
             result = this.Level.angleData;
-            
+
         }
-        else if(this.Distinction_Data(level) == "path")
-        {
+        else if (this.Distinction_Data(level) == "path") {
             this.ui.UpdateStatus("타일 타입 구분중...")
             this.ui.addLog("Tile Length : " + this.Level.pathData.length);
             result = this.Level.pathData;
@@ -37,8 +36,7 @@ class Convert {
 
     }
 
-    FastConvert2(level)
-    {
+    FastConvert2(level) {
         let Level = level;              //레벨 파일
         let Level_TileData = null;      //레벨의 타일 각도 데이터
         let actions_array = null;       //레벨의 actions를 타일별 배열로 변환한 변수
@@ -47,8 +45,7 @@ class Convert {
         if (this.Distinction_Data(level) == "angle") {
             Level_TileData = Level.angleData;                                    //AngleData를 전역변수로 지정
         }
-        else if(this.Distinction_Data(level) == "path")
-        {
+        else if (this.Distinction_Data(level) == "path") {
             Level_TileData = Level.pathData;                                    //PathData를 할당
             Level_TileData = this.Edit_PathData_to_AngleData(Level);   //PathData를 AngleData로 변환
             delete Level.pathData;                                              //pathData를 angleData로 변경
@@ -57,30 +54,138 @@ class Convert {
 
         Level.actions = Level.actions.filter(                              //테스트이므로, BPM설정과 소용돌이만 필터링.
             x => actions_filter.includes(x.eventType)
-            );
+        );
 
         actions_array = this.Effect_sclice_for_Floor(Level);                         //타일 별 배열 만듬.
         console.log(Level);
-        Level = this.Edit_AngleData2PathData2_and_BPM(Level);
+        Level = this.Edit_AngleData2PathData2_and_BPM(Level, actions_array);
 
+        return Level;
+    }
 
-        
+    Edit_AngleData2PathData2_and_BPM(level, actions_array) //AngleData를 PathData로 만들어줌.
+    {
+        const Support_angle = this.SetPathData_To_Number();
+        let Level = level;                                              //Level 파일
+        let AngleData = Level.angleData;                                //레벨 내 angleData
+        let Slice_from_actions = actions_array;
+        let currentBpm = Number(Level.settings.bpm);
+        let Edited_Bpm = null;
+
+        AngleData.forEach(function (currentValue, index) {
+            //currentValue : 각도, index : floor
+
+            const currentAngle = Number(currentValue);                          //현재 각도
+            const CloseAngle = Number(convert.getCloseAngle(currentAngle));     //변경된 각도
+            if(convert.Find_Bpm(Slice_from_actions, index) != false)
+            {
+                currentBpm = convert.Find_Bpm(Slice_from_actions, index);                   //현재BPM 최신화
+            }
+
+            //먼저 각도 사이 계산을 해 BPM 수정.
+            if (Support_angle.indexOf(currentAngle) == -1) {
+                console.log("지원되지 않는 각도 : " + currentAngle)
+                if (CloseAngle > currentAngle) {
+                    Edited_Bpm = currentBpm / (currentAngle / CloseAngle);
+                    Slice_from_actions = convert.Set_Bpm(Slice_from_actions, index, Edited_Bpm, true)
+                    Slice_from_actions = convert.Set_Bpm(Slice_from_actions, index + 1, currentBpm, false)
+                }
+                else if (CloseAngle < currentAngle) {
+                    Edited_Bpm = currentBpm * (CloseAngle / currentAngle);
+                    Slice_from_actions = convert.Set_Bpm(Slice_from_actions, index, Edited_Bpm, true)
+                    Slice_from_actions = convert.Set_Bpm(Slice_from_actions, index + 1, currentBpm, false)
+                }
+                AngleData[index] = CloseAngle;
+            }
+            else if (Support_angle.indexOf(currentValue) != -1) {
+                return;
+            }
+        })
+
+        Level.angleData = AngleData;
+        Level.actions = this.Combine_action(Slice_from_actions);
+
+        return Level;
+    }
+
+    Combine_action(arr_effects)
+    {
+        let arr_effect = arr_effects;
+        let eft_data = new Array();     //effect_array를 actions에 넣기 위한 준비.
+        for (let i = 0; i < this.arr_effect.length; i++) {
+            if (this.arr_effect[i].length != 0) {
+                for (let j = 0; j <= this.arr_effect[i].length; j++) {
+                    if (this.arr_effect[i][j] != undefined) {
+                        eft_data.push(this.arr_effect[i][j]);
+                    }
+                }
+
+            }
+        }
+        return eft_data;
+    }
+
+    Set_Bpm(effect_array, floor, bpm, is_compulsion) {
+        let template = { "floor": floor, "eventType": "SetSpeed", "beatsPerMinute": bpm };
+        let effect = effect_array;
+        let is_SetSpeed = false;
+        let array_index = 0;                            //이펙트 위치 기억
+        if (effect[floor].length == 0)             //이펙트 길이가 0일때
+        {
+            effect[floor].push(template);         //SetSpeed 설정.
+        }
+        else if (effect[floor].length != 0)        //이펙트 길이가 0이 아닐 때
+        {
+            effect[floor].forEach(function (currentValue, index) {
+                if (currentValue.eventType == "SetSpeed") {             //SetSpeed 가 존재할때
+                    is_SetSpeed = true;                                 //is_SetSpeed를 참으로 변환
+                    array_index = index;
+                }
+            });
+
+            if (!is_SetSpeed)                                            //SetSpeed가 없을 때
+            {
+                effect[floor].push(template);
+            }
+            else if (is_SetSpeed && is_compulsion == true)                                        //SetSpeed가 있으나 강제적일 경우
+            {
+                effect[floor].beatsPerMinute = bpm;
+            }
+            else if (is_SetSpeed && is_compulsion == false)                                        //SetSpeed가 있을 때
+            {
+                return;
+            }
+        }
+        return effect;
 
     }
 
-    Edit_AngleData2PathData2_and_BPM(level) //AngleData를 PathData로 만들어줌.
-    {
-        let Level = level;                                              //Level 파일
-        let AngleData = Level.angleData;                                //레벨 내 angleData
-        let Slice_from_actions = this.Effect_sclice_for_Floor(Level);
+    Find_Bpm(effect_arr, index) {
+        let effect_array = effect_arr;
+        let effect_num = index;
+        console.log(effect_array[effect_num]);
+        let nowEffect = effect_array[effect_num];
+        let is_SetSpeed = false;
+        let arr_index = 0;
+        if (nowEffect.length == 0) {
+            return;
+        }
+        else {
+            nowEffect.forEach(function (currentValue, index) {
+                if (currentValue.eventType == "SetSpeed") {             //SetSpeed 가 존재할때
+                    is_SetSpeed = true;                                 //is_SetSpeed를 참으로 변환
+                    arr_index = index;
+                }
+            });
 
-        Slice_from_actions.forEach(function (currentValue, index) {     //currentValue : 각도, index : floor
-            const Angle = currentValue;     //각도
-            const Array_indexNum = index;   //현재 Floor 번호
-            const nowArrayLength = Slice_from_actions[index].length;    //현재 Slice_from_actions 안의 배열길이.
-            console.log(typeof(nowArrayLength), nowArrayLength);
-        })  
-
+            if(is_SetSpeed == true)
+            {
+                return nowEffect[arr_index].beatsPerMinute;
+            }
+            else {
+                return false;
+            }
+        }
     }
 
     addText(arg0) {
@@ -102,7 +207,7 @@ class Convert {
 
         angle.forEach(function (currentValue, index) {  //currentValue : 각도, index : floor
             ui.UpdateStatus(index + "번째 타일을 수정하는 중...")
-            ui.UpdateProgress(Number((index / angleLength)*100));
+            ui.UpdateProgress(Number((index / angleLength) * 100));
             let arrayIndex = index;
             let eft_length = convert.effect_array[index].length;
             if (Number(eft_length) > 0) {
@@ -134,7 +239,7 @@ class Convert {
                     return;
                 }
             }
-            else if(supportPathData.indexOf(currentValue) != -1) {
+            else if (supportPathData.indexOf(currentValue) != -1) {
                 editangle.push(currentValue);
             }
 
@@ -166,13 +271,12 @@ class Convert {
 
     }
 
-    Edit_PathData_to_AngleData(Level)
-    {
+    Edit_PathData_to_AngleData(Level) {
         const data = Array.from(Level.pathData);
         const value = Object.values(adofai.editpath);
         const angle = Object.keys(adofai.editpath);
         let result = new Array();
-        data.forEach((x)=>{
+        data.forEach((x) => {
             let d = value.indexOf(x);
             result.push(angle[d]);
         })
@@ -204,7 +308,7 @@ class Convert {
         }
         return Number(near);
     }
-    set_SetSpeed(Floor, Bpm) {
+    set_SetSpeed(Floor, Bpm, compulsion) {
         let bpm = Number(Bpm);
         let isSetSpeed = false;
         let eft_index = null;
@@ -219,8 +323,7 @@ class Convert {
                 }
                 console.log("edit floor : " + floor + ", bpm : " + bpm);
             })
-            if(!isSetSpeed)
-            {
+            if (!isSetSpeed) {
                 convert.effect_array[floor].unshift(template);
             }
         }
@@ -242,7 +345,7 @@ class Convert {
         if (this.Distinction_Data(level) == "angle") {      //AngleData라면 
             Tilenum = level.angleData.length + 1;
         }
-        else if(this.Distinction_Data(level) == "path")     //PathData라면?
+        else if (this.Distinction_Data(level) == "path")     //PathData라면?
         {
             Tilenum = level.pathData.length + 1;
         }

@@ -11,7 +11,6 @@ class Ui {
 
     Pageinit() //처음 상태로 초기화
     {
-        ui.Hide(".convert-btns");
         ui.Hide(".status");
         ui.Hide(".log_box");
         ui.Hide(".down_btn");
