@@ -42,10 +42,7 @@ class Convert {
         let actions_array = null;       //레벨의 actions를 타일별 배열로 변환한 변수
         const actions_filter = ["SetSpeed", "Twirl"];
 
-        if (this.Distinction_Data(level) == "angle") {
-            Level_TileData = Level.angleData;                                    //AngleData를 전역변수로 지정
-        }
-        else if (this.Distinction_Data(level) == "path") {
+        if (this.Distinction_Data(level) == "path") {
             Level_TileData = Level.pathData;                                    //PathData를 할당
             Level_TileData = this.Edit_PathData_to_AngleData(Level);   //PathData를 AngleData로 변환
             delete Level.pathData;                                              //pathData를 angleData로 변경
@@ -58,23 +55,24 @@ class Convert {
 
         actions_array = this.Effect_sclice_for_Floor(Level);                         //타일 별 배열 만듬.
         console.log(Level);
+        Level = this.SetSpeed(Level);
         Level = this.Edit_AngleData2PathData2_and_BPM(Level, actions_array);
-
+        Level = this.SetBasicMapSetting(Level);
         return Level;
     }
 
     Edit_AngleData2PathData2_and_BPM(level, actions_array) //AngleData를 PathData로 만들어줌.
     {
         const Support_angle = this.SetPathData_To_Number();
+        let Slice_from_actions = actions_array;
         let Level = level;                                              //Level 파일
         let AngleData = Level.angleData;                                //레벨 내 angleData
-        let Slice_from_actions = actions_array;
         let currentBpm = Number(Level.settings.bpm);
         let Edited_Bpm = null;
 
         AngleData.forEach(function (currentValue, index) {
             //currentValue : 각도, index : floor
-
+            
             const currentAngle = Number(currentValue);                          //현재 각도
             const CloseAngle = Number(convert.getCloseAngle(currentAngle));     //변경된 각도
             if(convert.Find_Bpm(Slice_from_actions, index) != false)
@@ -82,27 +80,34 @@ class Convert {
                 currentBpm = convert.Find_Bpm(Slice_from_actions, index);                   //현재BPM 최신화
             }
 
-            //먼저 각도 사이 계산을 해 BPM 수정.
+            //지원되지 않는 각도임. 먼저 각도 사이 계산을 해 BPM 수정.
             if (Support_angle.indexOf(currentAngle) == -1) {
                 console.log("지원되지 않는 각도 : " + currentAngle)
                 if (CloseAngle > currentAngle) {
                     Edited_Bpm = currentBpm / (currentAngle / CloseAngle);
-                    Slice_from_actions = convert.Set_Bpm(Slice_from_actions, index, Edited_Bpm, true)
-                    Slice_from_actions = convert.Set_Bpm(Slice_from_actions, index + 1, currentBpm, false)
+                    Slice_from_actions[index] = convert.Set_Bpm(Slice_from_actions, index, Edited_Bpm, true)
+                    Slice_from_actions[index] = convert.Set_Bpm(Slice_from_actions, index + 1, currentBpm, false)
                 }
                 else if (CloseAngle < currentAngle) {
                     Edited_Bpm = currentBpm * (CloseAngle / currentAngle);
-                    Slice_from_actions = convert.Set_Bpm(Slice_from_actions, index, Edited_Bpm, true)
-                    Slice_from_actions = convert.Set_Bpm(Slice_from_actions, index + 1, currentBpm, false)
+                    Slice_from_actions[index] = convert.Set_Bpm(Slice_from_actions, index, Edited_Bpm, true)
+                    Slice_from_actions[index] = convert.Set_Bpm(Slice_from_actions, index + 1, currentBpm, false)
                 }
                 AngleData[index] = CloseAngle;
             }
             else if (Support_angle.indexOf(currentValue) != -1) {
                 return;
             }
+            
+
         })
 
-        Level.angleData = AngleData;
+        let path = "";
+        AngleData.forEach((x) => {
+            path += adofai.path[x]
+        })
+        delete Level.angleData;
+        Level.pathData = path;
         Level.actions = this.Combine_action(Slice_from_actions);
 
         return Level;
@@ -111,81 +116,72 @@ class Convert {
     Combine_action(arr_effects)
     {
         let arr_effect = arr_effects;
-        let eft_data = new Array();     //effect_array를 actions에 넣기 위한 준비.
-        for (let i = 0; i < this.arr_effect.length; i++) {
-            if (this.arr_effect[i].length != 0) {
-                for (let j = 0; j <= this.arr_effect[i].length; j++) {
-                    if (this.arr_effect[i][j] != undefined) {
-                        eft_data.push(this.arr_effect[i][j]);
-                    }
-                }
-
+        let final_data = new Array();
+        arr_effect.forEach(function(currentValue, index){
+            if(currentValue != ("" || null || "undefined"))
+            {
+                    currentValue.forEach((x) => {
+                        final_data.push(x);
             }
-        }
-        return eft_data;
+        )}})
+        return final_data;
     }
 
     Set_Bpm(effect_array, floor, bpm, is_compulsion) {
+
+        //대충 json 형식 변수임
         let template = { "floor": floor, "eventType": "SetSpeed", "beatsPerMinute": bpm };
-        let effect = effect_array;
-        let is_SetSpeed = false;
-        let array_index = 0;                            //이펙트 위치 기억
-        if (effect[floor].length == 0)             //이펙트 길이가 0일때
+        
+        let eft_array = effect_array[floor];    //해당 배열에서 특정 index만 추출    
+        //2차원 배열이라 두번째 배열에 eventType가 SetSpeed 값이 있는 곳의 index 추출 
+        //만약 없다면 false 반환함.
+        let eft_index = null;    
+        
+        //SetSpeed가 있으면 위치 반환함.
+        eft_array.filter(function(element,index){
+            if(element.eventType == "SetSpeed")
+            {
+                eft_index = index;
+            }
+        });
+
+        if(eft_array == ("" || "undefined" || null))    //배열이 비어있다면?
         {
-            effect[floor].push(template);         //SetSpeed 설정.
+            eft_array = new Array();
+            eft_array.push(template);
         }
-        else if (effect[floor].length != 0)        //이펙트 길이가 0이 아닐 때
-        {
-            effect[floor].forEach(function (currentValue, index) {
-                if (currentValue.eventType == "SetSpeed") {             //SetSpeed 가 존재할때
-                    is_SetSpeed = true;                                 //is_SetSpeed를 참으로 변환
-                    array_index = index;
+        else {                                          //배열이 비어있지 않다면?
+            if(eft_index == null){                      //근데 SetSpeed가 없다면?
+                eft_array.unshift(template);            //배열 맨 앞에 넣어버려
+            }
+            else {                                      
+                if(is_compulsion == true){              //강제적으로 넣어야하나..?
+                    eft_array[eft_index].beatsPerMinute = bpm;  //고럼 값 넣어야지~
                 }
-            });
-
-            if (!is_SetSpeed)                                            //SetSpeed가 없을 때
-            {
-                effect[floor].push(template);
-            }
-            else if (is_SetSpeed && is_compulsion == true)                                        //SetSpeed가 있으나 강제적일 경우
-            {
-                effect[floor].beatsPerMinute = bpm;
-            }
-            else if (is_SetSpeed && is_compulsion == false)                                        //SetSpeed가 있을 때
-            {
-                return;
             }
         }
-        return effect;
-
+        
+        return eft_array;
     }
 
     Find_Bpm(effect_arr, index) {
-        let effect_array = effect_arr;
-        let effect_num = index;
-        console.log(effect_array[effect_num]);
-        let nowEffect = effect_array[effect_num];
-        let is_SetSpeed = false;
-        let arr_index = 0;
-        if (nowEffect.length == 0) {
-            return;
+        let eft_index = null;
+        let eft_temp = effect_arr[index];
+        let effect = effect_arr[index].filter(function(element,index){
+            if(element.eventType == "SetSpeed")
+            {
+                eft_index = index;
+                return element;
+            }
+        });
+        if(eft_index != null)
+        {
+            return effect.beatsPerMinute;
         }
         else {
-            nowEffect.forEach(function (currentValue, index) {
-                if (currentValue.eventType == "SetSpeed") {             //SetSpeed 가 존재할때
-                    is_SetSpeed = true;                                 //is_SetSpeed를 참으로 변환
-                    arr_index = index;
-                }
-            });
-
-            if(is_SetSpeed == true)
-            {
-                return nowEffect[arr_index].beatsPerMinute;
-            }
-            else {
-                return false;
-            }
+            return false;
         }
+    
     }
 
     addText(arg0) {
@@ -339,25 +335,21 @@ class Convert {
     }
 
 
-    Effect_sclice_for_Floor(Level) {
-        const level = Level;                                //변하지 않음으로 Level 변수를 고정
-        let Tilenum = 0;                                    //타일 수
-        if (this.Distinction_Data(level) == "angle") {      //AngleData라면 
-            Tilenum = level.angleData.length + 1;
-        }
-        else if (this.Distinction_Data(level) == "path")     //PathData라면?
-        {
-            Tilenum = level.pathData.length + 1;
-        }
-        let effect_array = new Array(Tilenum);
-        for (let i = 0; i < Tilenum; i++)                   //배열 안에 배열 넣기
+    Effect_sclice_for_Floor(level) {
+        const Level = level;                            //레벨을 const로 저장
+        let Tile_Length = Level.angleData.length;       //angleData의 길이 저장
+        let effect_array = new Array(Tile_Length)       //Tile_Length만큼 배열 생성
+
+        //2차원 배열 생성
+        for(let i = 0; i < effect_array.length; i++)
         {
             effect_array[i] = [];
         }
-        level.actions.forEach((index) => {
-            effect_array[index.floor].push(index);
-        })
 
+        Level.actions.forEach((x)=>{                    //floor 값에 맞춰 데이터 추가
+            effect_array[x.floor].push(x);
+        })
+        console.log(effect_array)
         return effect_array;                                //생성한 2차원 배열을 리턴.
     }
 
@@ -370,10 +362,10 @@ class Convert {
     }
 
 
-    SetSpeed() {
-        let bpm = this.Level.settings.bpm;
+    SetSpeed(Level) {
+        let bpm = Level.settings.bpm;
         const ui = new Ui();
-        this.Level.actions.forEach(function (index) {
+        Level.actions.forEach(function (index) {
             if (index.eventType == "SetSpeed") {
                 if (index.speedType == "Multiplier") {
                     index.speedType = "Bpm";
@@ -386,8 +378,8 @@ class Convert {
                     bpm = index.beatsPerMinute;
                 }
             }
-
         });
+        return Level;
     }
     Twirl() {
         return;
@@ -524,53 +516,54 @@ class Convert {
 
     }
 
-    SetBasicMapSetting() {
-        this.Level.settings.version = 2;
-        Object.keys(this.Level.settings).forEach((index) => {
-            if (index == "hitsound" && this.adofai.Setting.List.hitsound.indexOf(this.Level.settings.hitsound) == -1) {
-                this.addText(index + "의 " + this.Level.settings[index] + "에서" + "Hat 으로 변환됨.")
-                this.Level.settings[index] = "Hat";
+    SetBasicMapSetting(level) {
+        let Level = level;
+        Level.settings.version = 2;
+        Object.keys(Level.settings).forEach((index) => {
+            if (index == "hitsound" && adofai.Setting.List.hitsound.indexOf(Level.settings.hitsound) == -1) {
+                this.addText(index + "의 " + Level.settings[index] + "에서" + "Hat 으로 변환됨.")
+                Level.settings[index] = "Hat";
             }
-            if (index == "separateCountdownTime" && this.adofai.Setting.List.separateCountdownTime.indexOf(this.Level.settings.separateCountdownTime) == -1) {
-                this.addText(index + "의 " + this.Level.settings[index] + "에서" + "Enabled 으로 변환됨.")
-                this.Level.settings[index] = "Enabled";
+            if (index == "separateCountdownTime" && adofai.Setting.List.separateCountdownTime.indexOf(Level.settings.separateCountdownTime) == -1) {
+                this.addText(index + "의 " + Level.settings[index] + "에서" + "Enabled 으로 변환됨.")
+                Level.settings[index] = "Enabled";
             }
-            if (index == "trackColorType" && this.adofai.Setting.List.trackColorType.indexOf(this.Level.settings.trackColorType) == -1) {
-                this.addText(index + "의 " + this.Level.settings[index] + "에서" + "Single 으로 변환됨.")
-                this.Level.settings[index] = "Single";
+            if (index == "trackColorType" && adofai.Setting.List.trackColorType.indexOf(Level.settings.trackColorType) == -1) {
+                this.addText(index + "의 " + Level.settings[index] + "에서" + "Single 으로 변환됨.")
+                Level.settings[index] = "Single";
             }
-            if (index == "trackColorPulse" && this.adofai.Setting.List.trackColorPulse.indexOf(this.Level.settings.trackColorPulse) == -1) {
-                this.addText(index + "의 " + this.Level.settings[index] + "에서" + "None 으로 변환됨.")
-                this.Level.settings[index] = "None";
+            if (index == "trackColorPulse" && adofai.Setting.List.trackColorPulse.indexOf(Level.settings.trackColorPulse) == -1) {
+                this.addText(index + "의 " + Level.settings[index] + "에서" + "None 으로 변환됨.")
+                Level.settings[index] = "None";
             }
-            if (index == "trackStyle" && this.adofai.Setting.List.trackStyle.indexOf(this.Level.settings.trackStyle) == -1) {
-                this.addText(index + "의 " + this.Level.settings[index] + "에서" + "Standard 으로 변환됨.")
-                this.Level.settings[index] = "Standard";
+            if (index == "trackStyle" && adofai.Setting.List.trackStyle.indexOf(Level.settings.trackStyle) == -1) {
+                this.addText(index + "의 " + Level.settings[index] + "에서" + "Standard 으로 변환됨.")
+                Level.settings[index] = "Standard";
             }
-            if (index == "trackAnimation" && this.adofai.Setting.List.trackAnimation.indexOf(this.Level.settings.trackAnimation) == -1) {
-                this.addText(index + "의 " + this.Level.settings[index] + "에서" + "None 으로 변환됨.")
-                this.Level.settings[index] = "None";
+            if (index == "trackAnimation" && adofai.Setting.List.trackAnimation.indexOf(Level.settings.trackAnimation) == -1) {
+                this.addText(index + "의 " + Level.settings[index] + "에서" + "None 으로 변환됨.")
+                Level.settings[index] = "None";
             }
-            if (index == "trackDisappearAnimation" && this.adofai.Setting.List.trackDisappearAnimation.indexOf(this.Level.settings.trackDisappearAnimation) == -1) {
-                this.addText(index + "의 " + this.Level.settings[index] + "에서" + "None 으로 변환됨.")
-                this.Level.settings[index] = "None";
+            if (index == "trackDisappearAnimation" && adofai.Setting.List.trackDisappearAnimation.indexOf(Level.settings.trackDisappearAnimation) == -1) {
+                this.addText(index + "의 " + Level.settings[index] + "에서" + "None 으로 변환됨.")
+                Level.settings[index] = "None";
             }
-            if (index == "bgDisplayMode" && this.adofai.Setting.List.bgDisplayMode.indexOf(this.Level.settings.bgDisplayMode) == -1) {
-                this.addText(index + "의 " + this.Level.settings[index] + "에서" + "FitToScreen 으로 변환됨.")
-                this.Level.settings[index] = "FitToScreen";
+            if (index == "bgDisplayMode" && adofai.Setting.List.bgDisplayMode.indexOf(Level.settings.bgDisplayMode) == -1) {
+                this.addText(index + "의 " + Level.settings[index] + "에서" + "FitToScreen 으로 변환됨.")
+                Level.settings[index] = "FitToScreen";
             }
-            if (index == "lockRot" && this.adofai.Setting.List.lockRot.indexOf(this.Level.settings.lockRot) == -1) {
-                this.addText(index + "의 " + this.Level.settings[index] + "에서" + "Enabled 으로 변환됨.")
-                this.Level.settings[index] = "Enabled";
+            if (index == "lockRot" && adofai.Setting.List.lockRot.indexOf(Level.settings.lockRot) == -1) {
+                this.addText(index + "의 " + Level.settings[index] + "에서" + "Enabled 으로 변환됨.")
+                Level.settings[index] = "Enabled";
             }
-            if (index == "loopBG" && this.adofai.Setting.List.loopBG.indexOf(this.Level.settings.loopBG) == -1) {
-                this.addText(index + "의 " + this.Level.settings[index] + "에서" + "Enabled 으로 변환됨.")
-                this.Level.settings[index] = "Enabled";
+            if (index == "loopBG" && adofai.Setting.List.loopBG.indexOf(Level.settings.loopBG) == -1) {
+                this.addText(index + "의 " + Level.settings[index] + "에서" + "Enabled 으로 변환됨.")
+                Level.settings[index] = "Enabled";
             }
 
-            else {
-            }
         })
+
+        return Level;
     }
 
 
