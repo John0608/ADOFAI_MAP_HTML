@@ -49,7 +49,7 @@ async function levelSelect (target)
         console.log(level.actions);
         zipUtil.AddFile(level_FileName,level_file,false,true);
         Files.file(level_FileName, JSON.stringify(level_file));
-        //zipUtil.myOnDownload(ZipFileName);
+        zipUtil.myOnDownload(ZipFileName);
 
     }
     else {
