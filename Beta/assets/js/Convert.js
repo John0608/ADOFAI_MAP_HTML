@@ -13,7 +13,6 @@ class Convert {
         this.ui.HideLevelSelector()
         this.ui.ShowLog();
 
-        console.log("원래 actions 길이" + this.Level.actions.length);
         this.Level.actions = this.Level.actions.filter(x => Object.keys(this.Temp_effect_array).includes(x.eventType));
         this.ui.addLog("Version : " + this.Level.settings.version);
         if (this.Distinction_Data(level) == "angle") {
@@ -53,9 +52,10 @@ class Convert {
             x => actions_filter.includes(x.eventType)
         );
 
+        Level = this.SetSpeed(Level);       //먼저 SetSpeed를 처리해줌
+
         actions_array = this.Effect_sclice_for_Floor(Level);                         //타일 별 배열 만듬.
         console.log(Level);
-        Level = this.SetSpeed(Level);
         Level = this.Edit_AngleData2PathData2_and_BPM(Level, actions_array);
         Level = this.SetBasicMapSetting(Level);
         return Level;
@@ -67,8 +67,9 @@ class Convert {
         let Slice_from_actions = actions_array;
         let Level = level;                                              //Level 파일
         let AngleData = Level.angleData;                                //레벨 내 angleData
+        let Final_AngleData = [];
         let currentBpm = Number(Level.settings.bpm);
-        let Edited_Bpm = null;
+        var Edited_Bpm = 0;
 
         AngleData.forEach(function (currentValue, index) {
             //currentValue : 각도, index : floor
@@ -82,20 +83,24 @@ class Convert {
 
             //지원되지 않는 각도임. 먼저 각도 사이 계산을 해 BPM 수정.
             if (Support_angle.indexOf(currentAngle) == -1) {
-                console.log("지원되지 않는 각도 : " + currentAngle)
+                //console.log("지원되지 않는 각도 : " + currentAngle)
                 if (CloseAngle > currentAngle) {
-                    Edited_Bpm = currentBpm / (currentAngle / CloseAngle);
+                    Edited_Bpm = (currentBpm / (currentAngle / CloseAngle));
+                    console.log("currentBpm : " + currentBpm + " Edited_Bpm : " + Edited_Bpm);
                     Slice_from_actions[index] = convert.Set_Bpm(Slice_from_actions, index, Edited_Bpm, true)
-                    Slice_from_actions[index] = convert.Set_Bpm(Slice_from_actions, index + 1, currentBpm, false)
+                    Slice_from_actions[index+1] = convert.Set_Bpm(Slice_from_actions, index + 1, currentBpm, false)
                 }
-                else if (CloseAngle < currentAngle) {
-                    Edited_Bpm = currentBpm * (CloseAngle / currentAngle);
+                else {
+                    Edited_Bpm = (currentBpm * (CloseAngle / currentAngle));
+                    console.log("currentBpm : " + currentBpm + " Edited_Bpm : " + Edited_Bpm);
                     Slice_from_actions[index] = convert.Set_Bpm(Slice_from_actions, index, Edited_Bpm, true)
-                    Slice_from_actions[index] = convert.Set_Bpm(Slice_from_actions, index + 1, currentBpm, false)
+                    Slice_from_actions[index+1] = convert.Set_Bpm(Slice_from_actions, index + 1, currentBpm, false)
                 }
-                AngleData[index] = CloseAngle;
+                Final_AngleData.push(CloseAngle);
+                return;
             }
-            else if (Support_angle.indexOf(currentValue) != -1) {
+            else {
+                Final_AngleData.push(currentValue)
                 return;
             }
             
@@ -103,7 +108,7 @@ class Convert {
         })
 
         let path = "";
-        AngleData.forEach((x) => {
+        Final_AngleData.forEach((x) => {
             path += adofai.path[x]
         })
         delete Level.angleData;
@@ -113,10 +118,10 @@ class Convert {
         return Level;
     }
 
-    Combine_action(arr_effects)
+    Combine_action(arr_effects)     //이펙트 합치기
     {
-        let arr_effect = arr_effects;
-        let final_data = new Array();
+        let arr_effect = arr_effects;       //일단 파라미터를 변수로 지정
+        let final_data = new Array();       //결과 데이터(이펙트) 저장용
         arr_effect.forEach(function(currentValue, index){
             if(currentValue != ("" || null || "undefined"))
             {
@@ -128,10 +133,8 @@ class Convert {
     }
 
     Set_Bpm(effect_array, floor, bpm, is_compulsion) {
-
         //대충 json 형식 변수임
-        let template = { "floor": floor, "eventType": "SetSpeed", "beatsPerMinute": bpm };
-        
+        let template = { "floor": floor, "eventType": "SetSpeed", "speedType": "Bpm", "beatsPerMinute": Number(bpm)};
         let eft_array = effect_array[floor];    //해당 배열에서 특정 index만 추출    
         //2차원 배열이라 두번째 배열에 eventType가 SetSpeed 값이 있는 곳의 index 추출 
         //만약 없다면 false 반환함.
@@ -145,7 +148,8 @@ class Convert {
             }
         });
 
-        if(eft_array == ("" || "undefined" || null))    //배열이 비어있다면?
+        //if(eft_array == "" || "undefined" || null)    //배열이 비어있다면?
+        if(!eft_array)    //배열이 비어있다면?
         {
             eft_array = new Array();
             eft_array.push(template);
@@ -156,31 +160,38 @@ class Convert {
             }
             else {                                      
                 if(is_compulsion == true){              //강제적으로 넣어야하나..?
-                    eft_array[eft_index].beatsPerMinute = bpm;  //고럼 값 넣어야지~
+                    eft_array[eft_index].beatsPerMinute = Number(bpm);  //고럼 값 넣어야지~
                 }
             }
         }
-        
         return eft_array;
     }
 
     Find_Bpm(effect_arr, index) {
+        let eft_array = effect_arr[index];
         let eft_index = null;
-        let eft_temp = effect_arr[index];
-        let effect = effect_arr[index].filter(function(element,index){
+        effect_arr[index].filter(function(element,index){
             if(element.eventType == "SetSpeed")
             {
                 eft_index = index;
-                return element;
+                console.log(element)
             }
         });
-        if(eft_index != null)
+
+        if(!eft_array)
         {
-            return effect.beatsPerMinute;
-        }
-        else {
             return false;
         }
+        else {
+            if(eft_index != null)
+            {
+                return eft_array[eft_index].beatsPerMinute;
+            }
+            else {
+                return false;
+            }
+        }
+
     
     }
 
@@ -370,11 +381,12 @@ class Convert {
                 if (index.speedType == "Multiplier") {
                     index.speedType = "Bpm";
                     bpm = bpm * index.bpmMultiplier;
-                    index.bpmMultiplier = 1;
+                    delete index.bpmMultiplier;
                     index.beatsPerMinute = bpm;
                     ui.addLog(index.floor + "의 " + index.eventType + "이펙트의 BPM이 " + index.bpm + "에서 " + bpm + "으로 바뀜.")
                 }
                 else {
+                    delete index.bpmMultiplier;
                     bpm = index.beatsPerMinute;
                 }
             }

@@ -46,10 +46,10 @@ async function levelSelect (target)
     if(adofai_class.isAdofaiLevel(LevelData) == true)
     {
         let level_file = convert.FastConvert2(level);
-        console.log(level);
+        console.log(level.actions);
         zipUtil.AddFile(level_FileName,level_file,false,true);
         Files.file(level_FileName, JSON.stringify(level_file));
-        zipUtil.myOnDownload(ZipFileName);
+        //zipUtil.myOnDownload(ZipFileName);
 
     }
     else {
