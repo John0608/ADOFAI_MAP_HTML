@@ -17,8 +17,6 @@ window.onload = () => {         //웹페이지 로드 완료 시
 
 async function ReadFile()
 {
-    ui.init_Select();
-    All_init();
     if(upload.DetectFileExt() == true)
     {
         const ReadFile = await upload.readProcess(); //파일 읽기
