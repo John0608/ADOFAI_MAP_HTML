@@ -37,10 +37,6 @@
             <input type="file" class="form-control file_select_btn" name="" id="formFile" onchange="ReadFile()">
             <p id="info_msg">먼저 파일을 선택해주세요! (Zip파일만 지원)</p>
         </div>
-        <div class="log_box mb-3">
-            <label for="">로그 (Log)</label>
-            <textarea class="form-control" id="log" rows="3" readonly style="resize: none;"></textarea>
-        </div>
         <div class="status">
             <p>진행중 : <p class="status_txt"></p></p>
             <div class="progress">
@@ -49,6 +45,10 @@
                     0%
                 </div>
             </div>
+        </div>
+        <div class="log_box mb-3">
+            <label for="">로그 (Log)</label>
+            <textarea class="form-control" id="log" rows="3" readonly style="resize: none;"></textarea>
         </div>
         <select class="form-select select" aria-label="Default select example"  onchange="levelSelect(this)">
             <option disabled selected>선택해주세요</option>

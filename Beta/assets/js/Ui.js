@@ -37,6 +37,12 @@ class Ui {
         ui.Show(".log_box");
     }
 
+    ShowProgressAndStatus()
+    {
+        ui.Show(".status")
+        ui.Show(".progress")
+    }
+
     UpdateStatus(message) {
         let e = document.querySelector(".status > p");
         e.innerHTML = "진행중 : " + message;
@@ -45,7 +51,21 @@ class Ui {
     UpdateProgress(percent) {
         let p = String(percent);
         let e = document.querySelector(".progress-bar");
-        e.style.width = p;
-        e.innerText = p;
+        e.style.width = Number(p) + "%";
+        e.innerText = p + "%";
+    }
+
+    addOption_disable()
+    {
+        let ele = document.createElement("option");
+        ele.text = "선택해주세요";
+        ele.disabled = true;
+        document.querySelector(".select").add(ele);
+    }
+
+    init_Select()
+    {
+        document.querySelector(".select").innerHTML = "";
+        this.addOption_disable();
     }
 }

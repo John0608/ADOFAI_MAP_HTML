@@ -6,40 +6,15 @@ class Convert {
     Temp_effect_array = ["SetSpeed", "Twirl"];
 
     FastConvert(level) {
-        this.Level = level;        //레벨 파일
-        let result = null;          //Level TileData result
-        this.SetSpeed();
-
-        this.ui.HideLevelSelector()
-        this.ui.ShowLog();
-
-        this.Level.actions = this.Level.actions.filter(x => Object.keys(this.Temp_effect_array).includes(x.eventType));
-        this.ui.addLog("Version : " + this.Level.settings.version);
-        if (this.Distinction_Data(level) == "angle") {
-            this.ui.UpdateStatus("타일 타입 구분중...")
-            this.ui.addLog("Tile Length : " + this.Level.angleData.length);
-            result = this.Level.angleData;
-
-        }
-        else if (this.Distinction_Data(level) == "path") {
-            this.ui.UpdateStatus("타일 타입 구분중...")
-            this.ui.addLog("Tile Length : " + this.Level.pathData.length);
-            result = this.Level.pathData;
-            result = this.Edit_PathData_to_AngleData(result);
-        }
-        this.effect_array = this.Effect_sclice_for_Floor(this.Level);
-        result = this.Edit_AngleData_to_PathData(result);
-        console.log("바뀐 actions 길이" + this.Level.actions.length);
-        return result;
-        //this.SetBasicMapSetting();
-
-    }
-
-    FastConvert2(level) {
         let Level = level;              //레벨 파일
         let Level_TileData = null;      //레벨의 타일 각도 데이터
         let actions_array = null;       //레벨의 actions를 타일별 배열로 변환한 변수
         const actions_filter = ["SetSpeed", "Twirl"];
+
+        this.ui.HideLevelSelector();
+        this.ui.Hide(".file_select_btn");
+        this.ui.ShowLog();
+        this.ui.ShowProgressAndStatus();
 
         if (this.Distinction_Data(level) == "path") {
             Level_TileData = Level.pathData;                                    //PathData를 할당
@@ -61,6 +36,7 @@ class Convert {
         return Level;
     }
 
+
     Edit_AngleData2PathData2_and_BPM(level, actions_array) //AngleData를 PathData로 만들어줌.
     {
         const Support_angle = this.SetPathData_To_Number();
@@ -73,7 +49,8 @@ class Convert {
 
         AngleData.forEach(function (currentValue, index) {
             //currentValue : 각도, index : floor
-            
+            ui.UpdateStatus(index + "번째 타일 작업중");
+            ui.UpdateProgress(index / AngleData.length)
             const currentAngle = Number(currentValue);                          //현재 각도
             const CloseAngle = Number(convert.getCloseAngle(currentAngle));     //변경된 각도
             if(convert.Find_Bpm(Slice_from_actions, index) != false)
@@ -86,13 +63,21 @@ class Convert {
                 //console.log("지원되지 않는 각도 : " + currentAngle)
                 if (CloseAngle > currentAngle) {
                     Edited_Bpm = (currentBpm / (currentAngle / CloseAngle));
+                    if(Edited_Bpm == 0)
+                    {
+                        console.log(CloseAngle, currentAngle, currentBpm, Edited_Bpm, index)
+                    }
                     console.log("currentBpm : " + currentBpm + " Edited_Bpm : " + Edited_Bpm);
                     Slice_from_actions[index] = convert.Set_Bpm(Slice_from_actions, index, Edited_Bpm, true)
                     Slice_from_actions[index+1] = convert.Set_Bpm(Slice_from_actions, index + 1, currentBpm, false)
                 }
                 else {
                     Edited_Bpm = (currentBpm * (CloseAngle / currentAngle));
-                    console.log("currentBpm : " + currentBpm + " Edited_Bpm : " + Edited_Bpm);
+                    if(Edited_Bpm == 0)
+                    {
+                        console.log(CloseAngle, currentAngle, currentBpm, Edited_Bpm, index)
+                    }
+                    //console.log("currentBpm : " + currentBpm + " Edited_Bpm : " + Edited_Bpm);
                     Slice_from_actions[index] = convert.Set_Bpm(Slice_from_actions, index, Edited_Bpm, true)
                     Slice_from_actions[index+1] = convert.Set_Bpm(Slice_from_actions, index + 1, currentBpm, false)
                 }
@@ -174,7 +159,7 @@ class Convert {
             if(element.eventType == "SetSpeed")
             {
                 eft_index = index;
-                console.log(element)
+                //console.log(element)
             }
         });
 
@@ -300,7 +285,7 @@ class Convert {
     }
 
     getCloseAngle(nowangle) {             //바꾸려는 각도의 가장 가까운 각도를 찾아줌.
-        var data = Object.keys(adofai.path);
+        var data = ["30", "45", "60", "90", "120", "135", "150", "180", "210", "225", "240", "270", "300", "330", "345"]
         var target = nowangle; // 현재 각도와 가장 가까운 값
         var near = 0;
         var abs = 0;
@@ -313,6 +298,7 @@ class Convert {
                 near = data[i];
             }
         }
+
         return Number(near);
     }
     set_SetSpeed(Floor, Bpm, compulsion) {
@@ -627,5 +613,8 @@ class Convert {
         }
     }
 
-
+    Init()
+    {
+        this.Level = null;
+    }
 }
