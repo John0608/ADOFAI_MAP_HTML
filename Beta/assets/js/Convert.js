@@ -23,9 +23,7 @@ class Convert {
             Level.angleData = Level_TileData;
         }
 
-        Level.actions = Level.actions.filter(                              //테스트이므로, BPM설정과 소용돌이만 필터링.
-            x => actions_filter.includes(x.eventType)
-        );
+        
 
         Level = this.SetSpeed(Level);       //먼저 SetSpeed를 처리해줌
 
