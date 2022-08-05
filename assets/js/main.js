@@ -183,7 +183,7 @@ function CustomConvert() //사용자 설정 변환
 }
 
 function isUpload() { //업로드 유무 확인
-    if (typeof (Level) == "undefined") {
+    if (Level == "undefined") {
         alert("먼저 업로드를 해주세요!");
         return false;
     }
