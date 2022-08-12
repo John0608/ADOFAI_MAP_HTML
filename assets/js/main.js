@@ -124,7 +124,7 @@ function FastConvert() //빠른 변환
     function fast()
     {
       addText("Version : " + ver);
-Level.actions = Level.actions.filter(x=>effectList.includes(x.eventType))
+Level.actions = Level.actions.filter(x=>effect_List.includes(x.eventType))
                     con.SetBasicMapSetting();
                     con.SetSpeed();
                     con.CustomBackground();
