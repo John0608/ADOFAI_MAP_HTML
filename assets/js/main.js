@@ -124,22 +124,10 @@ function FastConvert() //빠른 변환
     }
     function fast()
     {
-      addText("Version : " + ver);
+      addText("new Version : " + ver);
 Level.actions = Level.actions.filter(x=>ef_list.includes(x.eventType))
                     con.SetBasicMapSetting();
                     con.SetSpeed();
-                    con.CustomBackground();
-                    con.ColorTrack();
-                    con.AnimateTrack();
-                    con.AddDecoration();
-                    con.Flash();
-                    con.MoveCamera();
-                    con.HallOfMirrors();
-                    con.SetHitsound();
-                    con.RecolorTrack();
-                    con.SetFilter();
-                    Remove_notsuport_effect();
-                    Remove_difference_key();
                     mapsetting_to_basic_key();
                     $(".down_btn").show();
     }
