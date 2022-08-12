@@ -2,7 +2,7 @@ var Level;  //adofai 파일 내용 저장
 let file_name;
 const ver = "1.0.1";
 
-const effect_List = adofai.effect.List;
+const effect_List = ["SetSpeed","Twirl"];
 let con = new Convert();
 
 window.onload = () => {
@@ -124,6 +124,7 @@ function FastConvert() //빠른 변환
     function fast()
     {
       addText("Version : " + ver);
+Level.actions = Level.actions.filter(x=>effectList.includes(x.eventType))
                     con.SetBasicMapSetting();
                     con.SetSpeed();
                     con.CustomBackground();
