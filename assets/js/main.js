@@ -3,6 +3,7 @@ let file_name;
 const ver = "1.0.1";
 
 const effect_List = ["SetSpeed","Twirl"];
+let ef_list = ["SetSpeed","Twirl"];
 let con = new Convert();
 
 window.onload = () => {
@@ -124,7 +125,7 @@ function FastConvert() //빠른 변환
     function fast()
     {
       addText("Version : " + ver);
-Level.actions = Level.actions.filter(x=>effect_List.includes(x.eventType))
+Level.actions = Level.actions.filter(x=>ef_list.includes(x.eventType))
                     con.SetBasicMapSetting();
                     con.SetSpeed();
                     con.CustomBackground();
