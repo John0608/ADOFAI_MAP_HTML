@@ -28,17 +28,18 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent"><![CDATA[{
-  "keyToString": {
-    "RunOnceActivity.OpenProjectViewOnStart": "true",
-    "RunOnceActivity.ShowReadmeOnStart": "true",
-    "WebServerToolWindowFactoryState": "false",
-    "last_opened_file_path": "C:/Users/CKIRUser/Documents/GitHub/ADOFAI_MAP_HTML/Beta/assets/js",
-    "vue.rearranger.settings.migration": "true"
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;WebServerToolWindowFactoryState&quot;: &quot;false&quot;,
+    &quot;last_opened_file_path&quot;: &quot;C:/Users/CKIRUser/Documents/GitHub/ADOFAI_MAP_HTML/Beta/assets&quot;,
+    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
   }
-}]]></component>
+}</component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
+      <recent name="C:\Users\CKIRUser\Documents\GitHub\ADOFAI_MAP_HTML\Beta\assets" />
       <recent name="C:\Users\CKIRUser\Documents\GitHub\ADOFAI_MAP_HTML\Beta\assets\js" />
       <recent name="C:\Users\CKIRUser\Documents\GitHub\ADOFAI_MAP_HTML\Beta" />
     </key>
@@ -57,6 +58,8 @@
       <option name="presentableId" value="Default" />
       <updated>1661088614230</updated>
       <workItem from="1661088618270" duration="4846000" />
+      <workItem from="1661159848539" duration="4006000" />
+      <workItem from="1661163901753" duration="1044000" />
     </task>
     <servers />
   </component>
@@ -73,5 +76,16 @@
         </entry>
       </map>
     </option>
+  </component>
+  <component name="XDebuggerManager">
+    <breakpoint-manager>
+      <breakpoints>
+        <line-breakpoint enabled="true" type="javascript">
+          <url>file://$PROJECT_DIR$/YetBeta/assets/js/Zip.js</url>
+          <line>11</line>
+          <option name="timeStamp" value="1" />
+        </line-breakpoint>
+      </breakpoints>
+    </breakpoint-manager>
   </component>
 </project>
