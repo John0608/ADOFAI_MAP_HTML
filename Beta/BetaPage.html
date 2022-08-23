@@ -11,6 +11,7 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/json5/0.5.1/json5.min.js"
         integrity="sha512-0Z0waakasLFLv2VFHGqiiCQebtQi7wpUieRR4yInvJ/EGQk9r+4LvjMEgsi15EnvONG2uo2Z9bdJXDV8uU8iuA=="
         crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+
     <script type="text/javascript" src="assets/zip/jszip.min.js"></script>
     <script type="text/javascript" src="assets/zip/jszip-utils.min.js"></script>
     <script type="text/javascript" src="assets/zip/zip_common.js"></script>
@@ -19,6 +20,8 @@
     <script type="text/javascript" src="assets/js/Ui.js"></script>
     <script type="text/javascript" src="assets/js/Upload.js"></script>
     <script type="text/javascript" src="assets/js/ZipUtils.js"></script>
+    <script type="text/javascript" src="assets/js/File.js"></script>
+    <script type="text/javascript" src="assets/js/adofai_Utils.js"></script>
     <script type="text/javascript" src="assets/js/variable.js"></script>
     <script type="text/javascript" src="assets/js/main.js"></script>
 
@@ -27,23 +30,22 @@
 
 <body>
     <div class="container mt-3" id="Page">
-        <div class="bg-primary text-center text-white rounded mt-4 p-5">
+        <div class="bg-primary text-center text-white rounded mt-4 p-5" style="margin-bottom: 10px;">
             <h2>ADOFAI MAP CONVERSION</h2>
             <p>A Dance of Fire and Ice 맵 변환기</p>
         </div>
-        <div class="mb-3 upload_controll" style="padding-top: 10px;">
-        <label id="info_msg">먼저 파일을 선택해주세요!<br>Zip, adofai 파일 확장자 지원</label>
-            <input type="file" class="form-control file_select_btn" name="" id="formFile" onchange="Upload()">
-        </div>
-        <div class="status">
-            <p class="status_txt"></p>
-            <div class="progress">
-                <div class="progress-bar progress-bar-striped active" role="progressbar" aria-valuenow="40"
-                    aria-valuemin="0" aria-valuemax="100" style="width:0">
-                    0%
-                </div>
+        <div class="mb-3 status">
+            <p class="status_txt">파일을 선택해주세요! (.adofai, .zip 파일 지원)</p>
             </div>
         </div>
+        <div class="upload_controll" style="padding-top: 10px; width: 70%; margin-left: auto; margin-right: auto;">
+            <input type="file" class="form-control file_select_btn mb-3" name="" id="formFile" onchange="Upload()">
+        </div>
+        <div class="progress" style="width: 70%; margin-left: auto; margin-right: auto;">
+            <div class="progress-bar progress-bar-striped active" role="progressbar" aria-valuenow="40"
+                aria-valuemin="0" aria-valuemax="100" style="width:0">
+                0%
+            </div>
         <div class="log_box mb-3">
             <label>로그 (Log)</label>
             <label for="log"></label><textarea class="form-control" id="log" rows="3" readonly style="resize: none;"></textarea>

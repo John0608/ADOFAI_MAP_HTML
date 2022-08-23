@@ -25,13 +25,13 @@ const Upload = () => {
             alert("업로드 완료");
             Adofai_File = upload_File;
             upload_File = null;
-            console.log()
         }
         else if(Upload_Type == UploadType.Zip)
         {
             Unzip();
-            alert("업로드 완료");
         }
+
+        UploadComplete(Upload_Type);
     }
     reader.onerror = () => {
         alert('파일을 읽는데 실패하였습니다.')
@@ -47,4 +47,35 @@ const Upload = () => {
         reader.readAsText(f, 'UTF-8');
     }
     setTimeout(()=>{},50);
+}
+
+function UploadComplete(File_Type)
+{
+    setTimeout(()=>{
+        Ui_Controller.ChangeStatustxt("파일을 읽는중입니다. 잠시만 기다려주세요...");
+
+    },1000);
+    Ui_Controller.Hide(Document_Select_List.Button_FileSelect);
+
+    if(File_Type == UploadType.ADOFAI_LEVEL)
+    {
+        alert("레벨 변환 시작");
+    }
+    else if(File_Type == UploadType.Zip)
+    {
+        let inter = setInterval(
+            function() {
+                if(Zip_File != null) {inter_stop()}
+                console.log("읽는중");
+        },1000);
+
+        function inter_stop() {
+            clearInterval(inter)
+            let levels = adofai_util.FindLevel();
+            console.log(levels)
+            Ui_Controller.Display_LevelList(levels);
+        }
+
+    }
+    Ui_Controller.Hide(Document_Select_List.Status_Display);
 }
