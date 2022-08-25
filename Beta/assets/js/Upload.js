@@ -1,12 +1,11 @@
 const Upload = () => {
     const Support_Ext = [".adofai",".zip"];
-    const input = document.querySelector('.file_select_btn');    //파일 선택을 한 Tag
+    const input = document.querySelector('#formFile');    //파일 선택을 한 Tag
     const f = input.files[0];                                            //파일 선택 Array의  0번째선택
     let FileName = f.name;                                               //파일 이름
 
     //파일 확장자
     let File_Ext = FileName.substring(FileName.lastIndexOf("."));
-        alert(File_Ext);
 
     //허용되지 않는 확장자 Return
     if(Support_Ext.indexOf(File_Ext) == -1)
@@ -51,10 +50,7 @@ const Upload = () => {
 
 function UploadComplete(File_Type)
 {
-    setTimeout(()=>{
-        Ui_Controller.ChangeStatustxt("파일을 읽는중입니다. 잠시만 기다려주세요...");
-
-    },1000);
+    Ui_Controller.ChangeStatustxt("파일을 읽는중입니다. 잠시만 기다려주세요...");
     Ui_Controller.Hide(Document_Select_List.Button_FileSelect);
 
     if(File_Type == UploadType.ADOFAI_LEVEL)
@@ -66,7 +62,6 @@ function UploadComplete(File_Type)
         let inter = setInterval(
             function() {
                 if(Zip_File != null) {inter_stop()}
-                console.log("읽는중");
         },1000);
 
         function inter_stop() {
@@ -77,5 +72,4 @@ function UploadComplete(File_Type)
         }
 
     }
-    Ui_Controller.Hide(Document_Select_List.Status_Display);
 }

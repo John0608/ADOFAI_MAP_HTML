@@ -16,11 +16,9 @@ window.onload = () => {
 }
 
 function loadPage() {
-    Ui_Controller.Hide(Document_Select_List.Select_Button)
-    //Ui_Controller.Hide(Document_Select_List.Button_FileSelect)
+    Ui_Controller.Hide(Document_Select_List.Select_Box)
     Ui_Controller.Hide(Document_Select_List.Log_Display)
     Ui_Controller.Hide(Document_Select_List.Download_Button)
-    //Ui_Controller.Hide(Document_Select_List.Status_Display)
     Ui_Controller.Hide(Document_Select_List.AlertBox_Display)
     Ui_Controller.Hide(Document_Select_List.Progress);
 }
@@ -29,9 +27,9 @@ async function Unzip() {
 
     Zip_File = await Zip.UnZip(upload_File);
     console.log(Zip_File);
-
-
 }
+
+
 
 function Sleep()
 {

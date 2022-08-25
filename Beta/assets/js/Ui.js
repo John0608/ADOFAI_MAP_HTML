@@ -10,16 +10,17 @@ class Ui_Controller {
     }
     static Display_LevelList(LevelList)
     {
-        let doc = document.querySelector(Document_Select_List.Select_Button);
-
+        this.ChangeStatustxt("변환하실 파일을 선택해주세요!");
+        let box = document.querySelector(Document_Select_List.Select_Box);
+        let select_box = document.querySelector(".select_option")
         LevelList.forEach((index)=>{
             let sel = document.createElement("option");
             sel.innerText = index;
             sel.value = index;
-            doc.appendChild(sel);
+            select_box.appendChild(sel);
         })
 
-        doc.style.display = "Block";
+        box.style.display = "Block";
     }
 
 

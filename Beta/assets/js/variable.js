@@ -12,8 +12,9 @@ let File_Convert = new File();
 let adofai_util = new ADOFAI_utils();
 
 //Class Load
-let Convert = new Convert_adofai();
+let Con_adofai = new Convert_adofai();
 let Zip = new ZipUtils();
+let convert = new Convert();
 
 
 //업로드 타입 : ADOFAI파일/ZIP파일
@@ -24,12 +25,29 @@ let UploadType = {
 
 //Document의 선택 가능한 리스트
 let Document_Select_List = {
-    Button_FileSelect : ".upload_controll",
+
+    /** INPUT : FILE **/
+    Button_FileSelect : ".upload_control",
+
+    /** Log Box **/
     Log_Display : ".log_box",
-    Status_Display : ".status",
-    Select_Button : ".select",
-    Download_Button : ".down_btn",
+
+    /** Now Status : <p> **/
+    Status_Display : ".status_txt",
+
+    /** Now Status Box**/
+    Status_Box : ".status",
+
+    /** <Div Select> adofai_level_selector **/
+    Select_Box : ".select",
+
+    /** button : Download Button **/
+    Download_Button : ".download_btn",
+
+    /** Error Displayer **/
     AlertBox_Display : ".alert",
+
+    /** Now Percent Displayer **/
     Progress : ".progress"
 }
 
