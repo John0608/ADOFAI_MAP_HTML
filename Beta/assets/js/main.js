@@ -19,14 +19,14 @@ function loadPage() {
     Ui_Controller.Hide(Document_Select_List.Select_Box)
     Ui_Controller.Hide(Document_Select_List.Log_Display)
     Ui_Controller.Hide(Document_Select_List.Download_Button)
-    Ui_Controller.Hide(Document_Select_List.AlertBox_Display)
+    //Ui_Controller.Hide(Document_Select_List.AlertBox_Display)
     Ui_Controller.Hide(Document_Select_List.Progress);
+    Ui_Controller.Report_Error("ahffk","asdf");
 }
 
 async function Unzip() {
 
     Zip_File = await Zip.UnZip(upload_File);
-    console.log(Zip_File);
 }
 
 

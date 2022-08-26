@@ -3,7 +3,10 @@ class Convert_adofai {
     SetLevel(levelFile) {
         this.Level_Data = levelFile;
     }
-
+    StartProcess()
+    {
+        console.log(this.Level_Data);
+    }
 
 
 }

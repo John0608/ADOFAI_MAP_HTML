@@ -15,7 +15,7 @@ let adofai_util = new ADOFAI_utils();
 let Con_adofai = new Convert_adofai();
 let Zip = new ZipUtils();
 let convert = new Convert();
-
+let F = new File();
 
 //업로드 타입 : ADOFAI파일/ZIP파일
 let UploadType = {

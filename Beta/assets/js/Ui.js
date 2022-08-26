@@ -22,6 +22,13 @@ class Ui_Controller {
 
         box.style.display = "Block";
     }
+    static Report_Error(title, msg)
+    {
+        let h = document.querySelector("#head");
+        let m = document.querySelector("#msg");
+        h.textContent = title;
+        m.textContent = msg;
+    }
 
 
 

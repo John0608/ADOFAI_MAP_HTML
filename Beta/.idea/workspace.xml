@@ -5,6 +5,7 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="9dc17810-9690-4f06-a10f-324c96fe80ea" name="Changes" comment="" />
+    <list id="8f355240-c70b-4575-a00a-5978fa90bcf1" name="Changes by 파리링" comment="" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -19,6 +20,17 @@
   </component>
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/.." />
+  </component>
+  <component name="LineStatusTrackerManager">
+    <file path="$PROJECT_DIR$/assets/js/Convert.js">
+      <ranges>
+        <range start1="0" end1="3" start2="0" end2="29" changelist="8f355240-c70b-4575-a00a-5978fa90bcf1" />
+        <range start1="6" end1="13" start2="32" end2="37" changelist="9dc17810-9690-4f06-a10f-324c96fe80ea" />
+        <range start1="14" end1="21" start2="38" end2="38" changelist="9dc17810-9690-4f06-a10f-324c96fe80ea" />
+        <range start1="22" end1="22" start2="39" end2="41" changelist="9dc17810-9690-4f06-a10f-324c96fe80ea" />
+        <range start1="24" end1="24" start2="43" end2="45" changelist="9dc17810-9690-4f06-a10f-324c96fe80ea" />
+      </ranges>
+    </file>
   </component>
   <component name="MarkdownSettingsMigration">
     <option name="stateVersion" value="1" />
@@ -52,6 +64,7 @@
       <updated>1661260797402</updated>
       <workItem from="1661260799360" duration="5705000" />
       <workItem from="1661434331155" duration="4855000" />
+      <workItem from="1661519743135" duration="5266000" />
     </task>
     <servers />
   </component>
