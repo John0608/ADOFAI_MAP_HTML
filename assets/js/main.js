@@ -3,7 +3,6 @@ let file_name;
 const ver = "1.0.1";
 
 const effect_List = ["SetSpeed","Twirl"];
-let ef_list = ["SetSpeed","Twirl"];
 let con = new Convert();
 
 window.onload = () => {

@@ -1,20 +1,13 @@
 class Convert {
-    Level = null;
-    ui = new Ui();
+    Levels = null;
     effect_List = adofai.effect.List;
     effect_array = null;
-    Temp_effect_array = ["SetSpeed", "Twirl"];
 
     FastConvert(level) {
         let Level = level;              //레벨 파일
         let Level_TileData = null;      //레벨의 타일 각도 데이터
         let actions_array = null;       //레벨의 actions를 타일별 배열로 변환한 변수
-        const actions_filter = ["SetSpeed", "Twirl"];
 
-        this.ui.HideLevelSelector();
-        this.ui.Hide(".file_select_btn");
-        this.ui.ShowLog();
-        this.ui.ShowProgressAndStatus();
 
         if (this.Distinction_Data(level) == "path") {
             Level_TileData = Level.pathData;                                    //PathData를 할당
@@ -26,14 +19,36 @@ class Convert {
         
 
         Level = this.SetSpeed(Level);       //먼저 SetSpeed를 처리해줌
-
         actions_array = this.Effect_sclice_for_Floor(Level);                         //타일 별 배열 만듬.
         console.log(Level);
         Level = this.Edit_AngleData2PathData2_and_BPM(Level, actions_array);
         Level = this.SetBasicMapSetting(Level);
+        Level = this.CustomBackground(Level);
+        Level = this.ColorTrack(Level)
+        Level = this.AnimateTrack(Level)
+        Level = this.AddDecoration(Level)
+        Level = this.Flash(Level)
+        Level = this.MoveCamera(Level)
+        Level = this.MoveTrack(Level)
+        Level = this.HallOfMirrors(Level)
+        Level = this.SetHitsound(Level)
+        Level = this.RecolorTrack(Level)
+        Level = this.SetFilter(Level)
+        Level = this.ShakeScreen(Level)
+        Level = this.SetPlanetRotation(Level)
+        Level = this.MoveDecorations(Level)
+        Level = this.RepeatEvents(Level);
+        console.log(Level);
+        //Level = this.Remove_notsuport_effect(Level);
         return Level;
     }
 
+    Remove_notsuport_effect(level) {
+        let Level = level;
+        console.log(Level);
+        Level.actions = Level.actions.filter(x => Object.keys(adofai.effect.List).includes(x.eventType));
+        return Level;
+    }
 
     Edit_AngleData2PathData2_and_BPM(level, actions_array) //AngleData를 PathData로 만들어줌.
     {
@@ -47,8 +62,6 @@ class Convert {
 
         AngleData.forEach(function (currentValue, index) {
             //currentValue : 각도, index : floor
-            ui.UpdateStatus(index + "번째 타일 작업중");
-            ui.UpdateProgress(index / AngleData.length)
             const currentAngle = Number(currentValue);                          //현재 각도
             const CloseAngle = Number(convert.getCloseAngle(currentAngle));     //변경된 각도
             if(convert.Find_Bpm(Slice_from_actions, index) != false)
@@ -183,13 +196,11 @@ class Convert {
     }
 
     addText(arg0) {
-        const ui = new Ui();
-        ui.addLog(arg0);
+        return;
     }
 
     Edit_AngleData_to_PathData(angleData) //angleData 일 경우에만 사용 가능.
     {
-        const ui = new Ui();
         const supportPathData = this.SetPathData_To_Number();
         let angle = angleData;
         let editangle = [];
@@ -200,8 +211,6 @@ class Convert {
         let angleLength = angle.length;
 
         angle.forEach(function (currentValue, index) {  //currentValue : 각도, index : floor
-            ui.UpdateStatus(index + "번째 타일을 수정하는 중...")
-            ui.UpdateProgress(Number((index / angleLength) * 100));
             let arrayIndex = index;
             let eft_length = convert.effect_array[index].length;
             if (Number(eft_length) > 0) {
@@ -219,7 +228,6 @@ class Convert {
                 change_angle = Number(convert.getCloseAngle(currentValue));
                 console.log("change angle : " + currentValue + "->" + change_angle + ", floor : " + index);
                 editangle.push(change_angle);
-                ui.addLog(currentValue + "에서 " + change_angle + "로 바뀜")
                 if (change_angle > currentValue) {
                     change_bpm = Number(setBpm) / (currentValue / change_angle);
                     convert.set_SetSpeed(index, change_bpm);
@@ -336,7 +344,7 @@ class Convert {
 
     Effect_sclice_for_Floor(level) {
         const Level = level;                            //레벨을 const로 저장
-        let Tile_Length = Level.angleData.length;       //angleData의 길이 저장
+        let Tile_Length = Level.angleData.length + 1;       //angleData의 길이 저장
         let effect_array = new Array(Tile_Length)       //Tile_Length만큼 배열 생성
 
         //2차원 배열 생성
@@ -362,16 +370,15 @@ class Convert {
 
 
     SetSpeed(Level) {
-        let bpm = Level.settings.bpm;
-        const ui = new Ui();
-        Level.actions.forEach(function (index) {
+        let level = Level;
+        let bpm = level.settings.bpm;
+        level.actions.forEach(function (index) {
             if (index.eventType == "SetSpeed") {
                 if (index.speedType == "Multiplier") {
                     index.speedType = "Bpm";
                     bpm = bpm * index.bpmMultiplier;
                     delete index.bpmMultiplier;
                     index.beatsPerMinute = bpm;
-                    ui.addLog(index.floor + "의 " + index.eventType + "이펙트의 BPM이 " + index.bpm + "에서 " + bpm + "으로 바뀜.")
                 }
                 else {
                     delete index.bpmMultiplier;
@@ -381,139 +388,159 @@ class Convert {
         });
         return Level;
     }
-    Twirl() {
-        return;
+    Twirl(level) {
+        return level;
     }
-    CustomBackground() {
-        this.Level.actions.forEach(function (index) {
+    CustomBackground(level) {
+        let Level = level;
+        level.actions.forEach(function (index) {
             if (index.eventType == "CustomBackground") {
-                if (this.effect_List.CustomBackground.bgDisplayMode.indexOf(index.bgDisplayMode) == -1) {
+                if (adofai.effect.List.CustomBackground.bgDisplayMode.indexOf(index.bgDisplayMode) == -1) {
                     index.bgDisplayMode = "FitToScreen";
                 }
             }
         });
+        return Level;
     }
-    ColorTrack() {
-        this.Level.actions.forEach(function (index) {
+    ColorTrack(level) {
+        let Level = level;
+        Level.actions.forEach(function (index) {
             if (index.eventType == "ColorTrack") {
-                if (this.effect_List.ColorTrack.trackColorType.indexOf(index.trackColorType) == -1) {
+                if (adofai.effect.List.ColorTrack.trackColorType.indexOf(index.trackColorType) == -1) {
                     index.trackColorType = "Single";
                 }
-                if (this.effect_List.ColorTrack.trackColorPulse.indexOf(index.trackColorPulse) == -1) {
+                if (adofai.effect.List.ColorTrack.trackColorPulse.indexOf(index.trackColorPulse) == -1) {
                     index.trackColorPulse = "Forward";
                 }
-                if (this.effect_List.ColorTrack.trackStyle.indexOf(index.trackStyle) == -1) {
+                if (adofai.effect.List.ColorTrack.trackStyle.indexOf(index.trackStyle) == -1) {
                     index.trackStyle = "Standard";
                 }
             }
         });
+        return Level;
     }
-    AnimateTrack() {
-        this.Level.actions.forEach(function (index) {
+    AnimateTrack(Level) {
+        let level = Level;
+        level.actions.forEach(function (index) {
             if (index.eventType == "AnimateTrack") {
-                if (this.effect_List.AnimateTrack.trackAnimation.indexOf(index.trackAnimation) == -1) {
+                if (adofai.effect.List.AnimateTrack.trackAnimation.indexOf(index.trackAnimation) == -1) {
                     index.trackAnimation = "None";
                 }
-                if (this.effect_List.AnimateTrack.trackDisappearAnimation.indexOf(index.trackDisappearAnimation) == -1) {
+                if (adofai.effect.List.AnimateTrack.trackDisappearAnimation.indexOf(index.trackDisappearAnimation) == -1) {
                     index.trackDisappearAnimation = "None";
                 }
             }
         });
+        return level;
     }
-    AddDecoration() {
-        this.Level.actions.forEach(function (index) {
+    AddDecoration(Level) {
+        let level = Level;
+        level.actions.forEach(function (index) {
             if (index.eventType == "AddDecoration") {
-                if (this.effect_List.AddDecoration.relativeTo.indexOf(index.relativeTo) == -1) {
+                if (adofai.effect.List.AddDecoration.relativeTo.indexOf(index.relativeTo) == -1) {
                     index.relativeTo = "Global";
                 }
                 if (index.scale != undefined) {
                     delete index.scale;
-                    this.addText(index.floor + "의 " + index.eventType + "의 scale은 지원되지 않아 제거됩니다.");
                 }
             }
         });
+        return Level;
     }
-    Flash() {
-        this.Level.actions.forEach(function (index) {
+    Flash(Level) {
+        let level = Level;
+        level.actions.forEach(function (index) {
             if (index.eventType == "Flash") {
-                if (this.effect_List.Flash.plane.indexOf(index.plane) == -1) {
+                if (adofai.effect.List.Flash.plane.indexOf(index.plane) == -1) {
                     index.plane = "Foreground";
                 }
             }
         });
+        return level;
     }
-    MoveCamera() {
-        this.Level.actions.forEach(function (index) {
+    MoveCamera(level) {
+        let Level = level;
+        Level.actions.forEach(function (index) {
             if (index.eventType == "MoveCamera") {
-                if (this.effect_List.MoveCamera.relativeTo.indexOf(index.relativeTo) == -1) {
+                if (adofai.effect.List.MoveCamera.relativeTo.indexOf(index.relativeTo) == -1) {
                     index.relativeTo = "Player";
                 }
             }
         });
+        return Level;
     }
 
-    MoveTrack() {
+    MoveTrack(level) {
         //안함 일부러 ㅋㅋ
+        return level;
     }
 
-    HallOfMirrors() {
-        this.Level.actions.forEach(function (index) {
+    HallOfMirrors(level) {
+        let Level = level;
+        Level.actions.forEach(function (index) {
             if (index.eventType == "HallOfMirrors") {
-                if (this.effect_List.HallOfMirrors.enabled.indexOf(index.enabled) == -1) {
+                if (adofai.effect.List.HallOfMirrors.enabled.indexOf(index.enabled) == -1) {
                     index.enabled = "Enabled";
                 }
             }
         });
+        return Level;
     }
 
-    SetHitsound() {
-        this.Level.actions.forEach(function (index) {
+    SetHitsound(level) {
+        let Level = level;
+        Level.actions.forEach(function (index) {
             if (index.eventType == "SetHitsound") {
-                if (this.effect_List.SetHitsound.hitsound.indexOf(index.hitsound) == -1) {
+                if (adofai.effect.List.SetHitsound.hitsound.indexOf(index.hitsound) == -1) {
                     index.hitsound = "Hat";
                 }
             }
         });
+        return Level;
     }
-    RecolorTrack() {
-        this.Level.actions.forEach(function (index) {
+    RecolorTrack(level) {
+        let Level = level;
+        Level.actions.forEach(function (index) {
             if (index.eventType == "RecolorTrack") {
-                if (this.effect_List.RecolorTrack.trackColorType.indexOf(index.trackColorType) == -1) {
+                if (adofai.effect.List.RecolorTrack.trackColorType.indexOf(index.trackColorType) == -1) {
                     index.trackColorType = "Single";
                 }
-                if (this.effect_List.RecolorTrack.trackColorPulse.indexOf(index.trackColorPulse) == -1) {
+                if (adofai.effect.List.RecolorTrack.trackColorPulse.indexOf(index.trackColorPulse) == -1) {
                     index.trackColorPulse = "Forward";
                 }
-                if (this.effect_List.RecolorTrack.trackStyle.indexOf(index.trackStyle) == -1) {
+                if (adofai.effect.List.RecolorTrack.trackStyle.indexOf(index.trackStyle) == -1) {
                     index.trackStyle = "Standard";
                 }
             }
         });
+        return Level;
     }
-    SetFilter() {
-        this.Level.actions.forEach((index, num) => {
+    SetFilter(level) {
+        let Level = level;
+        Level.actions.forEach((index, num) => {
             if (index.eventType == "SetFilter") {
-                if (this.effect_List.SetFilter.filter.indexOf(index.filter) == -1) {
-                    this.addText(index.floor + "타일 필터 이벤트의 " + index.filter + "는 호환되지 않아 제거됩니다.");
-                    this.Level.actions.splice(num, 1);
+                if (adofai.effect.List.SetFilter.filter.indexOf(index.filter) == -1) {
+                    Level.actions.splice(num, 1);
                 }
+                index.angleOffset = 1;
             }
         })
+        return Level;
     }
 
-    ShakeScreen() {
-
+    ShakeScreen(level) {
+        return level;
     }
-    SetPlanetRotation() {
-
-    }
-
-    MoveDecorations() {
-
+    SetPlanetRotation(level) {
+        return level;
     }
 
-    RepeatEvents() {
+    MoveDecorations(level) {
+        return level;
+    }
 
+    RepeatEvents(level) {
+        return level;
     }
 
     SetBasicMapSetting(level) {
@@ -521,43 +548,33 @@ class Convert {
         Level.settings.version = 2;
         Object.keys(Level.settings).forEach((index) => {
             if (index == "hitsound" && adofai.Setting.List.hitsound.indexOf(Level.settings.hitsound) == -1) {
-                this.addText(index + "의 " + Level.settings[index] + "에서" + "Hat 으로 변환됨.")
                 Level.settings[index] = "Hat";
             }
             if (index == "separateCountdownTime" && adofai.Setting.List.separateCountdownTime.indexOf(Level.settings.separateCountdownTime) == -1) {
-                this.addText(index + "의 " + Level.settings[index] + "에서" + "Enabled 으로 변환됨.")
                 Level.settings[index] = "Enabled";
             }
             if (index == "trackColorType" && adofai.Setting.List.trackColorType.indexOf(Level.settings.trackColorType) == -1) {
-                this.addText(index + "의 " + Level.settings[index] + "에서" + "Single 으로 변환됨.")
                 Level.settings[index] = "Single";
             }
             if (index == "trackColorPulse" && adofai.Setting.List.trackColorPulse.indexOf(Level.settings.trackColorPulse) == -1) {
-                this.addText(index + "의 " + Level.settings[index] + "에서" + "None 으로 변환됨.")
                 Level.settings[index] = "None";
             }
             if (index == "trackStyle" && adofai.Setting.List.trackStyle.indexOf(Level.settings.trackStyle) == -1) {
-                this.addText(index + "의 " + Level.settings[index] + "에서" + "Standard 으로 변환됨.")
                 Level.settings[index] = "Standard";
             }
             if (index == "trackAnimation" && adofai.Setting.List.trackAnimation.indexOf(Level.settings.trackAnimation) == -1) {
-                this.addText(index + "의 " + Level.settings[index] + "에서" + "None 으로 변환됨.")
                 Level.settings[index] = "None";
             }
             if (index == "trackDisappearAnimation" && adofai.Setting.List.trackDisappearAnimation.indexOf(Level.settings.trackDisappearAnimation) == -1) {
-                this.addText(index + "의 " + Level.settings[index] + "에서" + "None 으로 변환됨.")
                 Level.settings[index] = "None";
             }
             if (index == "bgDisplayMode" && adofai.Setting.List.bgDisplayMode.indexOf(Level.settings.bgDisplayMode) == -1) {
-                this.addText(index + "의 " + Level.settings[index] + "에서" + "FitToScreen 으로 변환됨.")
                 Level.settings[index] = "FitToScreen";
             }
             if (index == "lockRot" && adofai.Setting.List.lockRot.indexOf(Level.settings.lockRot) == -1) {
-                this.addText(index + "의 " + Level.settings[index] + "에서" + "Enabled 으로 변환됨.")
                 Level.settings[index] = "Enabled";
             }
             if (index == "loopBG" && adofai.Setting.List.loopBG.indexOf(Level.settings.loopBG) == -1) {
-                this.addText(index + "의 " + Level.settings[index] + "에서" + "Enabled 으로 변환됨.")
                 Level.settings[index] = "Enabled";
             }
 
