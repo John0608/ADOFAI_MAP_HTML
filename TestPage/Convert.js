@@ -16,7 +16,7 @@ class Convert {
             Level.angleData = Level_TileData;
         }
 
-        
+
 
         Level = this.SetSpeed(Level);       //먼저 SetSpeed를 처리해줌
         actions_array = this.Effect_sclice_for_Floor(Level);                         //타일 별 배열 만듬.
@@ -39,7 +39,8 @@ class Convert {
         Level = this.MoveDecorations(Level)
         Level = this.RepeatEvents(Level);
         console.log(Level);
-        //Level = this.Remove_notsuport_effect(Level);
+        Level = this.Remove_notsuport_effect(Level);
+        Level = this.SetBasicMapSetting(Level);
         return Level;
     }
 
@@ -64,46 +65,44 @@ class Convert {
             //currentValue : 각도, index : floor
             const currentAngle = Number(currentValue);                          //현재 각도
             const CloseAngle = Number(convert.getCloseAngle(currentAngle));     //변경된 각도
-            if(convert.Find_Bpm(Slice_from_actions, index) != false)
-            {
+            if (convert.Find_Bpm(Slice_from_actions, index) != false) {
                 currentBpm = convert.Find_Bpm(Slice_from_actions, index);                   //현재BPM 최신화
             }
 
             //지원되지 않는 각도임. 먼저 각도 사이 계산을 해 BPM 수정.
             if (Support_angle.indexOf(currentAngle) == -1) {
                 //console.log("지원되지 않는 각도 : " + currentAngle)
-
-                if((CloseAngle - currentAngle) != 15 || (currentAngle - CloseAngle) != 15)
+                if(Math.abs(CloseAngle - currentAngle) != 15 || Math.abs(currentAngle - CloseAngle) != 15 )
                 {
-                    if (CloseAngle > currentAngle) {
-                        Edited_Bpm = (currentBpm / (currentAngle / CloseAngle));
-                        if(Edited_Bpm == 0)
-                        {
-                            console.log(CloseAngle, currentAngle, currentBpm, Edited_Bpm, index)
-                        }
-                        console.log("currentBpm : " + currentBpm + " Edited_Bpm : " + Edited_Bpm);
-                        Slice_from_actions[index] = convert.Set_Bpm(Slice_from_actions, index, Edited_Bpm, true)
-                        Slice_from_actions[index+1] = convert.Set_Bpm(Slice_from_actions, index + 1, currentBpm, false)
-                    }
-                    else {
-                        Edited_Bpm = (currentBpm * (CloseAngle / currentAngle));
-                        if(Edited_Bpm == 0)
-                        {
-                            console.log(CloseAngle, currentAngle, currentBpm, Edited_Bpm, index)
-                        }
-                        //console.log("currentBpm : " + currentBpm + " Edited_Bpm : " + Edited_Bpm);
-                        Slice_from_actions[index] = convert.Set_Bpm(Slice_from_actions, index, Edited_Bpm, true)
-                        Slice_from_actions[index+1] = convert.Set_Bpm(Slice_from_actions, index + 1, currentBpm, false)
-                    }
                     Final_AngleData.push(CloseAngle);
                     return;
                 }
+                else if (CloseAngle > currentAngle) {
+                    Edited_Bpm = (currentBpm / (currentAngle / CloseAngle));
+                    if (Edited_Bpm == 0) {
+                        console.log(CloseAngle, currentAngle, currentBpm, Edited_Bpm, index)
+                    }
+                    console.log("currentBpm : " + currentBpm + " Edited_Bpm : " + Edited_Bpm);
+                    Slice_from_actions[index] = convert.Set_Bpm(Slice_from_actions, index, Edited_Bpm, true)
+                    Slice_from_actions[index + 1] = convert.Set_Bpm(Slice_from_actions, index + 1, currentBpm, false)
+                }
+                else {
+                    Edited_Bpm = (currentBpm * (CloseAngle / currentAngle));
+                    if (Edited_Bpm == 0) {
+                        console.log(CloseAngle, currentAngle, currentBpm, Edited_Bpm, index)
+                    }
+                    //console.log("currentBpm : " + currentBpm + " Edited_Bpm : " + Edited_Bpm);
+                    Slice_from_actions[index] = convert.Set_Bpm(Slice_from_actions, index, Edited_Bpm, true)
+                    Slice_from_actions[index + 1] = convert.Set_Bpm(Slice_from_actions, index + 1, currentBpm, false)
+                }
+                Final_AngleData.push(CloseAngle);
+                return;
             }
             else {
                 Final_AngleData.push(currentValue)
                 return;
             }
-            
+
 
         })
 
@@ -122,44 +121,44 @@ class Convert {
     {
         let arr_effect = arr_effects;       //일단 파라미터를 변수로 지정
         let final_data = new Array();       //결과 데이터(이펙트) 저장용
-        arr_effect.forEach(function(currentValue, index){
-            if(currentValue != ("" || null || "undefined"))
-            {
-                    currentValue.forEach((x) => {
-                        final_data.push(x);
+        arr_effect.forEach(function (currentValue, index) {
+            if (currentValue != ("" || null || "undefined")) {
+                currentValue.forEach((x) => {
+                    final_data.push(x);
+                }
+                )
             }
-        )}})
+        })
         return final_data;
     }
 
     Set_Bpm(effect_array, floor, bpm, is_compulsion) {
         //대충 json 형식 변수임
-        let template = { "floor": floor, "eventType": "SetSpeed", "speedType": "Bpm", "beatsPerMinute": Number(bpm)};
+        let template = { "floor": floor, "eventType": "SetSpeed", "speedType": "Bpm", "beatsPerMinute": Number(bpm) };
         let eft_array = effect_array[floor];    //해당 배열에서 특정 index만 추출    
         //2차원 배열이라 두번째 배열에 eventType가 SetSpeed 값이 있는 곳의 index 추출 
         //만약 없다면 false 반환함.
-        let eft_index = null;    
-        
+        let eft_index = null;
+
         //SetSpeed가 있으면 위치 반환함.
-        eft_array.filter(function(element,index){
-            if(element.eventType == "SetSpeed")
-            {
+        eft_array.filter(function (element, index) {
+            if (element.eventType == "SetSpeed") {
                 eft_index = index;
             }
         });
 
         //if(eft_array == "" || "undefined" || null)    //배열이 비어있다면?
-        if(!eft_array)    //배열이 비어있다면?
+        if (!eft_array)    //배열이 비어있다면?
         {
             eft_array = new Array();
             eft_array.push(template);
         }
         else {                                          //배열이 비어있지 않다면?
-            if(eft_index == null){                      //근데 SetSpeed가 없다면?
+            if (eft_index == null) {                      //근데 SetSpeed가 없다면?
                 eft_array.unshift(template);            //배열 맨 앞에 넣어버려
             }
-            else {                                      
-                if(is_compulsion == true){              //강제적으로 넣어야하나..?
+            else {
+                if (is_compulsion == true) {              //강제적으로 넣어야하나..?
                     eft_array[eft_index].beatsPerMinute = Number(bpm);  //고럼 값 넣어야지~
                 }
             }
@@ -170,21 +169,18 @@ class Convert {
     Find_Bpm(effect_arr, index) {
         let eft_array = effect_arr[index];
         let eft_index = null;
-        effect_arr[index].filter(function(element,index){
-            if(element.eventType == "SetSpeed")
-            {
+        effect_arr[index].filter(function (element, index) {
+            if (element.eventType == "SetSpeed") {
                 eft_index = index;
                 //console.log(element)
             }
         });
 
-        if(!eft_array)
-        {
+        if (!eft_array) {
             return false;
         }
         else {
-            if(eft_index != null)
-            {
+            if (eft_index != null) {
                 return eft_array[eft_index].beatsPerMinute;
             }
             else {
@@ -192,7 +188,7 @@ class Convert {
             }
         }
 
-    
+
     }
 
     addText(arg0) {
@@ -348,12 +344,11 @@ class Convert {
         let effect_array = new Array(Tile_Length)       //Tile_Length만큼 배열 생성
 
         //2차원 배열 생성
-        for(let i = 0; i < effect_array.length; i++)
-        {
+        for (let i = 0; i < effect_array.length; i++) {
             effect_array[i] = [];
         }
 
-        Level.actions.forEach((x)=>{                    //floor 값에 맞춰 데이터 추가
+        Level.actions.forEach((x) => {                    //floor 값에 맞춰 데이터 추가
             effect_array[x.floor].push(x);
         })
         console.log(effect_array)
@@ -579,6 +574,12 @@ class Convert {
             }
 
         })
+        Object.keys(Level.settings).forEach((index) => {
+            if (adofai.Setting.Key.indexOf(index) == -1) {
+                delete Level.settings[index];
+            }
+        })
+
 
         return Level;
     }
@@ -632,8 +633,7 @@ class Convert {
         }
     }
 
-    Init()
-    {
+    Init() {
         this.Level = null;
     }
 }

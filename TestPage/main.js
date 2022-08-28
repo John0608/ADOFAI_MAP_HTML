@@ -2,7 +2,7 @@ let level_file = null;
 let filename = null;
 let convert = new Convert();
 window.onload = (() => {
-    const dev = false;
+    const dev = true;
     let pw = "Hello2022Year";
     if (!dev) {
         alert("이 페이지는 ADOFAI 변환 테스트 페이지입니다.");
