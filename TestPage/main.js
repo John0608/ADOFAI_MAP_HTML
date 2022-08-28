@@ -15,34 +15,28 @@ window.onload = (() => {
 
 
 const Upload = (target) => {
-    try {
-        const f = target.files[0];
-        const f_name = f.name;
-        filename = f_name;
-        let File_Ext = f_name.substring(f_name.lastIndexOf("."));
-        if (File_Ext != ".adofai") {
-            alert(".adofai 파일만 업로드 가능합니다.");
-            return;
-        }
-    
-        //파일 리더기
-        const reader = new FileReader();
-        reader.onload = function (evt) {
-            level = evt.target.result;
-            level_file = parse_level(level);
-            main();
-        }
-        reader.onerror = () => {
-            alert('파일을 읽는데 실패하였습니다.')
-            return false;
-        }
-    
-        reader.readAsText(f, 'UTF-8');
+    const f = target.files[0];
+    const f_name = f.name;
+    filename = f_name;
+    let File_Ext = f_name.substring(f_name.lastIndexOf("."));
+    if (File_Ext != ".adofai") {
+        alert(".adofai 파일만 업로드 가능합니다.");
+        return;
     }
-    catch(err)
-    {
-        error(e.name,e.message);
+
+    //파일 리더기
+    const reader = new FileReader();
+    reader.onload = function (evt) {
+        level = evt.target.result;
+        level_file = parse_level(level);
+        main();
     }
+    reader.onerror = () => {
+        alert('파일을 읽는데 실패하였습니다.')
+        return false;
+    }
+
+    reader.readAsText(f, 'UTF-8');
 }
 
 function parse_level(target_level) {
@@ -61,49 +55,38 @@ function parse_level(target_level) {
                 .replaceAll(', },', ' },')
                 .replaceAll(', }', ' }')
                 .replaceAll('\n', '')
-                .replaceAll('}\n', '},\n'));
+                .replaceAll('}\n', '},\n')
+                .replaceAll()
+                .replaceAll("\"decorations\":\r\t[\r\t]\r", ",\"decorations\":\r\t[\r\t]\r"));
         }
     }
 
     return parseLevel(target_level);
-
-
 }
 
 
-function main()
-{
-    try {
-        let con = new Convert();
-        let result = con.FastConvert(level_file);
-        download(filename,JSON.stringify(result));
-    }
-    catch(err)
-    {
-        error(e.name,e.message);
-    }
+
+
+function main() {
+    let con = new Convert();
+    let result = con.FastConvert(level_file);
+    download(filename, JSON.stringify(result));
 }
 
-function download(filename, text) { 
+function download(filename, text) {
 
-    const element = document.createElement('a') 
+    const element = document.createElement('a')
 
-    element.setAttribute( 
-        'href', 
+    element.setAttribute(
+        'href',
         'data:file;charset=utf-,' + encodeURIComponent(text),
-        
-    ) 
 
-    element.setAttribute('download', filename) 
-    element.style.display = 'none' 
-    document.body.appendChild(element) 
-    element.click() 
-    document.body.removeChild(element) 
+    )
 
-}
+    element.setAttribute('download', filename)
+    element.style.display = 'none'
+    document.body.appendChild(element)
+    element.click()
+    document.body.removeChild(element)
 
-function error(title,msg)
-{   
-    let doc = document.querySelector(".log");
-    doc.textContent = "에러가 발생했습니다.\n" + title +"\n" + msg;
 }

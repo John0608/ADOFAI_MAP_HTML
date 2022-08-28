@@ -17,12 +17,15 @@ class Convert {
         }
 
 
+        //신버전에 decoration 을 없앰.
+        delete Level.decorations;
 
-        Level = this.SetSpeed(Level);       //먼저 SetSpeed를 처리해줌
+
         actions_array = this.Effect_sclice_for_Floor(Level);                         //타일 별 배열 만듬.
-        console.log(Level);
         Level = this.Edit_AngleData2PathData2_and_BPM(Level, actions_array);
-        Level = this.SetBasicMapSetting(Level);
+        Level = this.Remove_notsuport_effect(Level);
+        Level = this.SetSpeed(Level);       //먼저 SetSpeed를 처리해줌
+
         Level = this.CustomBackground(Level);
         Level = this.ColorTrack(Level)
         Level = this.AnimateTrack(Level)
@@ -39,16 +42,14 @@ class Convert {
         Level = this.MoveDecorations(Level)
         Level = this.RepeatEvents(Level);
         console.log(Level);
-        Level = this.Remove_notsuport_effect(Level);
         Level = this.SetBasicMapSetting(Level);
         return Level;
     }
 
-    Remove_notsuport_effect(level) {
-        let Level = level;
-        console.log(Level);
-        Level.actions = Level.actions.filter(x => Object.keys(adofai.effect.List).includes(x.eventType));
-        return Level;
+    Remove_notsuport_effect(Level) {
+        let level = Level;
+        level.actions = level.actions.filter(x => Object.keys(adofai.effect.List).includes(x.eventType));
+        return level;
     }
 
     Edit_AngleData2PathData2_and_BPM(level, actions_array) //AngleData를 PathData로 만들어줌.
@@ -65,15 +66,16 @@ class Convert {
             //currentValue : 각도, index : floor
             const currentAngle = Number(currentValue);                          //현재 각도
             const CloseAngle = Number(convert.getCloseAngle(currentAngle));     //변경된 각도
+
             if (convert.Find_Bpm(Slice_from_actions, index) != false) {
-                currentBpm = convert.Find_Bpm(Slice_from_actions, index);                   //현재BPM 최신화
+                currentBpm = convert.Find_Bpm(Slice_from_actions, Number(index));                   //현재BPM 최신화
             }
+
+
 
             //지원되지 않는 각도임. 먼저 각도 사이 계산을 해 BPM 수정.
             if (Support_angle.indexOf(currentAngle) == -1) {
-                //console.log("지원되지 않는 각도 : " + currentAngle)
-                if(Math.abs(CloseAngle - currentAngle) != 15 || Math.abs(currentAngle - CloseAngle) != 15 )
-                {
+                if (Math.abs(CloseAngle - currentAngle) == 15 || Math.abs(currentAngle - CloseAngle) == 15) {
                     Final_AngleData.push(CloseAngle);
                     return;
                 }
@@ -461,6 +463,7 @@ class Convert {
                     index.relativeTo = "Player";
                 }
             }
+            delete index.eventTag;
         });
         return Level;
     }
@@ -512,9 +515,11 @@ class Convert {
     }
     SetFilter(level) {
         let Level = level;
+        let ft = adofai.effect.List.SetFilter.filter;
+        console.log(ft);
         Level.actions.forEach((index, num) => {
             if (index.eventType == "SetFilter") {
-                if (adofai.effect.List.SetFilter.filter.indexOf(index.filter) == -1) {
+                if (ft.indexOf(index.filter) == -1) {
                     Level.actions.splice(num, 1);
                 }
                 index.angleOffset = 1;

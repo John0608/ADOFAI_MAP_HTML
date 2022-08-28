@@ -1,4 +1,4 @@
-const test = {
+{
     "settings": {
         "version": 2,
         "artist": "Plum",
@@ -56,7 +56,7 @@ const test = {
             "enabled": "Enabled",
             "intensity": 100,
             "disableOthers": "Disabled",
-            "angleOffset": 1,
+            "angleOffset": 0,
             "eventTag": ""
         },
         {
@@ -340,12 +340,6 @@ const test = {
         },
         {
             "floor": 52,
-            "eventType": "SetSpeed",
-            "speedType": "Bpm",
-            "beatsPerMinute": 184
-        },
-        {
-            "floor": 52,
             "eventType": "MoveCamera",
             "duration": 2,
             "relativeTo": "LastPosition",
@@ -358,18 +352,6 @@ const test = {
             "angleOffset": 0,
             "ease": "OutBack",
             "eventTag": ""
-        },
-        {
-            "floor": 53,
-            "eventType": "SetSpeed",
-            "speedType": "Bpm",
-            "beatsPerMinute": 230
-        },
-        {
-            "floor": 55,
-            "eventType": "SetSpeed",
-            "speedType": "Bpm",
-            "beatsPerMinute": 216.47058823529412
         },
         {
             "floor": 55,
@@ -385,18 +367,6 @@ const test = {
             "angleOffset": 0,
             "ease": "OutBack",
             "eventTag": ""
-        },
-        {
-            "floor": 56,
-            "eventType": "SetSpeed",
-            "speedType": "Bpm",
-            "beatsPerMinute": 230
-        },
-        {
-            "floor": 59,
-            "eventType": "SetSpeed",
-            "speedType": "Bpm",
-            "beatsPerMinute": 209.0909090909091
         },
         {
             "floor": 59,
@@ -412,18 +382,6 @@ const test = {
             "angleOffset": 0,
             "ease": "OutBack",
             "eventTag": ""
-        },
-        {
-            "floor": 60,
-            "eventType": "SetSpeed",
-            "speedType": "Bpm",
-            "beatsPerMinute": 230
-        },
-        {
-            "floor": 63,
-            "eventType": "SetSpeed",
-            "speedType": "Bpm",
-            "beatsPerMinute": 209.0909090909091
         },
         {
             "floor": 63,
@@ -441,18 +399,6 @@ const test = {
             "eventTag": ""
         },
         {
-            "floor": 64,
-            "eventType": "SetSpeed",
-            "speedType": "Bpm",
-            "beatsPerMinute": 230
-        },
-        {
-            "floor": 67,
-            "eventType": "SetSpeed",
-            "speedType": "Bpm",
-            "beatsPerMinute": 216.47058823529412
-        },
-        {
             "floor": 67,
             "eventType": "MoveCamera",
             "duration": 2,
@@ -468,18 +414,6 @@ const test = {
             "eventTag": ""
         },
         {
-            "floor": 68,
-            "eventType": "SetSpeed",
-            "speedType": "Bpm",
-            "beatsPerMinute": 230
-        },
-        {
-            "floor": 70,
-            "eventType": "SetSpeed",
-            "speedType": "Bpm",
-            "beatsPerMinute": 184
-        },
-        {
             "floor": 70,
             "eventType": "MoveCamera",
             "duration": 2,
@@ -493,12 +427,6 @@ const test = {
             "angleOffset": 0,
             "ease": "OutBack",
             "eventTag": ""
-        },
-        {
-            "floor": 71,
-            "eventType": "SetSpeed",
-            "speedType": "Bpm",
-            "beatsPerMinute": 230
         },
         {
             "floor": 74,
@@ -532,12 +460,6 @@ const test = {
         },
         {
             "floor": 82,
-            "eventType": "SetSpeed",
-            "speedType": "Bpm",
-            "beatsPerMinute": 184
-        },
-        {
-            "floor": 82,
             "eventType": "MoveCamera",
             "duration": 2,
             "relativeTo": "LastPosition",
@@ -552,18 +474,6 @@ const test = {
             "eventTag": ""
         },
         {
-            "floor": 83,
-            "eventType": "SetSpeed",
-            "speedType": "Bpm",
-            "beatsPerMinute": 230
-        },
-        {
-            "floor": 85,
-            "eventType": "SetSpeed",
-            "speedType": "Bpm",
-            "beatsPerMinute": 216.47058823529412
-        },
-        {
             "floor": 85,
             "eventType": "MoveCamera",
             "duration": 2,
@@ -579,18 +489,6 @@ const test = {
             "eventTag": ""
         },
         {
-            "floor": 86,
-            "eventType": "SetSpeed",
-            "speedType": "Bpm",
-            "beatsPerMinute": 230
-        },
-        {
-            "floor": 89,
-            "eventType": "SetSpeed",
-            "speedType": "Bpm",
-            "beatsPerMinute": 209.0909090909091
-        },
-        {
             "floor": 89,
             "eventType": "MoveCamera",
             "duration": 2,
@@ -604,12 +502,6 @@ const test = {
             "angleOffset": 0,
             "ease": "OutBack",
             "eventTag": ""
-        },
-        {
-            "floor": 90,
-            "eventType": "SetSpeed",
-            "speedType": "Bpm",
-            "beatsPerMinute": 230
         },
         {
             "floor": 94,
@@ -641,12 +533,6 @@ const test = {
         },
         {
             "floor": 98,
-            "eventType": "SetSpeed",
-            "speedType": "Bpm",
-            "beatsPerMinute": 184
-        },
-        {
-            "floor": 98,
             "eventType": "MoveCamera",
             "duration": 2,
             "relativeTo": "LastPosition",
@@ -659,12 +545,6 @@ const test = {
             "angleOffset": 0,
             "ease": "OutBack",
             "eventTag": ""
-        },
-        {
-            "floor": 99,
-            "eventType": "SetSpeed",
-            "speedType": "Bpm",
-            "beatsPerMinute": 230
         },
         {
             "floor": 100,
@@ -10583,7 +10463,7 @@ const test = {
             "enabled": "Enabled",
             "intensity": 10,
             "disableOthers": "Disabled",
-            "angleOffset": 1,
+            "angleOffset": 0,
             "eventTag": ""
         },
         {
@@ -10831,7 +10711,7 @@ const test = {
             "enabled": "Disabled",
             "intensity": 100,
             "disableOthers": "Disabled",
-            "angleOffset": 1,
+            "angleOffset": 0,
             "eventTag": ""
         },
         {
@@ -12378,6 +12258,16 @@ const test = {
         },
         {
             "floor": 777,
+            "eventType": "SetFilter",
+            "filter": "Fisheye",
+            "enabled": "Enabled",
+            "intensity": 49,
+            "disableOthers": "Disabled",
+            "angleOffset": 0,
+            "eventTag": ""
+        },
+        {
+            "floor": 777,
             "eventType": "SetHitsound",
             "gameSound": "Hitsound",
             "hitsound": "Shaker",
@@ -12416,6 +12306,16 @@ const test = {
         },
         {
             "floor": 778,
+            "eventType": "SetFilter",
+            "filter": "Fisheye",
+            "enabled": "Enabled",
+            "intensity": 48,
+            "disableOthers": "Disabled",
+            "angleOffset": 0,
+            "eventTag": ""
+        },
+        {
+            "floor": 778,
             "eventType": "MoveTrack",
             "startTile": [
                 0,
@@ -12435,6 +12335,16 @@ const test = {
             "opacity": 0,
             "angleOffset": 0,
             "ease": "OutQuad",
+            "eventTag": ""
+        },
+        {
+            "floor": 779,
+            "eventType": "SetFilter",
+            "filter": "Fisheye",
+            "enabled": "Enabled",
+            "intensity": 47,
+            "disableOthers": "Disabled",
+            "angleOffset": 0,
             "eventTag": ""
         },
         {
@@ -12462,6 +12372,16 @@ const test = {
         },
         {
             "floor": 780,
+            "eventType": "SetFilter",
+            "filter": "Fisheye",
+            "enabled": "Enabled",
+            "intensity": 46,
+            "disableOthers": "Disabled",
+            "angleOffset": 0,
+            "eventTag": ""
+        },
+        {
+            "floor": 780,
             "eventType": "MoveTrack",
             "startTile": [
                 0,
@@ -12481,6 +12401,16 @@ const test = {
             "opacity": 0,
             "angleOffset": 0,
             "ease": "OutQuad",
+            "eventTag": ""
+        },
+        {
+            "floor": 781,
+            "eventType": "SetFilter",
+            "filter": "Fisheye",
+            "enabled": "Enabled",
+            "intensity": 45,
+            "disableOthers": "Disabled",
+            "angleOffset": 0,
             "eventTag": ""
         },
         {
@@ -12508,6 +12438,16 @@ const test = {
         },
         {
             "floor": 782,
+            "eventType": "SetFilter",
+            "filter": "Fisheye",
+            "enabled": "Enabled",
+            "intensity": 44,
+            "disableOthers": "Disabled",
+            "angleOffset": 0,
+            "eventTag": ""
+        },
+        {
+            "floor": 782,
             "eventType": "MoveTrack",
             "startTile": [
                 0,
@@ -12527,6 +12467,16 @@ const test = {
             "opacity": 0,
             "angleOffset": 0,
             "ease": "OutQuad",
+            "eventTag": ""
+        },
+        {
+            "floor": 783,
+            "eventType": "SetFilter",
+            "filter": "Fisheye",
+            "enabled": "Enabled",
+            "intensity": 43,
+            "disableOthers": "Disabled",
+            "angleOffset": 0,
             "eventTag": ""
         },
         {
@@ -12554,6 +12504,16 @@ const test = {
         },
         {
             "floor": 784,
+            "eventType": "SetFilter",
+            "filter": "Fisheye",
+            "enabled": "Enabled",
+            "intensity": 42,
+            "disableOthers": "Disabled",
+            "angleOffset": 0,
+            "eventTag": ""
+        },
+        {
+            "floor": 784,
             "eventType": "MoveTrack",
             "startTile": [
                 0,
@@ -12573,6 +12533,16 @@ const test = {
             "opacity": 0,
             "angleOffset": 0,
             "ease": "OutQuad",
+            "eventTag": ""
+        },
+        {
+            "floor": 785,
+            "eventType": "SetFilter",
+            "filter": "Fisheye",
+            "enabled": "Enabled",
+            "intensity": 41,
+            "disableOthers": "Disabled",
+            "angleOffset": 0,
             "eventTag": ""
         },
         {
@@ -12600,6 +12570,16 @@ const test = {
         },
         {
             "floor": 786,
+            "eventType": "SetFilter",
+            "filter": "Fisheye",
+            "enabled": "Enabled",
+            "intensity": 40,
+            "disableOthers": "Disabled",
+            "angleOffset": 0,
+            "eventTag": ""
+        },
+        {
+            "floor": 786,
             "eventType": "MoveTrack",
             "startTile": [
                 0,
@@ -12619,6 +12599,16 @@ const test = {
             "opacity": 0,
             "angleOffset": 0,
             "ease": "OutQuad",
+            "eventTag": ""
+        },
+        {
+            "floor": 787,
+            "eventType": "SetFilter",
+            "filter": "Fisheye",
+            "enabled": "Enabled",
+            "intensity": 39,
+            "disableOthers": "Disabled",
+            "angleOffset": 0,
             "eventTag": ""
         },
         {
@@ -12646,6 +12636,16 @@ const test = {
         },
         {
             "floor": 788,
+            "eventType": "SetFilter",
+            "filter": "Fisheye",
+            "enabled": "Enabled",
+            "intensity": 38,
+            "disableOthers": "Disabled",
+            "angleOffset": 0,
+            "eventTag": ""
+        },
+        {
+            "floor": 788,
             "eventType": "MoveTrack",
             "startTile": [
                 0,
@@ -12665,6 +12665,16 @@ const test = {
             "opacity": 0,
             "angleOffset": 0,
             "ease": "OutQuad",
+            "eventTag": ""
+        },
+        {
+            "floor": 789,
+            "eventType": "SetFilter",
+            "filter": "Fisheye",
+            "enabled": "Enabled",
+            "intensity": 37,
+            "disableOthers": "Disabled",
+            "angleOffset": 0,
             "eventTag": ""
         },
         {
@@ -12692,6 +12702,16 @@ const test = {
         },
         {
             "floor": 790,
+            "eventType": "SetFilter",
+            "filter": "Fisheye",
+            "enabled": "Enabled",
+            "intensity": 36,
+            "disableOthers": "Disabled",
+            "angleOffset": 0,
+            "eventTag": ""
+        },
+        {
+            "floor": 790,
             "eventType": "MoveTrack",
             "startTile": [
                 0,
@@ -12711,6 +12731,16 @@ const test = {
             "opacity": 0,
             "angleOffset": 0,
             "ease": "OutQuad",
+            "eventTag": ""
+        },
+        {
+            "floor": 791,
+            "eventType": "SetFilter",
+            "filter": "Fisheye",
+            "enabled": "Enabled",
+            "intensity": 35,
+            "disableOthers": "Disabled",
+            "angleOffset": 0,
             "eventTag": ""
         },
         {
@@ -12738,6 +12768,16 @@ const test = {
         },
         {
             "floor": 792,
+            "eventType": "SetFilter",
+            "filter": "Fisheye",
+            "enabled": "Enabled",
+            "intensity": 34,
+            "disableOthers": "Disabled",
+            "angleOffset": 0,
+            "eventTag": ""
+        },
+        {
+            "floor": 792,
             "eventType": "MoveTrack",
             "startTile": [
                 0,
@@ -12761,6 +12801,16 @@ const test = {
         },
         {
             "floor": 793,
+            "eventType": "SetFilter",
+            "filter": "Fisheye",
+            "enabled": "Enabled",
+            "intensity": 33,
+            "disableOthers": "Disabled",
+            "angleOffset": 0,
+            "eventTag": ""
+        },
+        {
+            "floor": 793,
             "eventType": "MoveTrack",
             "startTile": [
                 0,
@@ -12780,6 +12830,16 @@ const test = {
             "opacity": 0,
             "angleOffset": 0,
             "ease": "OutQuad",
+            "eventTag": ""
+        },
+        {
+            "floor": 794,
+            "eventType": "SetFilter",
+            "filter": "Fisheye",
+            "enabled": "Enabled",
+            "intensity": 32,
+            "disableOthers": "Disabled",
+            "angleOffset": 0,
             "eventTag": ""
         },
         {
@@ -12848,6 +12908,16 @@ const test = {
             "zoom": 200,
             "angleOffset": 0,
             "ease": "OutExpo",
+            "eventTag": ""
+        },
+        {
+            "floor": 795,
+            "eventType": "SetFilter",
+            "filter": "Fisheye",
+            "enabled": "Enabled",
+            "intensity": 60,
+            "disableOthers": "Disabled",
+            "angleOffset": 0,
             "eventTag": ""
         },
         {
@@ -14679,7 +14749,7 @@ const test = {
             "enabled": "Disabled",
             "intensity": 15,
             "disableOthers": "Disabled",
-            "angleOffset": 1,
+            "angleOffset": 0,
             "eventTag": ""
         },
         {
@@ -14689,7 +14759,7 @@ const test = {
             "enabled": "Enabled",
             "intensity": 25,
             "disableOthers": "Disabled",
-            "angleOffset": 1,
+            "angleOffset": 0,
             "eventTag": ""
         },
         {
@@ -14778,7 +14848,7 @@ const test = {
             "enabled": "Enabled",
             "intensity": 7,
             "disableOthers": "Disabled",
-            "angleOffset": 1,
+            "angleOffset": 0,
             "eventTag": ""
         },
         {
@@ -14810,18 +14880,6 @@ const test = {
             "gameSound": "Hitsound",
             "hitsound": "Hat",
             "hitsoundVolume": 50
-        },
-        {
-            "floor": 1198,
-            "eventType": "SetSpeed",
-            "speedType": "Bpm",
-            "beatsPerMinute": 109.52380952380952
-        },
-        {
-            "floor": 1199,
-            "eventType": "SetSpeed",
-            "speedType": "Bpm",
-            "beatsPerMinute": 115
         },
         {
             "floor": 1205,
@@ -14908,18 +14966,6 @@ const test = {
             "eventTag": ""
         },
         {
-            "floor": 1210,
-            "eventType": "SetSpeed",
-            "speedType": "Bpm",
-            "beatsPerMinute": 109.52380952380952
-        },
-        {
-            "floor": 1211,
-            "eventType": "SetSpeed",
-            "speedType": "Bpm",
-            "beatsPerMinute": 115
-        },
-        {
             "floor": 1217,
             "eventType": "MoveTrack",
             "startTile": [
@@ -15003,12 +15049,6 @@ const test = {
         },
         {
             "floor": 1222,
-            "eventType": "SetSpeed",
-            "speedType": "Bpm",
-            "beatsPerMinute": 109.52380952380952
-        },
-        {
-            "floor": 1222,
             "eventType": "MoveTrack",
             "startTile": [
                 -3,
@@ -15029,12 +15069,6 @@ const test = {
             "angleOffset": 0,
             "ease": "OutCubic",
             "eventTag": ""
-        },
-        {
-            "floor": 1223,
-            "eventType": "SetSpeed",
-            "speedType": "Bpm",
-            "beatsPerMinute": 115
         },
         {
             "floor": 1224,
@@ -15107,12 +15141,6 @@ const test = {
         },
         {
             "floor": 1230,
-            "eventType": "SetSpeed",
-            "speedType": "Bpm",
-            "beatsPerMinute": 109.52380952380952
-        },
-        {
-            "floor": 1230,
             "eventType": "MoveTrack",
             "startTile": [
                 -2,
@@ -15133,12 +15161,6 @@ const test = {
             "angleOffset": 0,
             "ease": "OutCubic",
             "eventTag": ""
-        },
-        {
-            "floor": 1231,
-            "eventType": "SetSpeed",
-            "speedType": "Bpm",
-            "beatsPerMinute": 115
         },
         {
             "floor": 1232,
@@ -15283,18 +15305,6 @@ const test = {
             "eventTag": ""
         },
         {
-            "floor": 1242,
-            "eventType": "SetSpeed",
-            "speedType": "Bpm",
-            "beatsPerMinute": 109.52380952380952
-        },
-        {
-            "floor": 1243,
-            "eventType": "SetSpeed",
-            "speedType": "Bpm",
-            "beatsPerMinute": 115
-        },
-        {
             "floor": 1244,
             "eventType": "MoveTrack",
             "startTile": [
@@ -15346,12 +15356,6 @@ const test = {
         },
         {
             "floor": 1248,
-            "eventType": "SetSpeed",
-            "speedType": "Bpm",
-            "beatsPerMinute": 109.52380952380952
-        },
-        {
-            "floor": 1248,
             "eventType": "MoveTrack",
             "startTile": [
                 -1,
@@ -15372,12 +15376,6 @@ const test = {
             "angleOffset": 0,
             "ease": "OutCubic",
             "eventTag": ""
-        },
-        {
-            "floor": 1249,
-            "eventType": "SetSpeed",
-            "speedType": "Bpm",
-            "beatsPerMinute": 115
         },
         {
             "floor": 1250,
@@ -15433,7 +15431,7 @@ const test = {
             "floor": 1255,
             "eventType": "SetSpeed",
             "speedType": "Bpm",
-            "beatsPerMinute": 212.30769230769232
+            "beatsPerMinute": 230
         },
         {
             "floor": 1255,
@@ -15470,7 +15468,7 @@ const test = {
             "enabled": "Enabled",
             "intensity": 5,
             "disableOthers": "Disabled",
-            "angleOffset": 1,
+            "angleOffset": 0,
             "eventTag": ""
         },
         {
@@ -15520,18 +15518,6 @@ const test = {
             "eventTag": ""
         },
         {
-            "floor": 1256,
-            "eventType": "SetSpeed",
-            "speedType": "Bpm",
-            "beatsPerMinute": 230
-        },
-        {
-            "floor": 1259,
-            "eventType": "SetSpeed",
-            "speedType": "Bpm",
-            "beatsPerMinute": 212.30769230769232
-        },
-        {
             "floor": 1259,
             "eventType": "MoveTrack",
             "startTile": [
@@ -15576,12 +15562,6 @@ const test = {
             "angleOffset": 0,
             "ease": "OutCubic",
             "eventTag": ""
-        },
-        {
-            "floor": 1260,
-            "eventType": "SetSpeed",
-            "speedType": "Bpm",
-            "beatsPerMinute": 230
         },
         {
             "floor": 1262,
@@ -15681,12 +15661,6 @@ const test = {
         },
         {
             "floor": 1271,
-            "eventType": "SetSpeed",
-            "speedType": "Bpm",
-            "beatsPerMinute": 209.0909090909091
-        },
-        {
-            "floor": 1271,
             "eventType": "MoveTrack",
             "startTile": [
                 1286,
@@ -15730,12 +15704,6 @@ const test = {
             "angleOffset": 0,
             "ease": "OutCubic",
             "eventTag": ""
-        },
-        {
-            "floor": 1272,
-            "eventType": "SetSpeed",
-            "speedType": "Bpm",
-            "beatsPerMinute": 230
         },
         {
             "floor": 1274,
@@ -15782,12 +15750,6 @@ const test = {
             "angleOffset": 0,
             "ease": "OutCubic",
             "eventTag": ""
-        },
-        {
-            "floor": 1277,
-            "eventType": "SetSpeed",
-            "speedType": "Bpm",
-            "beatsPerMinute": 212.30769230769232
         },
         {
             "floor": 1277,
@@ -15840,18 +15802,6 @@ const test = {
             "eventTag": ""
         },
         {
-            "floor": 1278,
-            "eventType": "SetSpeed",
-            "speedType": "Bpm",
-            "beatsPerMinute": 230
-        },
-        {
-            "floor": 1280,
-            "eventType": "SetSpeed",
-            "speedType": "Bpm",
-            "beatsPerMinute": 460
-        },
-        {
             "floor": 1280,
             "eventType": "MoveTrack",
             "startTile": [
@@ -15896,12 +15846,6 @@ const test = {
             "angleOffset": 0,
             "ease": "OutCubic",
             "eventTag": ""
-        },
-        {
-            "floor": 1281,
-            "eventType": "SetSpeed",
-            "speedType": "Bpm",
-            "beatsPerMinute": 230
         },
         {
             "floor": 1282,
@@ -16005,12 +15949,6 @@ const test = {
         },
         {
             "floor": 1293,
-            "eventType": "SetSpeed",
-            "speedType": "Bpm",
-            "beatsPerMinute": 212.30769230769232
-        },
-        {
-            "floor": 1293,
             "eventType": "MoveTrack",
             "startTile": [
                 1307,
@@ -16054,18 +15992,6 @@ const test = {
             "angleOffset": 0,
             "ease": "OutCubic",
             "eventTag": ""
-        },
-        {
-            "floor": 1294,
-            "eventType": "SetSpeed",
-            "speedType": "Bpm",
-            "beatsPerMinute": 230
-        },
-        {
-            "floor": 1297,
-            "eventType": "SetSpeed",
-            "speedType": "Bpm",
-            "beatsPerMinute": 212.30769230769232
         },
         {
             "floor": 1297,
@@ -16114,18 +16040,6 @@ const test = {
             "eventTag": ""
         },
         {
-            "floor": 1298,
-            "eventType": "SetSpeed",
-            "speedType": "Bpm",
-            "beatsPerMinute": 230
-        },
-        {
-            "floor": 1300,
-            "eventType": "SetSpeed",
-            "speedType": "Bpm",
-            "beatsPerMinute": 460
-        },
-        {
             "floor": 1300,
             "eventType": "MoveTrack",
             "startTile": [
@@ -16172,18 +16086,6 @@ const test = {
             "eventTag": ""
         },
         {
-            "floor": 1301,
-            "eventType": "SetSpeed",
-            "speedType": "Bpm",
-            "beatsPerMinute": 230
-        },
-        {
-            "floor": 1303,
-            "eventType": "SetSpeed",
-            "speedType": "Bpm",
-            "beatsPerMinute": 212.30769230769232
-        },
-        {
             "floor": 1303,
             "eventType": "MoveTrack",
             "startTile": [
@@ -16228,12 +16130,6 @@ const test = {
             "angleOffset": 0,
             "ease": "OutCubic",
             "eventTag": ""
-        },
-        {
-            "floor": 1304,
-            "eventType": "SetSpeed",
-            "speedType": "Bpm",
-            "beatsPerMinute": 230
         },
         {
             "floor": 1306,
@@ -16287,12 +16183,6 @@ const test = {
         },
         {
             "floor": 1309,
-            "eventType": "SetSpeed",
-            "speedType": "Bpm",
-            "beatsPerMinute": 209.0909090909091
-        },
-        {
-            "floor": 1309,
             "eventType": "MoveTrack",
             "startTile": [
                 1329,
@@ -16338,20 +16228,8 @@ const test = {
             "eventTag": ""
         },
         {
-            "floor": 1310,
-            "eventType": "SetSpeed",
-            "speedType": "Bpm",
-            "beatsPerMinute": 230
-        },
-        {
             "floor": 1311,
             "eventType": "Twirl"
-        },
-        {
-            "floor": 1313,
-            "eventType": "SetSpeed",
-            "speedType": "Bpm",
-            "beatsPerMinute": 212.30769230769232
         },
         {
             "floor": 1313,
@@ -16413,18 +16291,6 @@ const test = {
             "eventTag": ""
         },
         {
-            "floor": 1314,
-            "eventType": "SetSpeed",
-            "speedType": "Bpm",
-            "beatsPerMinute": 230
-        },
-        {
-            "floor": 1317,
-            "eventType": "SetSpeed",
-            "speedType": "Bpm",
-            "beatsPerMinute": 212.30769230769232
-        },
-        {
             "floor": 1317,
             "eventType": "MoveTrack",
             "startTile": [
@@ -16469,12 +16335,6 @@ const test = {
             "angleOffset": 0,
             "ease": "OutCubic",
             "eventTag": ""
-        },
-        {
-            "floor": 1318,
-            "eventType": "SetSpeed",
-            "speedType": "Bpm",
-            "beatsPerMinute": 230
         },
         {
             "floor": 1320,
@@ -16574,12 +16434,6 @@ const test = {
         },
         {
             "floor": 1329,
-            "eventType": "SetSpeed",
-            "speedType": "Bpm",
-            "beatsPerMinute": 212.30769230769232
-        },
-        {
-            "floor": 1329,
             "eventType": "Twirl"
         },
         {
@@ -16629,18 +16483,6 @@ const test = {
             "eventTag": ""
         },
         {
-            "floor": 1330,
-            "eventType": "SetSpeed",
-            "speedType": "Bpm",
-            "beatsPerMinute": 230
-        },
-        {
-            "floor": 1333,
-            "eventType": "SetSpeed",
-            "speedType": "Bpm",
-            "beatsPerMinute": 212.30769230769232
-        },
-        {
             "floor": 1333,
             "eventType": "MoveTrack",
             "startTile": [
@@ -16685,12 +16527,6 @@ const test = {
             "angleOffset": 0,
             "ease": "OutCubic",
             "eventTag": ""
-        },
-        {
-            "floor": 1334,
-            "eventType": "SetSpeed",
-            "speedType": "Bpm",
-            "beatsPerMinute": 230
         },
         {
             "floor": 1336,
@@ -16790,12 +16626,6 @@ const test = {
         },
         {
             "floor": 1345,
-            "eventType": "SetSpeed",
-            "speedType": "Bpm",
-            "beatsPerMinute": 212.30769230769232
-        },
-        {
-            "floor": 1345,
             "eventType": "Twirl"
         },
         {
@@ -16845,18 +16675,6 @@ const test = {
             "eventTag": ""
         },
         {
-            "floor": 1346,
-            "eventType": "SetSpeed",
-            "speedType": "Bpm",
-            "beatsPerMinute": 230
-        },
-        {
-            "floor": 1349,
-            "eventType": "SetSpeed",
-            "speedType": "Bpm",
-            "beatsPerMinute": 212.30769230769232
-        },
-        {
             "floor": 1349,
             "eventType": "MoveTrack",
             "startTile": [
@@ -16901,12 +16719,6 @@ const test = {
             "angleOffset": 0,
             "ease": "OutCubic",
             "eventTag": ""
-        },
-        {
-            "floor": 1350,
-            "eventType": "SetSpeed",
-            "speedType": "Bpm",
-            "beatsPerMinute": 230
         },
         {
             "floor": 1352,
@@ -17006,12 +16818,6 @@ const test = {
         },
         {
             "floor": 1361,
-            "eventType": "SetSpeed",
-            "speedType": "Bpm",
-            "beatsPerMinute": 212.30769230769232
-        },
-        {
-            "floor": 1361,
             "eventType": "Twirl"
         },
         {
@@ -17061,18 +16867,6 @@ const test = {
             "eventTag": ""
         },
         {
-            "floor": 1362,
-            "eventType": "SetSpeed",
-            "speedType": "Bpm",
-            "beatsPerMinute": 230
-        },
-        {
-            "floor": 1365,
-            "eventType": "SetSpeed",
-            "speedType": "Bpm",
-            "beatsPerMinute": 212.30769230769232
-        },
-        {
             "floor": 1365,
             "eventType": "MoveTrack",
             "startTile": [
@@ -17117,12 +16911,6 @@ const test = {
             "angleOffset": 0,
             "ease": "OutCubic",
             "eventTag": ""
-        },
-        {
-            "floor": 1366,
-            "eventType": "SetSpeed",
-            "speedType": "Bpm",
-            "beatsPerMinute": 230
         },
         {
             "floor": 1368,
@@ -17222,12 +17010,6 @@ const test = {
         },
         {
             "floor": 1377,
-            "eventType": "SetSpeed",
-            "speedType": "Bpm",
-            "beatsPerMinute": 209.0909090909091
-        },
-        {
-            "floor": 1377,
             "eventType": "Flash",
             "duration": 4,
             "plane": "Foreground",
@@ -17286,12 +17068,6 @@ const test = {
             "eventTag": ""
         },
         {
-            "floor": 1378,
-            "eventType": "SetSpeed",
-            "speedType": "Bpm",
-            "beatsPerMinute": 230
-        },
-        {
             "floor": 1380,
             "eventType": "MoveTrack",
             "startTile": [
@@ -17336,12 +17112,6 @@ const test = {
             "angleOffset": 0,
             "ease": "OutCubic",
             "eventTag": ""
-        },
-        {
-            "floor": 1383,
-            "eventType": "SetSpeed",
-            "speedType": "Bpm",
-            "beatsPerMinute": 212.30769230769232
         },
         {
             "floor": 1383,
@@ -17394,18 +17164,6 @@ const test = {
             "eventTag": ""
         },
         {
-            "floor": 1384,
-            "eventType": "SetSpeed",
-            "speedType": "Bpm",
-            "beatsPerMinute": 230
-        },
-        {
-            "floor": 1386,
-            "eventType": "SetSpeed",
-            "speedType": "Bpm",
-            "beatsPerMinute": 460
-        },
-        {
             "floor": 1386,
             "eventType": "MoveTrack",
             "startTile": [
@@ -17450,18 +17208,6 @@ const test = {
             "angleOffset": 0,
             "ease": "OutCubic",
             "eventTag": ""
-        },
-        {
-            "floor": 1387,
-            "eventType": "SetSpeed",
-            "speedType": "Bpm",
-            "beatsPerMinute": 230
-        },
-        {
-            "floor": 1389,
-            "eventType": "SetSpeed",
-            "speedType": "Bpm",
-            "beatsPerMinute": 209.0909090909091
         },
         {
             "floor": 1389,
@@ -17514,12 +17260,6 @@ const test = {
             "eventTag": ""
         },
         {
-            "floor": 1390,
-            "eventType": "SetSpeed",
-            "speedType": "Bpm",
-            "beatsPerMinute": 230
-        },
-        {
             "floor": 1392,
             "eventType": "MoveTrack",
             "startTile": [
@@ -17564,12 +17304,6 @@ const test = {
             "angleOffset": 0,
             "ease": "OutCubic",
             "eventTag": ""
-        },
-        {
-            "floor": 1395,
-            "eventType": "SetSpeed",
-            "speedType": "Bpm",
-            "beatsPerMinute": 212.30769230769232
         },
         {
             "floor": 1395,
@@ -17622,18 +17356,6 @@ const test = {
             "eventTag": ""
         },
         {
-            "floor": 1396,
-            "eventType": "SetSpeed",
-            "speedType": "Bpm",
-            "beatsPerMinute": 230
-        },
-        {
-            "floor": 1398,
-            "eventType": "SetSpeed",
-            "speedType": "Bpm",
-            "beatsPerMinute": 460
-        },
-        {
             "floor": 1398,
             "eventType": "MoveTrack",
             "startTile": [
@@ -17678,18 +17400,6 @@ const test = {
             "angleOffset": 0,
             "ease": "OutCubic",
             "eventTag": ""
-        },
-        {
-            "floor": 1399,
-            "eventType": "SetSpeed",
-            "speedType": "Bpm",
-            "beatsPerMinute": 230
-        },
-        {
-            "floor": 1401,
-            "eventType": "SetSpeed",
-            "speedType": "Bpm",
-            "beatsPerMinute": 212.30769230769232
         },
         {
             "floor": 1401,
@@ -17766,18 +17476,6 @@ const test = {
             "eventTag": ""
         },
         {
-            "floor": 1402,
-            "eventType": "SetSpeed",
-            "speedType": "Bpm",
-            "beatsPerMinute": 230
-        },
-        {
-            "floor": 1404,
-            "eventType": "SetSpeed",
-            "speedType": "Bpm",
-            "beatsPerMinute": 212.30769230769232
-        },
-        {
             "floor": 1404,
             "eventType": "MoveTrack",
             "startTile": [
@@ -17822,18 +17520,6 @@ const test = {
             "angleOffset": 0,
             "ease": "OutCubic",
             "eventTag": ""
-        },
-        {
-            "floor": 1405,
-            "eventType": "SetSpeed",
-            "speedType": "Bpm",
-            "beatsPerMinute": 230
-        },
-        {
-            "floor": 1407,
-            "eventType": "SetSpeed",
-            "speedType": "Bpm",
-            "beatsPerMinute": 209.0909090909091
         },
         {
             "floor": 1407,
@@ -17886,18 +17572,6 @@ const test = {
             "eventTag": ""
         },
         {
-            "floor": 1408,
-            "eventType": "SetSpeed",
-            "speedType": "Bpm",
-            "beatsPerMinute": 230
-        },
-        {
-            "floor": 1410,
-            "eventType": "SetSpeed",
-            "speedType": "Bpm",
-            "beatsPerMinute": 209.0909090909091
-        },
-        {
             "floor": 1410,
             "eventType": "MoveTrack",
             "startTile": [
@@ -17942,18 +17616,6 @@ const test = {
             "angleOffset": 0,
             "ease": "OutCubic",
             "eventTag": ""
-        },
-        {
-            "floor": 1411,
-            "eventType": "SetSpeed",
-            "speedType": "Bpm",
-            "beatsPerMinute": 230
-        },
-        {
-            "floor": 1413,
-            "eventType": "SetSpeed",
-            "speedType": "Bpm",
-            "beatsPerMinute": 212.30769230769232
         },
         {
             "floor": 1413,
@@ -18006,18 +17668,6 @@ const test = {
             "eventTag": ""
         },
         {
-            "floor": 1414,
-            "eventType": "SetSpeed",
-            "speedType": "Bpm",
-            "beatsPerMinute": 230
-        },
-        {
-            "floor": 1416,
-            "eventType": "SetSpeed",
-            "speedType": "Bpm",
-            "beatsPerMinute": 212.30769230769232
-        },
-        {
             "floor": 1416,
             "eventType": "MoveTrack",
             "startTile": [
@@ -18062,18 +17712,6 @@ const test = {
             "angleOffset": 0,
             "ease": "OutCubic",
             "eventTag": ""
-        },
-        {
-            "floor": 1417,
-            "eventType": "SetSpeed",
-            "speedType": "Bpm",
-            "beatsPerMinute": 230
-        },
-        {
-            "floor": 1419,
-            "eventType": "SetSpeed",
-            "speedType": "Bpm",
-            "beatsPerMinute": 209.0909090909091
         },
         {
             "floor": 1419,
@@ -18126,18 +17764,6 @@ const test = {
             "eventTag": ""
         },
         {
-            "floor": 1420,
-            "eventType": "SetSpeed",
-            "speedType": "Bpm",
-            "beatsPerMinute": 230
-        },
-        {
-            "floor": 1422,
-            "eventType": "SetSpeed",
-            "speedType": "Bpm",
-            "beatsPerMinute": 209.0909090909091
-        },
-        {
             "floor": 1422,
             "eventType": "MoveTrack",
             "startTile": [
@@ -18182,12 +17808,6 @@ const test = {
             "angleOffset": 0,
             "ease": "OutCubic",
             "eventTag": ""
-        },
-        {
-            "floor": 1423,
-            "eventType": "SetSpeed",
-            "speedType": "Bpm",
-            "beatsPerMinute": 230
         },
         {
             "floor": 1425,
@@ -18871,7 +18491,7 @@ const test = {
             "enabled": "Disabled",
             "intensity": 100,
             "disableOthers": "Disabled",
-            "angleOffset": 1,
+            "angleOffset": 0,
             "eventTag": ""
         },
         {
@@ -20671,7 +20291,7 @@ const test = {
             "enabled": "Disabled",
             "intensity": 100,
             "disableOthers": "Disabled",
-            "angleOffset": 1,
+            "angleOffset": 0,
             "eventTag": ""
         },
         {
@@ -20681,7 +20301,7 @@ const test = {
             "enabled": "Disabled",
             "intensity": 100,
             "disableOthers": "Disabled",
-            "angleOffset": 1,
+            "angleOffset": 0,
             "eventTag": ""
         },
         {
@@ -20701,7 +20321,7 @@ const test = {
             "enabled": "Disabled",
             "intensity": 100,
             "disableOthers": "Disabled",
-            "angleOffset": 1,
+            "angleOffset": 0,
             "eventTag": ""
         },
         {
@@ -20717,6 +20337,16 @@ const test = {
             "zoom": 1,
             "angleOffset": 150,
             "ease": "InBack",
+            "eventTag": ""
+        },
+        {
+            "floor": 1677,
+            "eventType": "SetFilter",
+            "filter": "Fisheye",
+            "enabled": "Enabled",
+            "intensity": 49,
+            "disableOthers": "Disabled",
+            "angleOffset": 0,
             "eventTag": ""
         },
         {
@@ -20759,6 +20389,16 @@ const test = {
         },
         {
             "floor": 1678,
+            "eventType": "SetFilter",
+            "filter": "Fisheye",
+            "enabled": "Enabled",
+            "intensity": 48,
+            "disableOthers": "Disabled",
+            "angleOffset": 0,
+            "eventTag": ""
+        },
+        {
+            "floor": 1678,
             "eventType": "MoveTrack",
             "startTile": [
                 0,
@@ -20778,6 +20418,16 @@ const test = {
             "opacity": 0,
             "angleOffset": 0,
             "ease": "OutQuad",
+            "eventTag": ""
+        },
+        {
+            "floor": 1679,
+            "eventType": "SetFilter",
+            "filter": "Fisheye",
+            "enabled": "Enabled",
+            "intensity": 47,
+            "disableOthers": "Disabled",
+            "angleOffset": 0,
             "eventTag": ""
         },
         {
@@ -20805,6 +20455,16 @@ const test = {
         },
         {
             "floor": 1680,
+            "eventType": "SetFilter",
+            "filter": "Fisheye",
+            "enabled": "Enabled",
+            "intensity": 46,
+            "disableOthers": "Disabled",
+            "angleOffset": 0,
+            "eventTag": ""
+        },
+        {
+            "floor": 1680,
             "eventType": "MoveTrack",
             "startTile": [
                 0,
@@ -20824,6 +20484,16 @@ const test = {
             "opacity": 0,
             "angleOffset": 0,
             "ease": "OutQuad",
+            "eventTag": ""
+        },
+        {
+            "floor": 1681,
+            "eventType": "SetFilter",
+            "filter": "Fisheye",
+            "enabled": "Enabled",
+            "intensity": 45,
+            "disableOthers": "Disabled",
+            "angleOffset": 0,
             "eventTag": ""
         },
         {
@@ -20851,6 +20521,16 @@ const test = {
         },
         {
             "floor": 1682,
+            "eventType": "SetFilter",
+            "filter": "Fisheye",
+            "enabled": "Enabled",
+            "intensity": 44,
+            "disableOthers": "Disabled",
+            "angleOffset": 0,
+            "eventTag": ""
+        },
+        {
+            "floor": 1682,
             "eventType": "MoveTrack",
             "startTile": [
                 0,
@@ -20870,6 +20550,16 @@ const test = {
             "opacity": 0,
             "angleOffset": 0,
             "ease": "OutQuad",
+            "eventTag": ""
+        },
+        {
+            "floor": 1683,
+            "eventType": "SetFilter",
+            "filter": "Fisheye",
+            "enabled": "Enabled",
+            "intensity": 43,
+            "disableOthers": "Disabled",
+            "angleOffset": 0,
             "eventTag": ""
         },
         {
@@ -20897,6 +20587,16 @@ const test = {
         },
         {
             "floor": 1684,
+            "eventType": "SetFilter",
+            "filter": "Fisheye",
+            "enabled": "Enabled",
+            "intensity": 42,
+            "disableOthers": "Disabled",
+            "angleOffset": 0,
+            "eventTag": ""
+        },
+        {
+            "floor": 1684,
             "eventType": "MoveTrack",
             "startTile": [
                 0,
@@ -20916,6 +20616,16 @@ const test = {
             "opacity": 0,
             "angleOffset": 0,
             "ease": "OutQuad",
+            "eventTag": ""
+        },
+        {
+            "floor": 1685,
+            "eventType": "SetFilter",
+            "filter": "Fisheye",
+            "enabled": "Enabled",
+            "intensity": 41,
+            "disableOthers": "Disabled",
+            "angleOffset": 0,
             "eventTag": ""
         },
         {
@@ -20943,6 +20653,16 @@ const test = {
         },
         {
             "floor": 1686,
+            "eventType": "SetFilter",
+            "filter": "Fisheye",
+            "enabled": "Enabled",
+            "intensity": 40,
+            "disableOthers": "Disabled",
+            "angleOffset": 0,
+            "eventTag": ""
+        },
+        {
+            "floor": 1686,
             "eventType": "MoveTrack",
             "startTile": [
                 0,
@@ -20962,6 +20682,16 @@ const test = {
             "opacity": 0,
             "angleOffset": 0,
             "ease": "OutQuad",
+            "eventTag": ""
+        },
+        {
+            "floor": 1687,
+            "eventType": "SetFilter",
+            "filter": "Fisheye",
+            "enabled": "Enabled",
+            "intensity": 39,
+            "disableOthers": "Disabled",
+            "angleOffset": 0,
             "eventTag": ""
         },
         {
@@ -20989,6 +20719,16 @@ const test = {
         },
         {
             "floor": 1688,
+            "eventType": "SetFilter",
+            "filter": "Fisheye",
+            "enabled": "Enabled",
+            "intensity": 38,
+            "disableOthers": "Disabled",
+            "angleOffset": 0,
+            "eventTag": ""
+        },
+        {
+            "floor": 1688,
             "eventType": "MoveTrack",
             "startTile": [
                 0,
@@ -21008,6 +20748,16 @@ const test = {
             "opacity": 0,
             "angleOffset": 0,
             "ease": "OutQuad",
+            "eventTag": ""
+        },
+        {
+            "floor": 1689,
+            "eventType": "SetFilter",
+            "filter": "Fisheye",
+            "enabled": "Enabled",
+            "intensity": 37,
+            "disableOthers": "Disabled",
+            "angleOffset": 0,
             "eventTag": ""
         },
         {
@@ -21035,6 +20785,16 @@ const test = {
         },
         {
             "floor": 1690,
+            "eventType": "SetFilter",
+            "filter": "Fisheye",
+            "enabled": "Enabled",
+            "intensity": 36,
+            "disableOthers": "Disabled",
+            "angleOffset": 0,
+            "eventTag": ""
+        },
+        {
+            "floor": 1690,
             "eventType": "MoveTrack",
             "startTile": [
                 0,
@@ -21054,6 +20814,16 @@ const test = {
             "opacity": 0,
             "angleOffset": 0,
             "ease": "OutQuad",
+            "eventTag": ""
+        },
+        {
+            "floor": 1691,
+            "eventType": "SetFilter",
+            "filter": "Fisheye",
+            "enabled": "Enabled",
+            "intensity": 35,
+            "disableOthers": "Disabled",
+            "angleOffset": 0,
             "eventTag": ""
         },
         {
@@ -21081,6 +20851,16 @@ const test = {
         },
         {
             "floor": 1692,
+            "eventType": "SetFilter",
+            "filter": "Fisheye",
+            "enabled": "Enabled",
+            "intensity": 34,
+            "disableOthers": "Disabled",
+            "angleOffset": 0,
+            "eventTag": ""
+        },
+        {
+            "floor": 1692,
             "eventType": "MoveTrack",
             "startTile": [
                 0,
@@ -21104,6 +20884,16 @@ const test = {
         },
         {
             "floor": 1693,
+            "eventType": "SetFilter",
+            "filter": "Fisheye",
+            "enabled": "Enabled",
+            "intensity": 33,
+            "disableOthers": "Disabled",
+            "angleOffset": 0,
+            "eventTag": ""
+        },
+        {
+            "floor": 1693,
             "eventType": "MoveTrack",
             "startTile": [
                 0,
@@ -21123,6 +20913,16 @@ const test = {
             "opacity": 0,
             "angleOffset": 0,
             "ease": "OutQuad",
+            "eventTag": ""
+        },
+        {
+            "floor": 1694,
+            "eventType": "SetFilter",
+            "filter": "Fisheye",
+            "enabled": "Enabled",
+            "intensity": 32,
+            "disableOthers": "Disabled",
+            "angleOffset": 0,
             "eventTag": ""
         },
         {
@@ -21213,7 +21013,7 @@ const test = {
             "enabled": "Enabled",
             "intensity": 5,
             "disableOthers": "Disabled",
-            "angleOffset": 1,
+            "angleOffset": 0,
             "eventTag": ""
         },
         {
@@ -21223,7 +21023,17 @@ const test = {
             "enabled": "Enabled",
             "intensity": 7,
             "disableOthers": "Disabled",
-            "angleOffset": 1,
+            "angleOffset": 0,
+            "eventTag": ""
+        },
+        {
+            "floor": 1695,
+            "eventType": "SetFilter",
+            "filter": "Fisheye",
+            "enabled": "Enabled",
+            "intensity": 48,
+            "disableOthers": "Disabled",
+            "angleOffset": 0,
             "eventTag": ""
         },
         {
@@ -21464,7 +21274,7 @@ const test = {
             "enabled": "Enabled",
             "intensity": 20,
             "disableOthers": "Disabled",
-            "angleOffset": 1,
+            "angleOffset": 0,
             "eventTag": ""
         },
         {
@@ -21481,6 +21291,7 @@ const test = {
                 0
             ],
             "rotation": 0,
+            "scale": 300,
             "tile": [
                 1,
                 1
@@ -21514,7 +21325,7 @@ const test = {
             "enabled": "Enabled",
             "intensity": 20,
             "disableOthers": "Disabled",
-            "angleOffset": 1,
+            "angleOffset": 0,
             "eventTag": ""
         },
         {
@@ -21524,7 +21335,7 @@ const test = {
             "enabled": "Enabled",
             "intensity": 100,
             "disableOthers": "Disabled",
-            "angleOffset": 1,
+            "angleOffset": 0,
             "eventTag": ""
         },
         {
@@ -21570,7 +21381,7 @@ const test = {
             "enabled": "Disabled",
             "intensity": 100,
             "disableOthers": "Disabled",
-            "angleOffset": 1,
+            "angleOffset": 0,
             "eventTag": ""
         },
         {
@@ -21580,7 +21391,7 @@ const test = {
             "enabled": "Disabled",
             "intensity": 100,
             "disableOthers": "Disabled",
-            "angleOffset": 1,
+            "angleOffset": 0,
             "eventTag": ""
         },
         {
@@ -23519,7 +23330,7 @@ const test = {
             "trackColorAnimDuration": 0.3,
             "trackColorPulse": "Forward",
             "trackPulseLength": 6,
-            "trackStyle": "Standard",
+            "trackStyle": "Basic",
             "angleOffset": 0,
             "eventTag": ""
         },
@@ -23540,7 +23351,7 @@ const test = {
             "trackColorAnimDuration": 0.3,
             "trackColorPulse": "Forward",
             "trackPulseLength": 6,
-            "trackStyle": "Standard",
+            "trackStyle": "Basic",
             "angleOffset": 90,
             "eventTag": ""
         },
@@ -23615,7 +23426,7 @@ const test = {
             "trackColorAnimDuration": 0.3,
             "trackColorPulse": "Forward",
             "trackPulseLength": 6,
-            "trackStyle": "Standard",
+            "trackStyle": "Basic",
             "angleOffset": 0,
             "eventTag": ""
         },
@@ -23636,7 +23447,7 @@ const test = {
             "trackColorAnimDuration": 0.3,
             "trackColorPulse": "Forward",
             "trackPulseLength": 6,
-            "trackStyle": "Standard",
+            "trackStyle": "Basic",
             "angleOffset": 90,
             "eventTag": ""
         },
@@ -23703,7 +23514,7 @@ const test = {
             "trackColorAnimDuration": 0.3,
             "trackColorPulse": "Forward",
             "trackPulseLength": 6,
-            "trackStyle": "Standard",
+            "trackStyle": "Basic",
             "angleOffset": 0,
             "eventTag": ""
         },
@@ -23724,7 +23535,7 @@ const test = {
             "trackColorAnimDuration": 0.3,
             "trackColorPulse": "Forward",
             "trackPulseLength": 6,
-            "trackStyle": "Standard",
+            "trackStyle": "Basic",
             "angleOffset": 90,
             "eventTag": ""
         },
@@ -23791,7 +23602,7 @@ const test = {
             "trackColorAnimDuration": 0.3,
             "trackColorPulse": "Forward",
             "trackPulseLength": 6,
-            "trackStyle": "Standard",
+            "trackStyle": "Basic",
             "angleOffset": 0,
             "eventTag": ""
         },
@@ -23812,7 +23623,7 @@ const test = {
             "trackColorAnimDuration": 0.3,
             "trackColorPulse": "Forward",
             "trackPulseLength": 6,
-            "trackStyle": "Standard",
+            "trackStyle": "Basic",
             "angleOffset": 90,
             "eventTag": ""
         },
@@ -23879,7 +23690,7 @@ const test = {
             "trackColorAnimDuration": 0.3,
             "trackColorPulse": "Forward",
             "trackPulseLength": 6,
-            "trackStyle": "Standard",
+            "trackStyle": "Basic",
             "angleOffset": 0,
             "eventTag": ""
         },
@@ -23900,7 +23711,7 @@ const test = {
             "trackColorAnimDuration": 0.3,
             "trackColorPulse": "Forward",
             "trackPulseLength": 6,
-            "trackStyle": "Standard",
+            "trackStyle": "Basic",
             "angleOffset": 90,
             "eventTag": ""
         },
@@ -24028,7 +23839,7 @@ const test = {
             "trackColorAnimDuration": 0.3,
             "trackColorPulse": "Forward",
             "trackPulseLength": 6,
-            "trackStyle": "Standard",
+            "trackStyle": "Basic",
             "angleOffset": 0,
             "eventTag": ""
         },
@@ -24049,7 +23860,7 @@ const test = {
             "trackColorAnimDuration": 0.3,
             "trackColorPulse": "Forward",
             "trackPulseLength": 6,
-            "trackStyle": "Standard",
+            "trackStyle": "Basic",
             "angleOffset": 0,
             "eventTag": ""
         },
@@ -24070,7 +23881,7 @@ const test = {
             "trackColorAnimDuration": 0.3,
             "trackColorPulse": "Forward",
             "trackPulseLength": 6,
-            "trackStyle": "Standard",
+            "trackStyle": "Basic",
             "angleOffset": 0,
             "eventTag": ""
         },
@@ -24091,7 +23902,7 @@ const test = {
             "trackColorAnimDuration": 0.3,
             "trackColorPulse": "Forward",
             "trackPulseLength": 6,
-            "trackStyle": "Standard",
+            "trackStyle": "Basic",
             "angleOffset": 90,
             "eventTag": ""
         },
@@ -24158,7 +23969,7 @@ const test = {
             "trackColorAnimDuration": 0.3,
             "trackColorPulse": "Forward",
             "trackPulseLength": 6,
-            "trackStyle": "Standard",
+            "trackStyle": "Basic",
             "angleOffset": 0,
             "eventTag": ""
         },
@@ -24179,7 +23990,7 @@ const test = {
             "trackColorAnimDuration": 0.3,
             "trackColorPulse": "Forward",
             "trackPulseLength": 6,
-            "trackStyle": "Standard",
+            "trackStyle": "Basic",
             "angleOffset": 90,
             "eventTag": ""
         },
@@ -24246,7 +24057,7 @@ const test = {
             "trackColorAnimDuration": 0.3,
             "trackColorPulse": "Forward",
             "trackPulseLength": 6,
-            "trackStyle": "Standard",
+            "trackStyle": "Basic",
             "angleOffset": 0,
             "eventTag": ""
         },
@@ -24267,7 +24078,7 @@ const test = {
             "trackColorAnimDuration": 0.3,
             "trackColorPulse": "Forward",
             "trackPulseLength": 6,
-            "trackStyle": "Standard",
+            "trackStyle": "Basic",
             "angleOffset": 90,
             "eventTag": ""
         },
@@ -24334,7 +24145,7 @@ const test = {
             "trackColorAnimDuration": 0.3,
             "trackColorPulse": "Forward",
             "trackPulseLength": 6,
-            "trackStyle": "Standard",
+            "trackStyle": "Basic",
             "angleOffset": 0,
             "eventTag": ""
         },
@@ -24355,7 +24166,7 @@ const test = {
             "trackColorAnimDuration": 0.3,
             "trackColorPulse": "Forward",
             "trackPulseLength": 6,
-            "trackStyle": "Standard",
+            "trackStyle": "Basic",
             "angleOffset": 90,
             "eventTag": ""
         },
@@ -24422,7 +24233,7 @@ const test = {
             "trackColorAnimDuration": 0.3,
             "trackColorPulse": "Forward",
             "trackPulseLength": 6,
-            "trackStyle": "Standard",
+            "trackStyle": "Basic",
             "angleOffset": 0,
             "eventTag": ""
         },
@@ -24443,7 +24254,7 @@ const test = {
             "trackColorAnimDuration": 0.3,
             "trackColorPulse": "Forward",
             "trackPulseLength": 6,
-            "trackStyle": "Standard",
+            "trackStyle": "Basic",
             "angleOffset": 90,
             "eventTag": ""
         },
@@ -24510,7 +24321,7 @@ const test = {
             "trackColorAnimDuration": 0.3,
             "trackColorPulse": "Forward",
             "trackPulseLength": 6,
-            "trackStyle": "Standard",
+            "trackStyle": "Basic",
             "angleOffset": 0,
             "eventTag": ""
         },
@@ -24531,7 +24342,7 @@ const test = {
             "trackColorAnimDuration": 0.3,
             "trackColorPulse": "Forward",
             "trackPulseLength": 6,
-            "trackStyle": "Standard",
+            "trackStyle": "Basic",
             "angleOffset": 90,
             "eventTag": ""
         },
@@ -25417,7 +25228,7 @@ const test = {
             "trackColorAnimDuration": 0.3,
             "trackColorPulse": "Forward",
             "trackPulseLength": 6,
-            "trackStyle": "Standard",
+            "trackStyle": "Basic",
             "angleOffset": 0,
             "eventTag": ""
         },
@@ -25438,7 +25249,7 @@ const test = {
             "trackColorAnimDuration": 0.3,
             "trackColorPulse": "Forward",
             "trackPulseLength": 6,
-            "trackStyle": "Standard",
+            "trackStyle": "Basic",
             "angleOffset": 45,
             "eventTag": ""
         },
@@ -25557,7 +25368,7 @@ const test = {
             "trackColorAnimDuration": 0.3,
             "trackColorPulse": "Forward",
             "trackPulseLength": 6,
-            "trackStyle": "Standard",
+            "trackStyle": "Basic",
             "angleOffset": 0,
             "eventTag": ""
         },
@@ -25578,7 +25389,7 @@ const test = {
             "trackColorAnimDuration": 0.3,
             "trackColorPulse": "Forward",
             "trackPulseLength": 6,
-            "trackStyle": "Standard",
+            "trackStyle": "Basic",
             "angleOffset": 45,
             "eventTag": ""
         },
@@ -25668,7 +25479,7 @@ const test = {
             "trackColorAnimDuration": 0.3,
             "trackColorPulse": "Forward",
             "trackPulseLength": 6,
-            "trackStyle": "Standard",
+            "trackStyle": "Basic",
             "angleOffset": 0,
             "eventTag": ""
         },
@@ -25689,7 +25500,7 @@ const test = {
             "trackColorAnimDuration": 0.3,
             "trackColorPulse": "Forward",
             "trackPulseLength": 6,
-            "trackStyle": "Standard",
+            "trackStyle": "Basic",
             "angleOffset": 45,
             "eventTag": ""
         },
@@ -25783,7 +25594,7 @@ const test = {
             "trackColorAnimDuration": 0.3,
             "trackColorPulse": "Forward",
             "trackPulseLength": 6,
-            "trackStyle": "Standard",
+            "trackStyle": "Basic",
             "angleOffset": 0,
             "eventTag": ""
         },
@@ -25804,7 +25615,7 @@ const test = {
             "trackColorAnimDuration": 0.3,
             "trackColorPulse": "Forward",
             "trackPulseLength": 6,
-            "trackStyle": "Standard",
+            "trackStyle": "Basic",
             "angleOffset": 45,
             "eventTag": ""
         },
@@ -25894,7 +25705,7 @@ const test = {
             "trackColorAnimDuration": 0.3,
             "trackColorPulse": "Forward",
             "trackPulseLength": 6,
-            "trackStyle": "Standard",
+            "trackStyle": "Basic",
             "angleOffset": 0,
             "eventTag": ""
         },
@@ -25915,7 +25726,7 @@ const test = {
             "trackColorAnimDuration": 0.3,
             "trackColorPulse": "Forward",
             "trackPulseLength": 6,
-            "trackStyle": "Standard",
+            "trackStyle": "Basic",
             "angleOffset": 45,
             "eventTag": ""
         },
@@ -26009,7 +25820,7 @@ const test = {
             "trackColorAnimDuration": 0.3,
             "trackColorPulse": "Forward",
             "trackPulseLength": 6,
-            "trackStyle": "Standard",
+            "trackStyle": "Basic",
             "angleOffset": 0,
             "eventTag": ""
         },
@@ -26030,7 +25841,7 @@ const test = {
             "trackColorAnimDuration": 0.3,
             "trackColorPulse": "Forward",
             "trackPulseLength": 6,
-            "trackStyle": "Standard",
+            "trackStyle": "Basic",
             "angleOffset": 45,
             "eventTag": ""
         },
@@ -26120,7 +25931,7 @@ const test = {
             "trackColorAnimDuration": 0.3,
             "trackColorPulse": "Forward",
             "trackPulseLength": 6,
-            "trackStyle": "Standard",
+            "trackStyle": "Basic",
             "angleOffset": 0,
             "eventTag": ""
         },
@@ -26141,7 +25952,7 @@ const test = {
             "trackColorAnimDuration": 0.3,
             "trackColorPulse": "Forward",
             "trackPulseLength": 6,
-            "trackStyle": "Standard",
+            "trackStyle": "Basic",
             "angleOffset": 45,
             "eventTag": ""
         },
@@ -26235,7 +26046,7 @@ const test = {
             "trackColorAnimDuration": 0.3,
             "trackColorPulse": "Forward",
             "trackPulseLength": 6,
-            "trackStyle": "Standard",
+            "trackStyle": "Basic",
             "angleOffset": 0,
             "eventTag": ""
         },
@@ -26256,7 +26067,7 @@ const test = {
             "trackColorAnimDuration": 0.3,
             "trackColorPulse": "Forward",
             "trackPulseLength": 6,
-            "trackStyle": "Standard",
+            "trackStyle": "Basic",
             "angleOffset": 45,
             "eventTag": ""
         },
@@ -26346,7 +26157,7 @@ const test = {
             "trackColorAnimDuration": 0.3,
             "trackColorPulse": "Forward",
             "trackPulseLength": 6,
-            "trackStyle": "Standard",
+            "trackStyle": "Basic",
             "angleOffset": 0,
             "eventTag": ""
         },
@@ -26367,7 +26178,7 @@ const test = {
             "trackColorAnimDuration": 0.3,
             "trackColorPulse": "Forward",
             "trackPulseLength": 6,
-            "trackStyle": "Standard",
+            "trackStyle": "Basic",
             "angleOffset": 90,
             "eventTag": ""
         },
@@ -26463,7 +26274,7 @@ const test = {
             "trackColorAnimDuration": 0.3,
             "trackColorPulse": "Forward",
             "trackPulseLength": 6,
-            "trackStyle": "Standard",
+            "trackStyle": "Basic",
             "angleOffset": 0,
             "eventTag": ""
         },
@@ -26484,7 +26295,7 @@ const test = {
             "trackColorAnimDuration": 0.3,
             "trackColorPulse": "Forward",
             "trackPulseLength": 6,
-            "trackStyle": "Standard",
+            "trackStyle": "Basic",
             "angleOffset": 90,
             "eventTag": ""
         },
@@ -26574,7 +26385,7 @@ const test = {
             "trackColorAnimDuration": 0.3,
             "trackColorPulse": "Forward",
             "trackPulseLength": 6,
-            "trackStyle": "Standard",
+            "trackStyle": "Basic",
             "angleOffset": 0,
             "eventTag": ""
         },
@@ -26595,7 +26406,7 @@ const test = {
             "trackColorAnimDuration": 0.3,
             "trackColorPulse": "Forward",
             "trackPulseLength": 6,
-            "trackStyle": "Standard",
+            "trackStyle": "Basic",
             "angleOffset": 90,
             "eventTag": ""
         },
@@ -26685,7 +26496,7 @@ const test = {
             "trackColorAnimDuration": 0.3,
             "trackColorPulse": "Forward",
             "trackPulseLength": 6,
-            "trackStyle": "Standard",
+            "trackStyle": "Basic",
             "angleOffset": 0,
             "eventTag": ""
         },
@@ -26706,7 +26517,7 @@ const test = {
             "trackColorAnimDuration": 0.3,
             "trackColorPulse": "Forward",
             "trackPulseLength": 6,
-            "trackStyle": "Standard",
+            "trackStyle": "Basic",
             "angleOffset": 90,
             "eventTag": ""
         },
@@ -26796,7 +26607,7 @@ const test = {
             "trackColorAnimDuration": 0.3,
             "trackColorPulse": "Forward",
             "trackPulseLength": 6,
-            "trackStyle": "Standard",
+            "trackStyle": "Basic",
             "angleOffset": 0,
             "eventTag": ""
         },
@@ -26817,7 +26628,7 @@ const test = {
             "trackColorAnimDuration": 0.3,
             "trackColorPulse": "Forward",
             "trackPulseLength": 6,
-            "trackStyle": "Standard",
+            "trackStyle": "Basic",
             "angleOffset": 90,
             "eventTag": ""
         },
@@ -26907,7 +26718,7 @@ const test = {
             "trackColorAnimDuration": 0.3,
             "trackColorPulse": "Forward",
             "trackPulseLength": 6,
-            "trackStyle": "Standard",
+            "trackStyle": "Basic",
             "angleOffset": 0,
             "eventTag": ""
         },
@@ -26928,7 +26739,7 @@ const test = {
             "trackColorAnimDuration": 0.3,
             "trackColorPulse": "Forward",
             "trackPulseLength": 6,
-            "trackStyle": "Standard",
+            "trackStyle": "Basic",
             "angleOffset": 90,
             "eventTag": ""
         },
@@ -27018,7 +26829,7 @@ const test = {
             "trackColorAnimDuration": 0.3,
             "trackColorPulse": "Forward",
             "trackPulseLength": 6,
-            "trackStyle": "Standard",
+            "trackStyle": "Basic",
             "angleOffset": 0,
             "eventTag": ""
         },
@@ -27039,7 +26850,7 @@ const test = {
             "trackColorAnimDuration": 0.3,
             "trackColorPulse": "Forward",
             "trackPulseLength": 6,
-            "trackStyle": "Standard",
+            "trackStyle": "Basic",
             "angleOffset": 90,
             "eventTag": ""
         },
@@ -27129,7 +26940,7 @@ const test = {
             "trackColorAnimDuration": 0.3,
             "trackColorPulse": "Forward",
             "trackPulseLength": 6,
-            "trackStyle": "Standard",
+            "trackStyle": "Basic",
             "angleOffset": 0,
             "eventTag": ""
         },
@@ -27150,7 +26961,7 @@ const test = {
             "trackColorAnimDuration": 0.3,
             "trackColorPulse": "Forward",
             "trackPulseLength": 6,
-            "trackStyle": "Standard",
+            "trackStyle": "Basic",
             "angleOffset": 90,
             "eventTag": ""
         },
@@ -27242,6 +27053,16 @@ const test = {
             "zoom": 222,
             "angleOffset": 0,
             "ease": "OutCubic",
+            "eventTag": ""
+        },
+        {
+            "floor": 1852,
+            "eventType": "SetFilter",
+            "filter": "MotionBlur",
+            "enabled": "Disabled",
+            "intensity": 100,
+            "disableOthers": "Disabled",
+            "angleOffset": 0,
             "eventTag": ""
         },
         {
@@ -27881,7 +27702,7 @@ const test = {
             "trackColorAnimDuration": 0.3,
             "trackColorPulse": "Forward",
             "trackPulseLength": 6,
-            "trackStyle": "Standard",
+            "trackStyle": "Basic",
             "angleOffset": 0,
             "eventTag": ""
         },
@@ -27902,7 +27723,7 @@ const test = {
             "trackColorAnimDuration": 0.3,
             "trackColorPulse": "Forward",
             "trackPulseLength": 6,
-            "trackStyle": "Standard",
+            "trackStyle": "Basic",
             "angleOffset": 45,
             "eventTag": ""
         },
@@ -27977,7 +27798,7 @@ const test = {
             "trackColorAnimDuration": 0.3,
             "trackColorPulse": "Forward",
             "trackPulseLength": 6,
-            "trackStyle": "Standard",
+            "trackStyle": "Basic",
             "angleOffset": 0,
             "eventTag": ""
         },
@@ -27998,7 +27819,7 @@ const test = {
             "trackColorAnimDuration": 0.3,
             "trackColorPulse": "Forward",
             "trackPulseLength": 6,
-            "trackStyle": "Standard",
+            "trackStyle": "Basic",
             "angleOffset": 45,
             "eventTag": ""
         },
@@ -28065,7 +27886,7 @@ const test = {
             "trackColorAnimDuration": 0.3,
             "trackColorPulse": "Forward",
             "trackPulseLength": 6,
-            "trackStyle": "Standard",
+            "trackStyle": "Basic",
             "angleOffset": 0,
             "eventTag": ""
         },
@@ -28086,7 +27907,7 @@ const test = {
             "trackColorAnimDuration": 0.3,
             "trackColorPulse": "Forward",
             "trackPulseLength": 6,
-            "trackStyle": "Standard",
+            "trackStyle": "Basic",
             "angleOffset": 45,
             "eventTag": ""
         },
@@ -28157,7 +27978,7 @@ const test = {
             "trackColorAnimDuration": 0.3,
             "trackColorPulse": "Forward",
             "trackPulseLength": 6,
-            "trackStyle": "Standard",
+            "trackStyle": "Basic",
             "angleOffset": 0,
             "eventTag": ""
         },
@@ -28178,7 +27999,7 @@ const test = {
             "trackColorAnimDuration": 0.3,
             "trackColorPulse": "Forward",
             "trackPulseLength": 6,
-            "trackStyle": "Standard",
+            "trackStyle": "Basic",
             "angleOffset": 45,
             "eventTag": ""
         },
@@ -28245,7 +28066,7 @@ const test = {
             "trackColorAnimDuration": 0.3,
             "trackColorPulse": "Forward",
             "trackPulseLength": 6,
-            "trackStyle": "Standard",
+            "trackStyle": "Basic",
             "angleOffset": 0,
             "eventTag": ""
         },
@@ -28266,7 +28087,7 @@ const test = {
             "trackColorAnimDuration": 0.3,
             "trackColorPulse": "Forward",
             "trackPulseLength": 6,
-            "trackStyle": "Standard",
+            "trackStyle": "Basic",
             "angleOffset": 45,
             "eventTag": ""
         },
@@ -28337,7 +28158,7 @@ const test = {
             "trackColorAnimDuration": 0.3,
             "trackColorPulse": "Forward",
             "trackPulseLength": 6,
-            "trackStyle": "Standard",
+            "trackStyle": "Basic",
             "angleOffset": 0,
             "eventTag": ""
         },
@@ -28358,7 +28179,7 @@ const test = {
             "trackColorAnimDuration": 0.3,
             "trackColorPulse": "Forward",
             "trackPulseLength": 6,
-            "trackStyle": "Standard",
+            "trackStyle": "Basic",
             "angleOffset": 45,
             "eventTag": ""
         },
@@ -28425,7 +28246,7 @@ const test = {
             "trackColorAnimDuration": 0.3,
             "trackColorPulse": "Forward",
             "trackPulseLength": 6,
-            "trackStyle": "Standard",
+            "trackStyle": "Basic",
             "angleOffset": 0,
             "eventTag": ""
         },
@@ -28446,7 +28267,7 @@ const test = {
             "trackColorAnimDuration": 0.3,
             "trackColorPulse": "Forward",
             "trackPulseLength": 6,
-            "trackStyle": "Standard",
+            "trackStyle": "Basic",
             "angleOffset": 45,
             "eventTag": ""
         },
@@ -28517,7 +28338,7 @@ const test = {
             "trackColorAnimDuration": 0.3,
             "trackColorPulse": "Forward",
             "trackPulseLength": 6,
-            "trackStyle": "Standard",
+            "trackStyle": "Basic",
             "angleOffset": 0,
             "eventTag": ""
         },
@@ -28538,7 +28359,7 @@ const test = {
             "trackColorAnimDuration": 0.3,
             "trackColorPulse": "Forward",
             "trackPulseLength": 6,
-            "trackStyle": "Standard",
+            "trackStyle": "Basic",
             "angleOffset": 45,
             "eventTag": ""
         },
@@ -28605,7 +28426,7 @@ const test = {
             "trackColorAnimDuration": 0.3,
             "trackColorPulse": "Forward",
             "trackPulseLength": 6,
-            "trackStyle": "Standard",
+            "trackStyle": "Basic",
             "angleOffset": 0,
             "eventTag": ""
         },
@@ -28626,7 +28447,7 @@ const test = {
             "trackColorAnimDuration": 0.3,
             "trackColorPulse": "Forward",
             "trackPulseLength": 6,
-            "trackStyle": "Standard",
+            "trackStyle": "Basic",
             "angleOffset": 45,
             "eventTag": ""
         },
@@ -28697,7 +28518,7 @@ const test = {
             "trackColorAnimDuration": 0.3,
             "trackColorPulse": "Forward",
             "trackPulseLength": 6,
-            "trackStyle": "Standard",
+            "trackStyle": "Basic",
             "angleOffset": 0,
             "eventTag": ""
         },
@@ -28718,7 +28539,7 @@ const test = {
             "trackColorAnimDuration": 0.3,
             "trackColorPulse": "Forward",
             "trackPulseLength": 6,
-            "trackStyle": "Standard",
+            "trackStyle": "Basic",
             "angleOffset": 45,
             "eventTag": ""
         },
@@ -28785,7 +28606,7 @@ const test = {
             "trackColorAnimDuration": 0.3,
             "trackColorPulse": "Forward",
             "trackPulseLength": 6,
-            "trackStyle": "Standard",
+            "trackStyle": "Basic",
             "angleOffset": 0,
             "eventTag": ""
         },
@@ -28806,7 +28627,7 @@ const test = {
             "trackColorAnimDuration": 0.3,
             "trackColorPulse": "Forward",
             "trackPulseLength": 6,
-            "trackStyle": "Standard",
+            "trackStyle": "Basic",
             "angleOffset": 45,
             "eventTag": ""
         },
@@ -28877,7 +28698,7 @@ const test = {
             "trackColorAnimDuration": 0.3,
             "trackColorPulse": "Forward",
             "trackPulseLength": 6,
-            "trackStyle": "Standard",
+            "trackStyle": "Basic",
             "angleOffset": 0,
             "eventTag": ""
         },
@@ -28898,7 +28719,7 @@ const test = {
             "trackColorAnimDuration": 0.3,
             "trackColorPulse": "Forward",
             "trackPulseLength": 6,
-            "trackStyle": "Standard",
+            "trackStyle": "Basic",
             "angleOffset": 45,
             "eventTag": ""
         },
@@ -28965,7 +28786,7 @@ const test = {
             "trackColorAnimDuration": 0.3,
             "trackColorPulse": "Forward",
             "trackPulseLength": 6,
-            "trackStyle": "Standard",
+            "trackStyle": "Basic",
             "angleOffset": 0,
             "eventTag": ""
         },
@@ -28986,7 +28807,7 @@ const test = {
             "trackColorAnimDuration": 0.3,
             "trackColorPulse": "Forward",
             "trackPulseLength": 6,
-            "trackStyle": "Standard",
+            "trackStyle": "Basic",
             "angleOffset": 112.5,
             "eventTag": ""
         },
@@ -29059,7 +28880,7 @@ const test = {
             "trackColorAnimDuration": 0.3,
             "trackColorPulse": "Forward",
             "trackPulseLength": 6,
-            "trackStyle": "Standard",
+            "trackStyle": "Basic",
             "angleOffset": 0,
             "eventTag": ""
         },
@@ -29080,7 +28901,7 @@ const test = {
             "trackColorAnimDuration": 0.3,
             "trackColorPulse": "Forward",
             "trackPulseLength": 6,
-            "trackStyle": "Standard",
+            "trackStyle": "Basic",
             "angleOffset": 112.5,
             "eventTag": ""
         },
@@ -29147,7 +28968,7 @@ const test = {
             "trackColorAnimDuration": 0.3,
             "trackColorPulse": "Forward",
             "trackPulseLength": 6,
-            "trackStyle": "Standard",
+            "trackStyle": "Basic",
             "angleOffset": 0,
             "eventTag": ""
         },
@@ -29168,7 +28989,7 @@ const test = {
             "trackColorAnimDuration": 0.3,
             "trackColorPulse": "Forward",
             "trackPulseLength": 6,
-            "trackStyle": "Standard",
+            "trackStyle": "Basic",
             "angleOffset": 112.5,
             "eventTag": ""
         },
@@ -29235,7 +29056,7 @@ const test = {
             "trackColorAnimDuration": 0.3,
             "trackColorPulse": "Forward",
             "trackPulseLength": 6,
-            "trackStyle": "Standard",
+            "trackStyle": "Basic",
             "angleOffset": 0,
             "eventTag": ""
         },
@@ -29256,7 +29077,7 @@ const test = {
             "trackColorAnimDuration": 0.3,
             "trackColorPulse": "Forward",
             "trackPulseLength": 6,
-            "trackStyle": "Standard",
+            "trackStyle": "Basic",
             "angleOffset": 112.5,
             "eventTag": ""
         },
@@ -29323,7 +29144,7 @@ const test = {
             "trackColorAnimDuration": 0.3,
             "trackColorPulse": "Forward",
             "trackPulseLength": 6,
-            "trackStyle": "Standard",
+            "trackStyle": "Basic",
             "angleOffset": 0,
             "eventTag": ""
         },
@@ -29344,7 +29165,7 @@ const test = {
             "trackColorAnimDuration": 0.3,
             "trackColorPulse": "Forward",
             "trackPulseLength": 6,
-            "trackStyle": "Standard",
+            "trackStyle": "Basic",
             "angleOffset": 75,
             "eventTag": ""
         },
@@ -29417,7 +29238,7 @@ const test = {
             "trackColorAnimDuration": 0.3,
             "trackColorPulse": "Forward",
             "trackPulseLength": 6,
-            "trackStyle": "Standard",
+            "trackStyle": "Basic",
             "angleOffset": 0,
             "eventTag": ""
         },
@@ -29438,7 +29259,7 @@ const test = {
             "trackColorAnimDuration": 0.3,
             "trackColorPulse": "Forward",
             "trackPulseLength": 6,
-            "trackStyle": "Standard",
+            "trackStyle": "Basic",
             "angleOffset": 75,
             "eventTag": ""
         },
@@ -29505,7 +29326,7 @@ const test = {
             "trackColorAnimDuration": 0.3,
             "trackColorPulse": "Forward",
             "trackPulseLength": 6,
-            "trackStyle": "Standard",
+            "trackStyle": "Basic",
             "angleOffset": 0,
             "eventTag": ""
         },
@@ -29526,7 +29347,7 @@ const test = {
             "trackColorAnimDuration": 0.3,
             "trackColorPulse": "Forward",
             "trackPulseLength": 6,
-            "trackStyle": "Standard",
+            "trackStyle": "Basic",
             "angleOffset": 75,
             "eventTag": ""
         },
@@ -29593,7 +29414,7 @@ const test = {
             "trackColorAnimDuration": 0.3,
             "trackColorPulse": "Forward",
             "trackPulseLength": 6,
-            "trackStyle": "Standard",
+            "trackStyle": "Basic",
             "angleOffset": 0,
             "eventTag": ""
         },
@@ -29614,7 +29435,7 @@ const test = {
             "trackColorAnimDuration": 0.3,
             "trackColorPulse": "Forward",
             "trackPulseLength": 6,
-            "trackStyle": "Standard",
+            "trackStyle": "Basic",
             "angleOffset": 75,
             "eventTag": ""
         },
@@ -29681,7 +29502,7 @@ const test = {
             "trackColorAnimDuration": 0.3,
             "trackColorPulse": "Forward",
             "trackPulseLength": 6,
-            "trackStyle": "Standard",
+            "trackStyle": "Basic",
             "angleOffset": 0,
             "eventTag": ""
         },
@@ -29702,7 +29523,7 @@ const test = {
             "trackColorAnimDuration": 0.3,
             "trackColorPulse": "Forward",
             "trackPulseLength": 6,
-            "trackStyle": "Standard",
+            "trackStyle": "Basic",
             "angleOffset": 75,
             "eventTag": ""
         },
@@ -29769,7 +29590,7 @@ const test = {
             "trackColorAnimDuration": 0.3,
             "trackColorPulse": "Forward",
             "trackPulseLength": 6,
-            "trackStyle": "Standard",
+            "trackStyle": "Basic",
             "angleOffset": 0,
             "eventTag": ""
         },
@@ -29790,7 +29611,7 @@ const test = {
             "trackColorAnimDuration": 0.3,
             "trackColorPulse": "Forward",
             "trackPulseLength": 6,
-            "trackStyle": "Standard",
+            "trackStyle": "Basic",
             "angleOffset": 75,
             "eventTag": ""
         },
@@ -29857,7 +29678,7 @@ const test = {
             "trackColorAnimDuration": 0.3,
             "trackColorPulse": "Forward",
             "trackPulseLength": 6,
-            "trackStyle": "Standard",
+            "trackStyle": "Basic",
             "angleOffset": 0,
             "eventTag": ""
         },
@@ -29878,7 +29699,7 @@ const test = {
             "trackColorAnimDuration": 0.3,
             "trackColorPulse": "Forward",
             "trackPulseLength": 6,
-            "trackStyle": "Standard",
+            "trackStyle": "Basic",
             "angleOffset": 105,
             "eventTag": ""
         },
@@ -31209,7 +31030,7 @@ const test = {
             "trackColorAnimDuration": 0.3,
             "trackColorPulse": "Forward",
             "trackPulseLength": 6,
-            "trackStyle": "Standard",
+            "trackStyle": "Basic",
             "angleOffset": 0,
             "eventTag": ""
         },
@@ -31230,7 +31051,7 @@ const test = {
             "trackColorAnimDuration": 0.3,
             "trackColorPulse": "Forward",
             "trackPulseLength": 6,
-            "trackStyle": "Standard",
+            "trackStyle": "Basic",
             "angleOffset": 90,
             "eventTag": ""
         },
@@ -31320,7 +31141,7 @@ const test = {
             "trackColorAnimDuration": 0.3,
             "trackColorPulse": "Forward",
             "trackPulseLength": 6,
-            "trackStyle": "Standard",
+            "trackStyle": "Basic",
             "angleOffset": 0,
             "eventTag": ""
         },
@@ -31341,7 +31162,7 @@ const test = {
             "trackColorAnimDuration": 0.3,
             "trackColorPulse": "Forward",
             "trackPulseLength": 6,
-            "trackStyle": "Standard",
+            "trackStyle": "Basic",
             "angleOffset": 90,
             "eventTag": ""
         },
@@ -31431,7 +31252,7 @@ const test = {
             "trackColorAnimDuration": 0.3,
             "trackColorPulse": "Forward",
             "trackPulseLength": 6,
-            "trackStyle": "Standard",
+            "trackStyle": "Basic",
             "angleOffset": 0,
             "eventTag": ""
         },
@@ -31452,7 +31273,7 @@ const test = {
             "trackColorAnimDuration": 0.3,
             "trackColorPulse": "Forward",
             "trackPulseLength": 6,
-            "trackStyle": "Standard",
+            "trackStyle": "Basic",
             "angleOffset": 90,
             "eventTag": ""
         },
@@ -31542,7 +31363,7 @@ const test = {
             "trackColorAnimDuration": 0.3,
             "trackColorPulse": "Forward",
             "trackPulseLength": 6,
-            "trackStyle": "Standard",
+            "trackStyle": "Basic",
             "angleOffset": 0,
             "eventTag": ""
         },
@@ -31563,7 +31384,7 @@ const test = {
             "trackColorAnimDuration": 0.3,
             "trackColorPulse": "Forward",
             "trackPulseLength": 6,
-            "trackStyle": "Standard",
+            "trackStyle": "Basic",
             "angleOffset": 90,
             "eventTag": ""
         },
@@ -31653,7 +31474,7 @@ const test = {
             "trackColorAnimDuration": 0.3,
             "trackColorPulse": "Forward",
             "trackPulseLength": 6,
-            "trackStyle": "Standard",
+            "trackStyle": "Basic",
             "angleOffset": 0,
             "eventTag": ""
         },
@@ -31674,7 +31495,7 @@ const test = {
             "trackColorAnimDuration": 0.3,
             "trackColorPulse": "Forward",
             "trackPulseLength": 6,
-            "trackStyle": "Standard",
+            "trackStyle": "Basic",
             "angleOffset": 90,
             "eventTag": ""
         },
@@ -31764,7 +31585,7 @@ const test = {
             "trackColorAnimDuration": 0.3,
             "trackColorPulse": "Forward",
             "trackPulseLength": 6,
-            "trackStyle": "Standard",
+            "trackStyle": "Basic",
             "angleOffset": 0,
             "eventTag": ""
         },
@@ -31785,7 +31606,7 @@ const test = {
             "trackColorAnimDuration": 0.3,
             "trackColorPulse": "Forward",
             "trackPulseLength": 6,
-            "trackStyle": "Standard",
+            "trackStyle": "Basic",
             "angleOffset": 90,
             "eventTag": ""
         },
@@ -31875,7 +31696,7 @@ const test = {
             "trackColorAnimDuration": 0.3,
             "trackColorPulse": "Forward",
             "trackPulseLength": 6,
-            "trackStyle": "Standard",
+            "trackStyle": "Basic",
             "angleOffset": 0,
             "eventTag": ""
         },
@@ -31896,7 +31717,7 @@ const test = {
             "trackColorAnimDuration": 0.3,
             "trackColorPulse": "Forward",
             "trackPulseLength": 6,
-            "trackStyle": "Standard",
+            "trackStyle": "Basic",
             "angleOffset": 90,
             "eventTag": ""
         },
@@ -31986,7 +31807,7 @@ const test = {
             "trackColorAnimDuration": 0.3,
             "trackColorPulse": "Forward",
             "trackPulseLength": 6,
-            "trackStyle": "Standard",
+            "trackStyle": "Basic",
             "angleOffset": 0,
             "eventTag": ""
         },
@@ -32007,7 +31828,7 @@ const test = {
             "trackColorAnimDuration": 0.3,
             "trackColorPulse": "Forward",
             "trackPulseLength": 6,
-            "trackStyle": "Standard",
+            "trackStyle": "Basic",
             "angleOffset": 90,
             "eventTag": ""
         },
@@ -32508,7 +32329,7 @@ const test = {
             "trackColorAnimDuration": 0.3,
             "trackColorPulse": "Forward",
             "trackPulseLength": 6,
-            "trackStyle": "Standard",
+            "trackStyle": "Basic",
             "angleOffset": 0,
             "eventTag": ""
         },
@@ -32529,7 +32350,7 @@ const test = {
             "trackColorAnimDuration": 0.3,
             "trackColorPulse": "Forward",
             "trackPulseLength": 6,
-            "trackStyle": "Standard",
+            "trackStyle": "Basic",
             "angleOffset": 45,
             "eventTag": ""
         },
@@ -32614,7 +32435,7 @@ const test = {
             "trackColorAnimDuration": 0.3,
             "trackColorPulse": "Forward",
             "trackPulseLength": 6,
-            "trackStyle": "Standard",
+            "trackStyle": "Basic",
             "angleOffset": 0,
             "eventTag": ""
         },
@@ -32635,7 +32456,7 @@ const test = {
             "trackColorAnimDuration": 0.3,
             "trackColorPulse": "Forward",
             "trackPulseLength": 6,
-            "trackStyle": "Standard",
+            "trackStyle": "Basic",
             "angleOffset": 45,
             "eventTag": ""
         },
@@ -32702,7 +32523,7 @@ const test = {
             "trackColorAnimDuration": 0.3,
             "trackColorPulse": "Forward",
             "trackPulseLength": 6,
-            "trackStyle": "Standard",
+            "trackStyle": "Basic",
             "angleOffset": 0,
             "eventTag": ""
         },
@@ -32723,7 +32544,7 @@ const test = {
             "trackColorAnimDuration": 0.3,
             "trackColorPulse": "Forward",
             "trackPulseLength": 6,
-            "trackStyle": "Standard",
+            "trackStyle": "Basic",
             "angleOffset": 45,
             "eventTag": ""
         },
@@ -32794,7 +32615,7 @@ const test = {
             "trackColorAnimDuration": 0.3,
             "trackColorPulse": "Forward",
             "trackPulseLength": 6,
-            "trackStyle": "Standard",
+            "trackStyle": "Basic",
             "angleOffset": 0,
             "eventTag": ""
         },
@@ -32815,7 +32636,7 @@ const test = {
             "trackColorAnimDuration": 0.3,
             "trackColorPulse": "Forward",
             "trackPulseLength": 6,
-            "trackStyle": "Standard",
+            "trackStyle": "Basic",
             "angleOffset": 45,
             "eventTag": ""
         },
@@ -32882,7 +32703,7 @@ const test = {
             "trackColorAnimDuration": 0.3,
             "trackColorPulse": "Forward",
             "trackPulseLength": 6,
-            "trackStyle": "Standard",
+            "trackStyle": "Basic",
             "angleOffset": 0,
             "eventTag": ""
         },
@@ -32903,7 +32724,7 @@ const test = {
             "trackColorAnimDuration": 0.3,
             "trackColorPulse": "Forward",
             "trackPulseLength": 6,
-            "trackStyle": "Standard",
+            "trackStyle": "Basic",
             "angleOffset": 45,
             "eventTag": ""
         },
@@ -32974,7 +32795,7 @@ const test = {
             "trackColorAnimDuration": 0.3,
             "trackColorPulse": "Forward",
             "trackPulseLength": 6,
-            "trackStyle": "Standard",
+            "trackStyle": "Basic",
             "angleOffset": 0,
             "eventTag": ""
         },
@@ -32995,7 +32816,7 @@ const test = {
             "trackColorAnimDuration": 0.3,
             "trackColorPulse": "Forward",
             "trackPulseLength": 6,
-            "trackStyle": "Standard",
+            "trackStyle": "Basic",
             "angleOffset": 45,
             "eventTag": ""
         },
@@ -33066,7 +32887,7 @@ const test = {
             "trackColorAnimDuration": 0.3,
             "trackColorPulse": "Forward",
             "trackPulseLength": 6,
-            "trackStyle": "Standard",
+            "trackStyle": "Basic",
             "angleOffset": 0,
             "eventTag": ""
         },
@@ -33087,7 +32908,7 @@ const test = {
             "trackColorAnimDuration": 0.3,
             "trackColorPulse": "Forward",
             "trackPulseLength": 6,
-            "trackStyle": "Standard",
+            "trackStyle": "Basic",
             "angleOffset": 45,
             "eventTag": ""
         },
@@ -33158,7 +32979,7 @@ const test = {
             "trackColorAnimDuration": 0.3,
             "trackColorPulse": "Forward",
             "trackPulseLength": 6,
-            "trackStyle": "Standard",
+            "trackStyle": "Basic",
             "angleOffset": 0,
             "eventTag": ""
         },
@@ -33179,7 +33000,7 @@ const test = {
             "trackColorAnimDuration": 0.3,
             "trackColorPulse": "Forward",
             "trackPulseLength": 6,
-            "trackStyle": "Standard",
+            "trackStyle": "Basic",
             "angleOffset": 45,
             "eventTag": ""
         },
@@ -33250,7 +33071,7 @@ const test = {
             "trackColorAnimDuration": 0.3,
             "trackColorPulse": "Forward",
             "trackPulseLength": 6,
-            "trackStyle": "Standard",
+            "trackStyle": "Basic",
             "angleOffset": 0,
             "eventTag": ""
         },
@@ -33271,7 +33092,7 @@ const test = {
             "trackColorAnimDuration": 0.3,
             "trackColorPulse": "Forward",
             "trackPulseLength": 6,
-            "trackStyle": "Standard",
+            "trackStyle": "Basic",
             "angleOffset": 45,
             "eventTag": ""
         },
@@ -33338,7 +33159,7 @@ const test = {
             "trackColorAnimDuration": 0.3,
             "trackColorPulse": "Forward",
             "trackPulseLength": 6,
-            "trackStyle": "Standard",
+            "trackStyle": "Basic",
             "angleOffset": 0,
             "eventTag": ""
         },
@@ -33359,7 +33180,7 @@ const test = {
             "trackColorAnimDuration": 0.3,
             "trackColorPulse": "Forward",
             "trackPulseLength": 6,
-            "trackStyle": "Standard",
+            "trackStyle": "Basic",
             "angleOffset": 45,
             "eventTag": ""
         },
@@ -33430,7 +33251,7 @@ const test = {
             "trackColorAnimDuration": 0.3,
             "trackColorPulse": "Forward",
             "trackPulseLength": 6,
-            "trackStyle": "Standard",
+            "trackStyle": "Basic",
             "angleOffset": 0,
             "eventTag": ""
         },
@@ -33451,7 +33272,7 @@ const test = {
             "trackColorAnimDuration": 0.3,
             "trackColorPulse": "Forward",
             "trackPulseLength": 6,
-            "trackStyle": "Standard",
+            "trackStyle": "Basic",
             "angleOffset": 45,
             "eventTag": ""
         },
@@ -33518,7 +33339,7 @@ const test = {
             "trackColorAnimDuration": 0.3,
             "trackColorPulse": "Forward",
             "trackPulseLength": 6,
-            "trackStyle": "Standard",
+            "trackStyle": "Basic",
             "angleOffset": 0,
             "eventTag": ""
         },
@@ -33539,7 +33360,7 @@ const test = {
             "trackColorAnimDuration": 0.3,
             "trackColorPulse": "Forward",
             "trackPulseLength": 6,
-            "trackStyle": "Standard",
+            "trackStyle": "Basic",
             "angleOffset": 45,
             "eventTag": ""
         },
@@ -33610,7 +33431,7 @@ const test = {
             "trackColorAnimDuration": 0.3,
             "trackColorPulse": "Forward",
             "trackPulseLength": 6,
-            "trackStyle": "Standard",
+            "trackStyle": "Basic",
             "angleOffset": 0,
             "eventTag": ""
         },
@@ -33631,7 +33452,7 @@ const test = {
             "trackColorAnimDuration": 0.3,
             "trackColorPulse": "Forward",
             "trackPulseLength": 6,
-            "trackStyle": "Standard",
+            "trackStyle": "Basic",
             "angleOffset": 90,
             "eventTag": ""
         },
@@ -33704,7 +33525,7 @@ const test = {
             "trackColorAnimDuration": 0.3,
             "trackColorPulse": "Forward",
             "trackPulseLength": 6,
-            "trackStyle": "Standard",
+            "trackStyle": "Basic",
             "angleOffset": 0,
             "eventTag": ""
         },
@@ -33725,7 +33546,7 @@ const test = {
             "trackColorAnimDuration": 0.3,
             "trackColorPulse": "Forward",
             "trackPulseLength": 6,
-            "trackStyle": "Standard",
+            "trackStyle": "Basic",
             "angleOffset": 90,
             "eventTag": ""
         },
@@ -33792,7 +33613,7 @@ const test = {
             "trackColorAnimDuration": 0.3,
             "trackColorPulse": "Forward",
             "trackPulseLength": 6,
-            "trackStyle": "Standard",
+            "trackStyle": "Basic",
             "angleOffset": 0,
             "eventTag": ""
         },
@@ -33813,7 +33634,7 @@ const test = {
             "trackColorAnimDuration": 0.3,
             "trackColorPulse": "Forward",
             "trackPulseLength": 6,
-            "trackStyle": "Standard",
+            "trackStyle": "Basic",
             "angleOffset": 90,
             "eventTag": ""
         },
@@ -33880,7 +33701,7 @@ const test = {
             "trackColorAnimDuration": 0.3,
             "trackColorPulse": "Forward",
             "trackPulseLength": 6,
-            "trackStyle": "Standard",
+            "trackStyle": "Basic",
             "angleOffset": 0,
             "eventTag": ""
         },
@@ -33901,7 +33722,7 @@ const test = {
             "trackColorAnimDuration": 0.3,
             "trackColorPulse": "Forward",
             "trackPulseLength": 6,
-            "trackStyle": "Standard",
+            "trackStyle": "Basic",
             "angleOffset": 90,
             "eventTag": ""
         },
@@ -33968,7 +33789,7 @@ const test = {
             "trackColorAnimDuration": 0.3,
             "trackColorPulse": "Forward",
             "trackPulseLength": 6,
-            "trackStyle": "Standard",
+            "trackStyle": "Basic",
             "angleOffset": 0,
             "eventTag": ""
         },
@@ -33989,7 +33810,7 @@ const test = {
             "trackColorAnimDuration": 0.3,
             "trackColorPulse": "Forward",
             "trackPulseLength": 6,
-            "trackStyle": "Standard",
+            "trackStyle": "Basic",
             "angleOffset": 90,
             "eventTag": ""
         },
@@ -34056,7 +33877,7 @@ const test = {
             "trackColorAnimDuration": 0.3,
             "trackColorPulse": "Forward",
             "trackPulseLength": 6,
-            "trackStyle": "Standard",
+            "trackStyle": "Basic",
             "angleOffset": 0,
             "eventTag": ""
         },
@@ -34077,7 +33898,7 @@ const test = {
             "trackColorAnimDuration": 0.3,
             "trackColorPulse": "Forward",
             "trackPulseLength": 6,
-            "trackStyle": "Standard",
+            "trackStyle": "Basic",
             "angleOffset": 90,
             "eventTag": ""
         },
@@ -34144,7 +33965,7 @@ const test = {
             "trackColorAnimDuration": 0.3,
             "trackColorPulse": "Forward",
             "trackPulseLength": 6,
-            "trackStyle": "Standard",
+            "trackStyle": "Basic",
             "angleOffset": 0,
             "eventTag": ""
         },
@@ -34165,7 +33986,7 @@ const test = {
             "trackColorAnimDuration": 0.3,
             "trackColorPulse": "Forward",
             "trackPulseLength": 6,
-            "trackStyle": "Standard",
+            "trackStyle": "Basic",
             "angleOffset": 90,
             "eventTag": ""
         },
@@ -34232,7 +34053,7 @@ const test = {
             "trackColorAnimDuration": 0.3,
             "trackColorPulse": "Forward",
             "trackPulseLength": 6,
-            "trackStyle": "Standard",
+            "trackStyle": "Basic",
             "angleOffset": 0,
             "eventTag": ""
         },
@@ -34253,7 +34074,7 @@ const test = {
             "trackColorAnimDuration": 0.3,
             "trackColorPulse": "Forward",
             "trackPulseLength": 6,
-            "trackStyle": "Standard",
+            "trackStyle": "Basic",
             "angleOffset": 90,
             "eventTag": ""
         },
@@ -34320,7 +34141,7 @@ const test = {
             "trackColorAnimDuration": 0.3,
             "trackColorPulse": "Forward",
             "trackPulseLength": 6,
-            "trackStyle": "Standard",
+            "trackStyle": "Basic",
             "angleOffset": 0,
             "eventTag": ""
         },
@@ -34341,7 +34162,7 @@ const test = {
             "trackColorAnimDuration": 0.3,
             "trackColorPulse": "Forward",
             "trackPulseLength": 6,
-            "trackStyle": "Standard",
+            "trackStyle": "Basic",
             "angleOffset": 112.5,
             "eventTag": ""
         },
@@ -34414,7 +34235,7 @@ const test = {
             "trackColorAnimDuration": 0.3,
             "trackColorPulse": "Forward",
             "trackPulseLength": 6,
-            "trackStyle": "Standard",
+            "trackStyle": "Basic",
             "angleOffset": 0,
             "eventTag": ""
         },
@@ -34435,7 +34256,7 @@ const test = {
             "trackColorAnimDuration": 0.3,
             "trackColorPulse": "Forward",
             "trackPulseLength": 6,
-            "trackStyle": "Standard",
+            "trackStyle": "Basic",
             "angleOffset": 112.5,
             "eventTag": ""
         },
@@ -34502,7 +34323,7 @@ const test = {
             "trackColorAnimDuration": 0.3,
             "trackColorPulse": "Forward",
             "trackPulseLength": 6,
-            "trackStyle": "Standard",
+            "trackStyle": "Basic",
             "angleOffset": 0,
             "eventTag": ""
         },
@@ -34523,7 +34344,7 @@ const test = {
             "trackColorAnimDuration": 0.3,
             "trackColorPulse": "Forward",
             "trackPulseLength": 6,
-            "trackStyle": "Standard",
+            "trackStyle": "Basic",
             "angleOffset": 112.5,
             "eventTag": ""
         },
@@ -35970,7 +35791,7 @@ const test = {
             "trackColorAnimDuration": 0.1,
             "trackColorPulse": "Forward",
             "trackPulseLength": 8,
-            "trackStyle": "Standard",
+            "trackStyle": "Basic",
             "angleOffset": 0,
             "eventTag": ""
         },
@@ -35991,7 +35812,7 @@ const test = {
             "trackColorAnimDuration": 0.1,
             "trackColorPulse": "Forward",
             "trackPulseLength": 8,
-            "trackStyle": "Standard",
+            "trackStyle": "Basic",
             "angleOffset": 45,
             "eventTag": ""
         },
@@ -36127,7 +35948,7 @@ const test = {
             "trackColorAnimDuration": 0.1,
             "trackColorPulse": "Forward",
             "trackPulseLength": 8,
-            "trackStyle": "Standard",
+            "trackStyle": "Basic",
             "angleOffset": 0,
             "eventTag": ""
         },
@@ -36148,7 +35969,7 @@ const test = {
             "trackColorAnimDuration": 0.1,
             "trackColorPulse": "Forward",
             "trackPulseLength": 8,
-            "trackStyle": "Standard",
+            "trackStyle": "Basic",
             "angleOffset": 45,
             "eventTag": ""
         },
@@ -36238,7 +36059,7 @@ const test = {
             "trackColorAnimDuration": 0.1,
             "trackColorPulse": "Forward",
             "trackPulseLength": 8,
-            "trackStyle": "Standard",
+            "trackStyle": "Basic",
             "angleOffset": 0,
             "eventTag": ""
         },
@@ -36259,7 +36080,7 @@ const test = {
             "trackColorAnimDuration": 0.1,
             "trackColorPulse": "Forward",
             "trackPulseLength": 8,
-            "trackStyle": "Standard",
+            "trackStyle": "Basic",
             "angleOffset": 45,
             "eventTag": ""
         },
@@ -36353,7 +36174,7 @@ const test = {
             "trackColorAnimDuration": 0.1,
             "trackColorPulse": "Forward",
             "trackPulseLength": 8,
-            "trackStyle": "Standard",
+            "trackStyle": "Basic",
             "angleOffset": 0,
             "eventTag": ""
         },
@@ -36374,7 +36195,7 @@ const test = {
             "trackColorAnimDuration": 0.1,
             "trackColorPulse": "Forward",
             "trackPulseLength": 8,
-            "trackStyle": "Standard",
+            "trackStyle": "Basic",
             "angleOffset": 45,
             "eventTag": ""
         },
@@ -36464,7 +36285,7 @@ const test = {
             "trackColorAnimDuration": 0.1,
             "trackColorPulse": "Forward",
             "trackPulseLength": 8,
-            "trackStyle": "Standard",
+            "trackStyle": "Basic",
             "angleOffset": 0,
             "eventTag": ""
         },
@@ -36485,7 +36306,7 @@ const test = {
             "trackColorAnimDuration": 0.1,
             "trackColorPulse": "Forward",
             "trackPulseLength": 8,
-            "trackStyle": "Standard",
+            "trackStyle": "Basic",
             "angleOffset": 45,
             "eventTag": ""
         },
@@ -36579,7 +36400,7 @@ const test = {
             "trackColorAnimDuration": 0.1,
             "trackColorPulse": "Forward",
             "trackPulseLength": 8,
-            "trackStyle": "Standard",
+            "trackStyle": "Basic",
             "angleOffset": 0,
             "eventTag": ""
         },
@@ -36600,7 +36421,7 @@ const test = {
             "trackColorAnimDuration": 0.1,
             "trackColorPulse": "Forward",
             "trackPulseLength": 8,
-            "trackStyle": "Standard",
+            "trackStyle": "Basic",
             "angleOffset": 45,
             "eventTag": ""
         },
@@ -36690,7 +36511,7 @@ const test = {
             "trackColorAnimDuration": 0.1,
             "trackColorPulse": "Forward",
             "trackPulseLength": 8,
-            "trackStyle": "Standard",
+            "trackStyle": "Basic",
             "angleOffset": 0,
             "eventTag": ""
         },
@@ -36711,7 +36532,7 @@ const test = {
             "trackColorAnimDuration": 0.1,
             "trackColorPulse": "Forward",
             "trackPulseLength": 8,
-            "trackStyle": "Standard",
+            "trackStyle": "Basic",
             "angleOffset": 45,
             "eventTag": ""
         },
@@ -36805,7 +36626,7 @@ const test = {
             "trackColorAnimDuration": 0.1,
             "trackColorPulse": "Forward",
             "trackPulseLength": 8,
-            "trackStyle": "Standard",
+            "trackStyle": "Basic",
             "angleOffset": 0,
             "eventTag": ""
         },
@@ -36826,7 +36647,7 @@ const test = {
             "trackColorAnimDuration": 0.1,
             "trackColorPulse": "Forward",
             "trackPulseLength": 8,
-            "trackStyle": "Standard",
+            "trackStyle": "Basic",
             "angleOffset": 45,
             "eventTag": ""
         },
@@ -36916,7 +36737,7 @@ const test = {
             "trackColorAnimDuration": 0.1,
             "trackColorPulse": "Forward",
             "trackPulseLength": 8,
-            "trackStyle": "Standard",
+            "trackStyle": "Basic",
             "angleOffset": 0,
             "eventTag": ""
         },
@@ -36937,7 +36758,7 @@ const test = {
             "trackColorAnimDuration": 0.1,
             "trackColorPulse": "Forward",
             "trackPulseLength": 8,
-            "trackStyle": "Standard",
+            "trackStyle": "Basic",
             "angleOffset": 45,
             "eventTag": ""
         },
@@ -37031,7 +36852,7 @@ const test = {
             "trackColorAnimDuration": 0.1,
             "trackColorPulse": "Forward",
             "trackPulseLength": 8,
-            "trackStyle": "Standard",
+            "trackStyle": "Basic",
             "angleOffset": 0,
             "eventTag": ""
         },
@@ -37052,7 +36873,7 @@ const test = {
             "trackColorAnimDuration": 0.1,
             "trackColorPulse": "Forward",
             "trackPulseLength": 8,
-            "trackStyle": "Standard",
+            "trackStyle": "Basic",
             "angleOffset": 45,
             "eventTag": ""
         },
@@ -37142,7 +36963,7 @@ const test = {
             "trackColorAnimDuration": 0.1,
             "trackColorPulse": "Forward",
             "trackPulseLength": 8,
-            "trackStyle": "Standard",
+            "trackStyle": "Basic",
             "angleOffset": 0,
             "eventTag": ""
         },
@@ -37163,7 +36984,7 @@ const test = {
             "trackColorAnimDuration": 0.1,
             "trackColorPulse": "Forward",
             "trackPulseLength": 8,
-            "trackStyle": "Standard",
+            "trackStyle": "Basic",
             "angleOffset": 45,
             "eventTag": ""
         },
@@ -37257,7 +37078,7 @@ const test = {
             "trackColorAnimDuration": 0.1,
             "trackColorPulse": "Forward",
             "trackPulseLength": 8,
-            "trackStyle": "Standard",
+            "trackStyle": "Basic",
             "angleOffset": 0,
             "eventTag": ""
         },
@@ -37278,7 +37099,7 @@ const test = {
             "trackColorAnimDuration": 0.1,
             "trackColorPulse": "Forward",
             "trackPulseLength": 8,
-            "trackStyle": "Standard",
+            "trackStyle": "Basic",
             "angleOffset": 45,
             "eventTag": ""
         },
@@ -37368,7 +37189,7 @@ const test = {
             "trackColorAnimDuration": 0.1,
             "trackColorPulse": "Forward",
             "trackPulseLength": 8,
-            "trackStyle": "Standard",
+            "trackStyle": "Basic",
             "angleOffset": 0,
             "eventTag": ""
         },
@@ -37389,7 +37210,7 @@ const test = {
             "trackColorAnimDuration": 0.1,
             "trackColorPulse": "Forward",
             "trackPulseLength": 8,
-            "trackStyle": "Standard",
+            "trackStyle": "Basic",
             "angleOffset": 90,
             "eventTag": ""
         },
@@ -37485,7 +37306,7 @@ const test = {
             "trackColorAnimDuration": 0.1,
             "trackColorPulse": "Forward",
             "trackPulseLength": 8,
-            "trackStyle": "Standard",
+            "trackStyle": "Basic",
             "angleOffset": 0,
             "eventTag": ""
         },
@@ -37506,7 +37327,7 @@ const test = {
             "trackColorAnimDuration": 0.1,
             "trackColorPulse": "Forward",
             "trackPulseLength": 8,
-            "trackStyle": "Standard",
+            "trackStyle": "Basic",
             "angleOffset": 90,
             "eventTag": ""
         },
@@ -37596,7 +37417,7 @@ const test = {
             "trackColorAnimDuration": 0.1,
             "trackColorPulse": "Forward",
             "trackPulseLength": 8,
-            "trackStyle": "Standard",
+            "trackStyle": "Basic",
             "angleOffset": 0,
             "eventTag": ""
         },
@@ -37617,7 +37438,7 @@ const test = {
             "trackColorAnimDuration": 0.1,
             "trackColorPulse": "Forward",
             "trackPulseLength": 8,
-            "trackStyle": "Standard",
+            "trackStyle": "Basic",
             "angleOffset": 90,
             "eventTag": ""
         },
@@ -37707,7 +37528,7 @@ const test = {
             "trackColorAnimDuration": 0.1,
             "trackColorPulse": "Forward",
             "trackPulseLength": 8,
-            "trackStyle": "Standard",
+            "trackStyle": "Basic",
             "angleOffset": 0,
             "eventTag": ""
         },
@@ -37728,7 +37549,7 @@ const test = {
             "trackColorAnimDuration": 0.1,
             "trackColorPulse": "Forward",
             "trackPulseLength": 8,
-            "trackStyle": "Standard",
+            "trackStyle": "Basic",
             "angleOffset": 90,
             "eventTag": ""
         },
@@ -38200,7 +38021,7 @@ const test = {
             "trackColorAnimDuration": 0.1,
             "trackColorPulse": "Forward",
             "trackPulseLength": 10,
-            "trackStyle": "Standard",
+            "trackStyle": "Basic",
             "trackTexture": "",
             "trackTextureScale": 1
         },
@@ -38747,7 +38568,7 @@ const test = {
             "enabled": "Enabled",
             "intensity": 30,
             "disableOthers": "Enabled",
-            "angleOffset": 1,
+            "angleOffset": 0,
             "eventTag": ""
         },
         {
@@ -38884,6 +38705,16 @@ const test = {
         {
             "floor": 2114,
             "eventType": "SetFilter",
+            "filter": "Fisheye",
+            "enabled": "Enabled",
+            "intensity": 48,
+            "disableOthers": "Disabled",
+            "angleOffset": 0,
+            "eventTag": ""
+        },
+        {
+            "floor": 2114,
+            "eventType": "SetFilter",
             "filter": "Aberration",
             "enabled": "Enabled",
             "intensity": 45,
@@ -38913,7 +38744,7 @@ const test = {
             "enabled": "Disabled",
             "intensity": 100,
             "disableOthers": "Disabled",
-            "angleOffset": 1,
+            "angleOffset": 0,
             "eventTag": ""
         },
         {
@@ -38923,7 +38754,7 @@ const test = {
             "enabled": "Disabled",
             "intensity": 100,
             "disableOthers": "Disabled",
-            "angleOffset": 1,
+            "angleOffset": 0,
             "eventTag": ""
         },
         {
@@ -42689,7 +42520,7 @@ const test = {
             "enabled": "Enabled",
             "intensity": 10,
             "disableOthers": "Disabled",
-            "angleOffset": 1,
+            "angleOffset": 0,
             "eventTag": ""
         },
         {
@@ -43006,23 +42837,11 @@ const test = {
             "enabled": "Enabled",
             "intensity": 100,
             "disableOthers": "Enabled",
-            "angleOffset": 1,
+            "angleOffset": 0,
             "eventTag": ""
         },
         {
             "floor": 2602,
-            "eventType": "SetSpeed",
-            "speedType": "Bpm",
-            "beatsPerMinute": 230
-        },
-        {
-            "floor": 2620,
-            "eventType": "SetSpeed",
-            "speedType": "Bpm",
-            "beatsPerMinute": 219.04761904761904
-        },
-        {
-            "floor": 2621,
             "eventType": "SetSpeed",
             "speedType": "Bpm",
             "beatsPerMinute": 230
@@ -43075,6 +42894,7 @@ const test = {
                 0
             ],
             "rotation": 7,
+            "scale": 0,
             "tile": [
                 1,
                 1
